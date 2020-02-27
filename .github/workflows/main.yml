@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v1.1.0
+        uses: peaceiris/actions-gh-pages@latest
         env:
           PUBLISH_DIR: build
           PUBLISH_BRANCH: master
