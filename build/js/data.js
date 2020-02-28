@@ -3,21 +3,14 @@
   "date" : "Feb 24, 2020",
   
   
-  "url": "/posts/2020-02-25-terraform-azurerm-2/",
-  "tags" : "Azure,PowerShell,Azure Devops,Cloud,Tests"
-},{
-  "title": "Testing your infra my easy way 2",
-  "date" : "Feb 16, 2020",
-  "summary" : "Testing your infra shouldn&#39;t be hard. Try my easy way.",
-  
-  "url": "/posts/2020-02-17-infra-testing-easy-path-2/",
+  "url": "/2020/02/25/terraform-azurerm-2/",
   "tags" : "Azure,PowerShell,Azure Devops,Cloud,Tests"
 },{
   "title": "IaC &amp; Tests",
   "date" : "Feb 06, 2020",
-  "summary" : "I was looking for the easiest way to test Azure infrastructure. I wanted to find something easier (or lazier).",
+  "summary" : "I was looking for the easiest way to test Azure infrastructure.",
   
-  "url": "/posts/2020-02-07-infra-testing-easy-path/",
+  "url": "/2020/02/07/infra-testing-easy-path/",
   "tags" : "Azure,PowerShell,Azure Devops,Cloud,Tests"
 },{
   "title": "Lancement de Powershell du Zéro",
@@ -216,28 +209,14 @@
   
   
   "url": "/2017/02/02/installation-de-nginx-en-reverse-proxy-avec-reecriture-du-html/",
-  "tags" : ""
-},{
-  "title": "Agent Oms sur Linux dans Azure",
-  "date" : "Feb 02, 2017",
-  
-  
-  "url": "/2017/02/02/agent-oms-sur-linux-dans-azure/",
-  "tags" : ""
+  "tags" : "Linux,nginx,reverse proxy"
 },{
   "title": "[Updated 20/03/2017] Visual Studio Code pour Ansible, Terraform",
   "date" : "Jan 26, 2017",
   
   
   "url": "/2017/01/26/visual-studio-code-pour-ansible-terraform/",
-  "tags" : ""
-},{
-  "title": "Utiliser Ansible et Azure, oui c&amp;#8217;est possible !",
-  "date" : "Jan 26, 2017",
-  
-  
-  "url": "/2017/01/26/utiliser-ansible-et-azure-oui-cest-possible/",
-  "tags" : ""
+  "tags" : "Infra as Code,Visual Studio Code,Ansible,Terraform,macOs,Windows"
 },{
   "title": "Get ink level from HP printers in Powershell
 ",
@@ -245,40 +224,12 @@
   
   
   "url": "/2016/01/15/get-ink-level-from-hp-printers-in-powershell/",
-  "tags" : ""
-},{
-  "title": "Side loading application without SCCM &amp;#8211; Part 3",
-  "date" : "Jan 11, 2016",
-  
-  
-  "url": "/2016/01/11/side-loading-application-without-sccm-part-3/",
-  "tags" : ""
-},{
-  "title": "Side loading application without SCCM &amp;#8211; Part 2",
-  "date" : "Jan 11, 2016",
-  
-  
-  "url": "/2016/01/11/side-loading-application-without-sccm-part-2/",
-  "tags" : ""
-},{
-  "title": "Side loading application without SCCM &amp;#8211; Part 1",
-  "date" : "Jan 11, 2016",
-  
-  
-  "url": "/2016/01/11/side-loading-application-without-sccm-part-1/",
-  "tags" : ""
+  "tags" : "Fun,PowerShell"
 },{
   "title": "Get-NextTrain !",
   "date" : "Dec 16, 2015",
   
   
   "url": "/2015/12/16/get-nexttrain/",
-  "tags" : ""
-},{
-  "title": "Creating an Adaptive Web Site for Multiple Screens",
-  "date" : "Nov 18, 2011",
-  "summary" : "How to build a web site that automatically adapts its layout to various screen sizes, orientations, and resolutions on desktop browsers and mobile devices.",
-  "thumbnail": "/images/courses/adaptive_tn.png",
-  "url": "https://linkedin-learning.pxf.io/c/1252977/449670/8005?u=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fcreating-an-adaptive-web-site-for-multiple-screens",
-  "tags" : "css,javascript,html,web designer,web developer"
+  "tags" : "Fun,PowerShell"
 }]

@@ -6,10 +6,18 @@ post_excerpt: ""
 layout: layouts/post-sidebar.njk
 mySlug: visual-studio-code-pour-ansible-terraform
 permalink: "{{ page.date | date: '%Y/%m/%d' }}/{{ mySlug }}/index.html"
-
+tags:
+  - Infra as Code
+  - Visual Studio Code
+  - Ansible
+  - Terraform
+  - macOs
+  - Windows
 published: true
 date: 2017-01-26 22:42:55
 ---
+# Visual Studio Code
+
 L'Infrastructure as Code, c'est des méthodes et des outils pour faire des infrastructures reproductibles à l'infini.
 
 J'utilise quelques outils sur mes deux postes de travail principaux : un pc sous Windows 10 et un mac sous macOs Sierra. J'ai donc besoin d'outils qui peuvent fonctionner sur les deux plateformes sans "galère" et efficace sur les deux plateformes.

@@ -5,9 +5,18 @@ author: etienne.deneuve
 post_excerpt: ""
 layout: layouts/post-sidebar.njk
 mySlug: side-loading-application-without-sccm-part-1
-permalink: "{{ page.date | date: '%Y/%m/%d' }}/{{ mySlug }}/index.html"
+permalink: false 
+#"{{ page.date | date: '%Y/%m/%d' }}/{{ mySlug }}/index.html"
+tags:
+  - Azure
+  - PowerShell
+  - Azure Devops
+  - Cloud
+  - Tests
+published: false
+draft: true
+hidden: true
 
-published: true
 date: 2016-01-11 17:20:38
 ---
 I publish my way to install side loaded application to Windows 8 and above. I looked on Internet and found nothing to install theses apps  on  computers in a company which doesn't have SCCM. I've written a powershell script which will do the work but I want to share the way I built it, instead of sharing it without any kind of explanation. This blog post is the first one of the series for passing to a long and non interesting tasks to a near complete automated one. You will need makeappx and signtool on the computer to run the script or make the process manually. It's preferable to make the process one time before launching the script. It's easier to debug something you know (yes ! ;)).

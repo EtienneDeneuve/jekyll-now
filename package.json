@@ -11,7 +11,8 @@
     "now-build": "run-s prod:*",
     "prod:del": "rimraf build",
     "prod:webpack": "webpack -p --config webpack.prod.js",
-    "prod:serve": "ELEVENTY_ENV=production eleventy --output=./build"
+    "prod:serve": "ELEVENTY_ENV=production eleventy --output=./build",
+    "publish": "run-s prod:* && touch ./build/.nojekyll && echo 'etienne.deneuve.xyz' > ./build/CNAME && gh-pages -t -b master -o pages -d build"
   },
   "repository": {
     "type": "git",
@@ -73,6 +74,7 @@
     "animate.css": "^3.7.2",
     "bootstrap": "^4.4.1",
     "browser-sync-webpack-plugin": "^2.2.2",
+    "gh-pages": "^2.2.0",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.0",
     "vue": "^2.6.11"

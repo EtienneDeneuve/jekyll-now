@@ -6,7 +6,9 @@ post_excerpt: ""
 layout: layouts/post-sidebar.njk
 mySlug: get-nexttrain
 permalink: "{{ page.date | date: '%Y/%m/%d' }}/{{ mySlug }}/index.html"
-
+tags:
+  - Fun
+  - PowerShell
 published: true
 date: 2015-12-16 13:44:50
 ---

@@ -3,6 +3,8 @@ layout: layouts/post-sidebar.njk
 title: 'Terraform AzureRM 2.0 Provider'
 author: etienne.deneuve
 sidebar: infra-test
+mySlug: terraform-azurerm-2
+permalink: "{{ page.date | date: '%Y/%m/%d' }}/{{ mySlug }}/index.html"
 eleventyNavigation:
   key: seven-styles
   title: 'Terraform AzureRM 2.0 Provider'

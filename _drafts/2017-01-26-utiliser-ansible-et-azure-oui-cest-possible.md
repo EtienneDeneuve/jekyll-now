@@ -1,12 +1,15 @@
 ---
 ID: 73
-title: 'Utiliser Ansible et Azure, oui c&#8217;est possible !'
+title: "Utiliser Ansible et Azure, oui c'est possible !"
 author: etienne.deneuve
 post_excerpt: ""
 layout: layouts/post-sidebar.njk
 mySlug: utiliser-ansible-et-azure-oui-cest-possible
 permalink: "{{ page.date | date: '%Y/%m/%d' }}/{{ mySlug }}/index.html"
-
+tags:
+  - Azure
+  - Ansible
+  - Automation
 published: true
 date: 2017-01-26 18:54:27
 ---

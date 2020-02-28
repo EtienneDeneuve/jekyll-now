@@ -1,6 +1,6 @@
 {
   "title": "XYZ Blog",
-  "description": "<p class=\"page-section-text text-light\">Cloud, DevOps & more.</p><div><a class=\"btn btn-lg btn-outline-light\" href=\"https://github.com/planetoftheweb/seven\">Github Repo</a></div>'",
+  "description": "<p class=\"page-section-text text-light\">Etienne Deneuve<br/>Cloud, DevOps & more.</p><div><a class=\"btn btn-lg btn-outline-light\" href=\"https://github.com/etiennedeneuve/xyzblog\">Github Repo</a></div>'",
   "url": "etienne.deneuve.xyz",
   "feed": {
     "summary": "My Eleventy blog",

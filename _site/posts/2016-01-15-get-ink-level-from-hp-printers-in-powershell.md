@@ -8,7 +8,9 @@ post_excerpt: ""
 layout: layouts/post-sidebar.njk
 mySlug: get-ink-level-from-hp-printers-in-powershell
 permalink: "{{ page.date | date: '%Y/%m/%d' }}/{{ mySlug }}/index.html"
-
+tags:
+  - Fun
+  - PowerShell
 published: true
 date: 2016-01-15 09:58:06
 ---

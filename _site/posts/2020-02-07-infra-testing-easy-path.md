@@ -1,11 +1,12 @@
 ---
 layout: layouts/post-sidebar.njk
 title: 'IaC & Tests'
-summary: "I was looking for the easiest way to test Azure infrastructure.
-I wanted to find something easier (or lazier)."
+summary: "I was looking for the easiest way to test Azure infrastructure."
 # hero: /images/posts/chromeextensions.png
 # thumb: /images/posts/chromeextensions_tn.png
 sidebar: infra-test
+mySlug: infra-testing-easy-path
+permalink: "{{ page.date | date: '%Y/%m/%d' }}/{{ mySlug }}/index.html"
 eleventyNavigation:
   key: seven-styles
   title: 'IaC & Tests'
