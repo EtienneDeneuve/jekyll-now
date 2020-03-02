@@ -6,7 +6,9 @@ post_excerpt: ""
 layout: layouts/post-sidebar.njk
 mySlug: agent-oms-sur-linux-dans-azure
 permalink: "{{ page.date | date: '%Y/%m/%d' }}/{{ mySlug }}/index.html"
-
+tags:
+  - Fun
+  - PowerShell
 published: true
 date: 2017-02-02 19:29:38
 ---

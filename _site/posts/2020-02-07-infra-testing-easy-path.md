@@ -12,6 +12,8 @@ eleventyNavigation:
   title: 'IaC & Tests'
   parent: posts
   order: 1
+updateDate: 2020-02-28 12:35:17
+date: 2020-02-07 12:35:17
 tags:
   - Azure
   - PowerShell
@@ -31,7 +33,7 @@ Even if they are very cool and powerful, I wanted to find something easier (or l
 I already use pester for testing purpose, so I manage to use pester for testing Azure infrastructure,
  using the Gherkin syntax and I'll show you, how you can do that.
 
-##  Workstation preparation
+## Workstation preparation
 
 I work on 3 kind of platform : macOs, Ubuntu and Windows 10, and my tests are working on all of them.
 
@@ -59,7 +61,7 @@ First, download the suitable version of powershell for your system on GitHub. Ye
 
 If you use macOs, [brew](https://brew.sh/) can manage it  for you:
 
-```
+``` shell
 brew install powershell
 ```
 
@@ -67,7 +69,7 @@ brew install powershell
 
 On Ubuntu, snap can do the job also :
 
-```
+``` shell
 sudo snap install powershell --classic
 ```
 
@@ -75,7 +77,7 @@ sudo snap install powershell --classic
 
 On Windows, Chocolatey is working well:  
 
-```
+``` powershell
 choco install pwsh
 ```
 
@@ -83,7 +85,7 @@ choco install pwsh
 
 Installing module in PowerShell is quite easy. You only need to type the following :
 
-```
+``` powershell
 Install-PackageProvider Nuget -ForceBootstrap -Force
 Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 Update-Module
@@ -97,13 +99,13 @@ Install-Module -Name Az -force
 
 You can install Vs Code manually or by using a Package Manager using choco, snap or brew. I'll not detail this part.
 
-####  Extensions installation
+#### Extensions installation
 
 To install the extension, you can use the GUI of Vs Code or the cmdline. For Gui, take a look at the doc [here](https://code.visualstudio.com/docs/editor/extension-gallery).
 
 For the cmdline :
 
-```
+``` shell
 code --install-extension alexkrechik.cucumberautocomplete
 code --install-extension ms-vscode.powershell
 ```
@@ -112,16 +114,16 @@ code --install-extension ms-vscode.powershell
 >
 > __bash__:
 >
-> ```
+> ``` shell
 > cat << EOF >> ~/.bash_profile
 > # Add Visual Studio Code (code)
 > export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 > EOF
 > ```
-
+>
 > __zsh__:
-
-> ```
+>
+> ``` shell
 > cat << EOF >> ~/.zsh_profile
 > # Add Visual Studio Code (code)
 > export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
@@ -144,7 +146,7 @@ Fortunately, Pester support the Gherkin syntax using the `Invoke-Gherkin` cmdlet
 
 We need to create our workspace, so do it like that (Using PowerShell's Shell):
 
-```
+``` powershell
 Set-Location ~
 New-Item ./Documents/GherkinTests -type Directory
 code ./Documents/GherkinTests
@@ -157,7 +159,7 @@ Create few file :
 
 In the Feature File write the following :
 
-```
+``` gherkin
 # GherkinTests/etienne_exo.feature
 Feature: Validate Azure Deployment
 
@@ -166,7 +168,7 @@ Feature: Validate Azure Deployment
     Then we should be able to have at least one
 ```
 
-```
+``` powershell
 # GherkinTests/etienne_exo.steps.ps1
 Given "we list the subscriptions using powershell"{
   Get-AzSubscription | Should -not -throw
@@ -179,7 +181,7 @@ Then "we should be able to have at least one" {
 
 Now, let's run that to check if the test are working or not :
 
-```
+``` powershell
 ❯ Invoke-Gherkin
 Pester v4.10.0
 Executing all tests in '/home/etienne/Documents/GherkinTests'
@@ -199,13 +201,14 @@ Ok, tests are working, and we have something to show to customers/managment.
 > Of course, not, let's wait for the next blog part.
 
 ## Azure Devops
+
 ### Azure Devops CLI
 
 Get a Personal Access Token here : `https://dev.azure.com/<YourOrganisation>/_usersSettings/tokens`
 
-```
+``` shell
 az extension add --name azure-devops
-az devops login 
+az devops login
 # paste your PAT
 az login
 # with the sam
@@ -218,7 +221,7 @@ $repo=$(az repos list --project GherkinTest --query [].sshUrl -o tsv)
 
 ### Configure the repo locally
 
-```
+``` shell
 cd ~/GherkinTest
 git init
 git remote add origin $repo
@@ -229,13 +232,13 @@ git push origin master
 
 ### Create the pipeline
 
-```
+``` shell
 az pipelines create --name "GherkinTest"
 ```
 
 Answer the questions like :
 
-```
+``` shell
 This command is in preview. It may be changed/removed in a future release.
 Which template do you want to use for this pipeline?
  [1] Starter pipeline
@@ -268,15 +271,15 @@ Successfully created a pipeline with Name: GherkinTest, Id: 25.
 }
 ```
 
-###  Create the Service Endpoint for Azure RM Subscription
+### Create the Service Endpoint for Azure RM Subscription
 
 First we need to create a SPN in Azure AD :
 
-```
+``` shell
 az ad sp create-for-rbac --name AzureDevops
 Changing "AzureDevops" to a valid URI of "http://AzureDevops", which is the required format used for service principal names
 Creating a role assignment under the scope of "/subscriptions/1417c648-XXXX"
- 
+
 {
   "appId": "41176fe8-XXXXX",
   "displayName": "AzureDevops",
@@ -290,7 +293,7 @@ Take note of the appId, Name, Password and Tenant.
 
 Now, list your subscriptions :
 
-```
+``` shell
 az account show
 {
   "environmentName": "AzureCloud",
@@ -310,7 +313,7 @@ Take note of the Id, Name, and Tenant.
 
 And then create the service endpoint in Azure DevOps :
 
-```
+``` shell
  az devops service-endpoint azurerm create --name 'Azure MVP' `
 >> --azure-rm-tenant-id "YourTenantId" `
 >>     --azure-rm-service-principal-id "AppID" `
@@ -330,7 +333,7 @@ Confirm Azure RM service principal key: "Password"
 
 Now, checkout to the newly created branch :
 
-```
+``` shell
 # change branch
 git checkout features/cicd
 # get latests info from remote
@@ -341,7 +344,7 @@ code .
 
 Add the following snippet into `azure-pipelines.yml` :
 
-```
+``` yaml
 # ./azure-pipelines.yml
 # Starter pipeline
 # Start with a minimal pipeline that you can customize to build and deploy your code.
@@ -389,7 +392,7 @@ steps:
 
 Commit the file :
 
-```
+``` shell
 git add azure-pipelines.yaml
 git commit -m 'feat: add cicd for tests'
 git push origin features/cicd
@@ -420,7 +423,7 @@ In this scenario, we want to deploy a VM, in our subscription. Let's do a quick 
 
 With our list, we can now write the test we want, in the feature file:
 
-```
+``` gherkin
 # GherkinTests/etienne_exo.feature
 Feature: Validate Azure Deployment
 
@@ -437,7 +440,7 @@ Feature: Validate Azure Deployment
 
 Now, in our steps.ps1 file we will update it:
 
-```
+``` powershell
 # GherkinTests/etienne_exo.steps.ps1
 Given "someone start a new vm deployment in the subscription"{
   Get-AzSubscription | Should -not -throw
