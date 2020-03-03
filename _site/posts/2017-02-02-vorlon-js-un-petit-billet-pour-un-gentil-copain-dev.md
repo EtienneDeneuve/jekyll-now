@@ -17,6 +17,7 @@ J'ai un copain dev' (pas qu'un) mais celui ma demandé il y a quelques jours:
  	<li>Lui : "Y disent qu'il faut Nginx etc, (bref un gentil dev web en panique)"</li>
  	<li>Moi : "Mais non mais non"</li>
 </ul>
+<!-- excerpt -->
 Bon déjà Vorlon.js c'est quoi ? C'est un outil plutot orienté Dev, pas que web, fait par une bande de dev chez Microsoft, dont David Catuhe, Etienne Magraff, Julien Corioland, David Rousset et pleins d'autres que vous pouvez trouver (je vous mets pas tout ici, ca ferait trop de noms !) <a href="https://github.com/MicrosoftDX/Vorlonjs/graphs/contributors">ici</a> sur le github de Microsoft DX. Cet outil est une promesse :
 <blockquote>A new, open source, extensible, platform-agnostic tool for remotely debugging and testing your JavaScript. Powered by node.js and socket.io.
 

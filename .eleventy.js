@@ -3,15 +3,21 @@ const pluginRss = require('@11ty/eleventy-plugin-rss')
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const pluginTOC = require('eleventy-plugin-nesting-toc')
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation')
+const readingTime = require('eleventy-plugin-reading-time');
+ 
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss)
   eleventyConfig.addPlugin(pluginSyntaxHighlight)
-
+  // eleventyConfig.setFrontMatterParsingOptions({
+  //   excerpt: true,
+  //   // Optional, default is "---"
+  //   excerpt_separator: "<!-- excerpt -->"
+  // })
   eleventyConfig.addFilter('simpleDate', dateObj => {
     return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('LLL dd, yyyy')
   })
-
+  eleventyConfig.addPlugin(readingTime);
   eleventyConfig.addPlugin(pluginTOC, {
     tags: ['h2','h3'],
     wrapper: 'div',
@@ -35,7 +41,7 @@ module.exports = function(eleventyConfig) {
 
   // only content in the `posts` directory
   eleventyConfig.addCollection('posts', function(collection) {
-    return collection.getFilteredByGlob('./_site/posts/*.md').reverse()
+    return collection.getFilteredByGlob('./_site/posts/**/*.md').reverse()
   })
 
   // // only content in the `courses` directory
@@ -90,7 +96,7 @@ module.exports = function(eleventyConfig) {
     markdownTemplateEngine: 'liquid',
     htmlTemplateEngine: 'njk',
     dataTemplateEngine: 'njk',
-    setQuietMode: true,
+    setQuietMode: false,
     passthroughFileCopy: true,
     dir: {
       input: '_site',

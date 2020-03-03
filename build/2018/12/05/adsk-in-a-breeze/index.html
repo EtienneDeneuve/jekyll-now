@@ -4,14 +4,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="msvalidate.01" content="DE6C71A9BE4E011D01CC38799992B4A6" />
+    <meta name="msvalidate.01" content="DE6C71A9BE4E011D01CC38799992B4A6"/>
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+      <link rel="stylesheet" href="/css/style.css" type="text/css">
     
 
     <title>XYZ Blog</title>
-    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
-
+    <script defer="defer" src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"/>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -21,7 +21,7 @@
     
 
     <script src="/js/script.js"></script>
-    </head>
+  </head>
   <body class="position-relative" data-spy="scroll" data-target=".site-nav" data-offset="55">
     <nav class="site-nav family-sans navbar navbar-expand-md navbar-dark  sidebar sticky-top  py-0">
   <div class="container-fluid">
@@ -69,7 +69,7 @@
       ref="searchinput"
       style="background: transparent;"
       aria-describedby="searchinput"
-      autocomplete="off"
+      autocomplete="on"
     >
     <div v-if="query && isActive" class="position-absolute justify-content-center" style="top: 47px;">
       <div class="card bg-secondary">
@@ -88,12 +88,18 @@
   </div>
 </nav>
 
+    
+
+
+
+<div class="post post-sidebar container-fluid">
+  <div class="row justify-content-xl-center">
+    
+
+    
+    <main class="main col">
       
 
- 
-  <div class="post post-sidebar container-fluid">
-    <div class="row justify-content-xl-center">
-      <main class="main col">
       <h1 id="azure-stack">Azure Stack <a class="direct-link" href="#azure-stack"> </a></h1>
 <p>Azure Stack is an on premise appliance made by Microsoft. The main goal of Azure Stack isn't to have a new Hypervisor like vSphere or Hyper-V, but to have real cloud on prem. If you want to deploy only Virtual Machines, you aren't on the good path.</p>
 <p>This article is summary for installing and configuring an Azure Stack with a lot of PowerShell coming from GitHub. With all the scripts you may have a running Azure Stack.</p>
@@ -155,26 +161,15 @@
 <li>A Windows Server 2016 Eval Iso <a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016">lien</a></li>
 <li>Azure Stack Development Kit <a href="https://azure.microsoft.com/fr-fr/overview/azure-stack/development-kit/?v=try">lien</a></li>
 </ul>
-<h3 id="installation">Installation <a class="direct-link" href="#installation"> </a></h3>
-<h4 id="phase-1">Phase 1 <a class="direct-link" href="#phase-1"> </a></h4>
+<h2 id="installation">Installation <a class="direct-link" href="#installation"> </a></h2>
+<h3 id="phase-1">Phase 1 <a class="direct-link" href="#phase-1"> </a></h3>
 <ol>
 <li>Extract the ADSK using AzureStackDevelopmentKit.exe</li>
 <li>Copy &quot;CloudBuilder.vhdx&quot; on the root of you root (c:)</li>
 </ol>
-<h4 id="phase-2">Phase 2 <a class="direct-link" href="#phase-2"> </a></h4>
+<h3 id="phase-2">Phase 2 <a class="direct-link" href="#phase-2"> </a></h3>
 <p>In a Shell Powershell as Administrator :</p>
-<pre><code># Variables
-$Uri = &amp;#039;https://raw.githubusercontent.com/Azure/AzureStack-Tools/master/Deployment/asdk-installer.ps1&amp;#039;
-$LocalPath = &amp;#039;C:AzureStack_Installer&amp;#039;
-# Create folder
-New-Item $LocalPath -Type directory
-# Enforce usage of TLSv1.2 to download from GitHub
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-# Download file
-Invoke-WebRequest $uri -OutFile ($LocalPath + &amp;#039;&amp;#039; + &amp;#039;asdk-installer.ps1&amp;#039;)
-cd $LocalPath
-.asdk-installer.ps1
-</code></pre>
+<pre class="language-powershell"><code class="language-powershell"><span class="highlight-line"><span class="token comment"># Variables</span></span><br><span class="highlight-line"><span class="token variable">$Uri</span> = &amp;<span class="token comment">#039;https://raw.githubusercontent.com/Azure/AzureStack-Tools/master/Deployment/asdk-installer.ps1&amp;#039;</span></span><br><span class="highlight-line"><span class="token variable">$LocalPath</span> = &amp;<span class="token comment">#039;C:AzureStack_Installer&amp;#039;</span></span><br><span class="highlight-line"><span class="token comment"># Create folder</span></span><br><span class="highlight-line"><span class="token function">New-Item</span> <span class="token variable">$LocalPath</span> <span class="token operator">-</span><span class="token function">Type</span> directory</span><br><span class="highlight-line"><span class="token comment"># Enforce usage of TLSv1.2 to download from GitHub</span></span><br><span class="highlight-line"><span class="token namespace">[Net.ServicePointManager]</span>::SecurityProtocol = <span class="token namespace">[Net.SecurityProtocolType]</span>::Tls12</span><br><span class="highlight-line"><span class="token comment"># Download file</span></span><br><span class="highlight-line"><span class="token function">Invoke-WebRequest</span> <span class="token variable">$uri</span> <span class="token operator">-</span>OutFile <span class="token punctuation">(</span><span class="token variable">$LocalPath</span> <span class="token operator">+</span> &amp;<span class="token comment">#039;&amp;#039; + &amp;#039;asdk-installer.ps1&amp;#039;)</span></span><br><span class="highlight-line">cd <span class="token variable">$LocalPath</span></span><br><span class="highlight-line"><span class="token punctuation">.</span>asdk<span class="token operator">-</span>installer<span class="token punctuation">.</span>ps1</span></code></pre>
 <p>Follow &quot;Prepare Environnement&quot;</p>
 <ol>
 <li>Browse to your &quot;cloudbuilder.vhdx&quot; from phase 1 (c:CloudBuilder.vhdx), without ticking the Add Drivers (if your hardware is fully supported as a Dell ASDK Ready Node for example)</li>
@@ -183,51 +178,31 @@ cd $LocalPath
 <li>If you have a Dhcp, you don't need to add a Static Configuration, otherwise, add a static configuration instead (with DNS and Gateway)</li>
 <li>Reboot</li>
 </ol>
-<h4 id="phase-3">Phase 3 <a class="direct-link" href="#phase-3"> </a></h4>
+<h3 id="phase-3">Phase 3 <a class="direct-link" href="#phase-3"> </a></h3>
 <p>While the host is rebooting, if the Windows bootmanager ask to choose between Azure Stack and Windows Server 2016, choose Azure Stack.</p>
 <p>Login in the Azure Stack, take care of the keyboard layout, by default it's a QWERTY.</p>
 <p>In a PowerShell Shell, as Administrator launch the ASDK deployment. (Not in a Powershell ISE)</p>
-<pre><code>cd C:CloudDeploymentSetup     
-$adminpass = Get-Credential Administrator  -Message &quot;Please provide the password for Local Administrator&quot;
-$aadcred = Get-Credential &quot;svc_azure_stack_installer@yourazuread.onmicrosoft.com&quot; -Message &quot;Please provide the password for Azure AD&quot;
-.InstallAzureStackPOC.ps1 -AdminPassword $adminpass.Password `
-    -InfraAzureDirectoryTenantName &quot;yourazuread.onmicrosoft.com&quot; `
-    -TimeServer &quot;13.79.239.69&quot;`
-    -InfraAzureDirectoryTenantAdminCredential $aadcred`
-    -DNSForwarder &quot;8.8.8.8&quot; `
-    -NatIPv4Address &quot;10.0.0.9&quot; `
-    -NatIPv4DefaultGateway &quot;10.0.0.14&quot; `
-    -NatIPv4Subnet &quot;10.0.0.0/28&quot;
-</code></pre>
+<pre class="language-powershell"><code class="language-powershell"><span class="highlight-line">cd C:\CloudDeployment\Setup</span><br><span class="highlight-line"><span class="token variable">$adminpass</span> = Get<span class="token operator">-</span>Credential Administrator  <span class="token operator">-</span>Message <span class="token string">"Please provide the password for Local Administrator"</span></span><br><span class="highlight-line"><span class="token variable">$aadcred</span> = Get<span class="token operator">-</span>Credential <span class="token string">"svc_azure_stack_installer@yourazuread.onmicrosoft.com"</span> <span class="token operator">-</span>Message <span class="token string">"Please provide the password for Azure AD"</span></span><br><span class="highlight-line"><span class="token punctuation">.</span>InstallAzureStackPOC<span class="token punctuation">.</span>ps1 <span class="token operator">-</span>AdminPassword <span class="token variable">$adminpass</span><span class="token punctuation">.</span>Password `</span><br><span class="highlight-line">    <span class="token operator">-</span>InfraAzureDirectoryTenantName <span class="token string">"yourazuread.onmicrosoft.com"</span> `</span><br><span class="highlight-line">    <span class="token operator">-</span>TimeServer <span class="token string">"13.79.239.69"</span>`</span><br><span class="highlight-line">    <span class="token operator">-</span>InfraAzureDirectoryTenantAdminCredential <span class="token variable">$aadcred</span>`</span><br><span class="highlight-line">    <span class="token operator">-</span>DNSForwarder <span class="token string">"8.8.8.8"</span> `</span><br><span class="highlight-line">    <span class="token operator">-</span>NatIPv4Address <span class="token string">"10.0.0.9"</span> `</span><br><span class="highlight-line">    <span class="token operator">-</span>NatIPv4DefaultGateway <span class="token string">"10.0.0.14"</span> `</span><br><span class="highlight-line">    <span class="token operator">-</span>NatIPv4Subnet <span class="token string">"10.0.0.0/28"</span></span></code></pre>
 <p>Warning: This process take few hours (between 10 and 15)</p>
-<p>&gt; You can change parameter in the script, but double check they are correct. If you have trouble, you may need to restart the whole process.<br>
-&gt; The nat parameters must be changed to reflect your network.</p>
-<h4 id="phase-4">Phase 4 <a class="direct-link" href="#phase-4"> </a></h4>
+<blockquote>
+<p>You can change parameter in the script, but double check they are correct. If you have trouble, you may need to restart the whole process.<br>
+The nat parameters must be changed to reflect your network.</p>
+</blockquote>
+<h3 id="phase-4">Phase 4 <a class="direct-link" href="#phase-4"> </a></h3>
 <p>After the process is complete, you have now a cool ASDK, with nothing in it. You need to deploy services as a Cloud Operator</p>
 <ol>
 <li>Login with azurestackazurestackadmin on the ASDK host</li>
-<li>Get the path of your Windows Server 2016, mine is 'D:ISO'</li>
+<li>Get the path of your Windows Server 2016, mine is <code>D:\ISO</code></li>
 <li>Open a new Powershell as Administator :</li>
 </ol>
-<pre><code># Create directory on the root drive.
-New-Item -ItemType Directory -Force -Path &quot;C:ConfigASDK&quot;
-Set-Location &quot;C:ConfigASDK&quot;
-
-# Download the ConfigASDK Script.
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Invoke-Webrequest http://bit.ly/configasdk -UseBasicParsing -OutFile ConfigASDK.ps1
-
-.ConfigASDK.ps1 -azureDirectoryTenantName &quot;yourazuread.onmicrosoft.com&quot; -authenticationType AzureAD `
-    -downloadPath &quot;D:ASDKfiles&quot; -ISOPath &quot;D:ISOWS2016EVAL.iso&quot; -azureStackAdminPwd 'Azure Stack Administrator password' `
-    -VMpwd 'a new password' -azureAdUsername &quot;svc_azure_stack_installer@yourazuread.onmicrosoft.com&quot; -azureAdPwd 'Azure Ad password' `
-    -registerASDK -useAzureCredsForRegistration -azureRegSubId &quot;Id de la subscription Azure&quot;
-</code></pre>
-<h4 id="phase-5">Phase 5 <a class="direct-link" href="#phase-5"> </a></h4>
+<pre class="language-powershell"><code class="language-powershell"><span class="highlight-line"><span class="token comment"># Create directory on the root drive.</span></span><br><span class="highlight-line"><span class="token function">New-Item</span> <span class="token operator">-</span>ItemType Directory <span class="token operator">-</span>Force <span class="token operator">-</span>Path <span class="token string">"C:ConfigASDK"</span></span><br><span class="highlight-line"><span class="token function">Set-Location</span> <span class="token string">"C:ConfigASDK"</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token comment"># Download the ConfigASDK Script.</span></span><br><span class="highlight-line"><span class="token namespace">[Net.ServicePointManager]</span>::SecurityProtocol = <span class="token namespace">[Net.SecurityProtocolType]</span>::Tls12</span><br><span class="highlight-line"><span class="token function">Invoke-Webrequest</span> http:<span class="token operator">/</span><span class="token operator">/</span>bit<span class="token punctuation">.</span>ly<span class="token operator">/</span>configasdk <span class="token operator">-</span>UseBasicParsing <span class="token operator">-</span>OutFile ConfigASDK<span class="token punctuation">.</span>ps1</span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token punctuation">.</span>ConfigASDK<span class="token punctuation">.</span>ps1 <span class="token operator">-</span>azureDirectoryTenantName <span class="token string">"yourazuread.onmicrosoft.com"</span> <span class="token operator">-</span>authenticationType AzureAD `</span><br><span class="highlight-line">    <span class="token operator">-</span>downloadPath <span class="token string">"D:ASDKfiles"</span> <span class="token operator">-</span>ISOPath <span class="token string">"D:ISOWS2016EVAL.iso"</span> <span class="token operator">-</span>azureStackAdminPwd <span class="token string">'Azure Stack Administrator password'</span> `</span><br><span class="highlight-line">    <span class="token operator">-</span>VMpwd <span class="token string">'a new password'</span> <span class="token operator">-</span>azureAdUsername <span class="token string">"svc_azure_stack_installer@yourazuread.onmicrosoft.com"</span> <span class="token operator">-</span>azureAdPwd <span class="token string">'Azure Ad password'</span> `</span><br><span class="highlight-line">    <span class="token operator">-</span>registerASDK <span class="token operator">-</span>useAzureCredsForRegistration <span class="token operator">-</span>azureRegSubId <span class="token string">"Id de la subscription Azure"</span></span></code></pre>
+<h3 id="phase-5">Phase 5 <a class="direct-link" href="#phase-5"> </a></h3>
 <p>Open a Browser on your ASDK Host and go to <code>https://adminportal.local.azurestack.external</code> or the &quot;public&quot; endpoint <code>https://portal.local.azurestack.external</code> and enjoy.</p>
 
-      </main>
-      <aside class="aside aside-supplemental d-none d-lg-block col-lg-2 col-xl-2" >
-        <nav class="sticky-top">
+    </main>
+    <aside class="aside aside-supplemental d-none d-lg-block col-lg-2 col-xl-2">
+      <span class="meta__stats">About 3 min reading time</span>
+      <nav class="sticky-top">
         <div class="">
                 <ol>
                     
@@ -235,21 +210,35 @@ Invoke-Webrequest http://bit.ly/configasdk -UseBasicParsing -OutFile ConfigASDK.
             		</li>
 
                     <li><a href="#windows-installation">Windows Installation  </a>
+            		</li>
+
+                    <li><a href="#installation">Installation  </a>
             
                 <ol>
                     
-                    <li><a href="#installation">Installation  </a>
+                    <li><a href="#phase-1">Phase 1  </a>
+            		</li>
+
+                    <li><a href="#phase-2">Phase 2  </a>
+            		</li>
+
+                    <li><a href="#phase-3">Phase 3  </a>
+            		</li>
+
+                    <li><a href="#phase-4">Phase 4  </a>
+            		</li>
+
+                    <li><a href="#phase-5">Phase 5  </a>
             		</li>
                 </ol>
             		</li>
                 </ol>
             </div>
-        </nav>
-      </aside>
-    </div>
+      </nav>
+    </aside>
   </div>
 </div>
-
+</div>
     <footer class="site-footer bg-transparent pb-3 pb-md-5">
       <div class="layout-social container d-flex justify-content-center">
 
@@ -269,6 +258,27 @@ Invoke-Webrequest http://bit.ly/configasdk -UseBasicParsing -OutFile ConfigASDK.
 
 </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+    <script>
+      window
+        .cookieconsent
+        .initialise({
+          "palette": {
+            "popup": {
+              "background": "#3937a3"
+            },
+            "button": {
+              "background": "transparent",
+              "text": "#e62576",
+              "border": "#e62576"
+            }
+          },
+          "position": "bottom-right",
+          "content": {
+            "href": "/privacy/"
+          }
+        });
+    </script>
   </body>
 
 </html>

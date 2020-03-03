@@ -1,8 +1,6 @@
 ---
 ID: 419
-title: >
-  Open Source + Windows = Vs Code + Bash +
-  Git
+title: "Open Source + Windows = Vs Code + Bash + Git"
 author: etienne.deneuve
 post_excerpt: ""
 layout: layouts/post-sidebar.njk

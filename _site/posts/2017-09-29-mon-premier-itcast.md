@@ -1,8 +1,6 @@
 ---
 ID: 306
-title: >
-  Mon premier it.cast avec Maxime et
-  Pascal (et les autres) !
+title: "Mon premier it.cast avec Maxime et Pascal (et les autres) !"
 author: etienne.deneuve
 post_excerpt: ""
 layout: layouts/post-sidebar.njk

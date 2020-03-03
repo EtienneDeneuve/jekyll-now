@@ -1,6 +1,6 @@
 ---
 ID: 452
-title: Git pour les Ops, par un ops le retour
+title: "Git pour les Ops, par un ops le retour"
 author: etienne.deneuve
 post_excerpt: ""
 layout: layouts/post-sidebar.njk

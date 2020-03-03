@@ -1,6 +1,6 @@
 ---
 ID: 422
-title: Git pour Ops, par un Ops
+title: "Git pour Ops, par un Ops"
 author: etienne.deneuve
 post_excerpt: ""
 layout: layouts/post-sidebar.njk

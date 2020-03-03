@@ -1,6 +1,6 @@
 ---
 ID: 135
-title: 'Azure et le backup ? (d&#8217;un Mac)'
+title: "Azure et le backup ? (d&#8217;un Mac)"
 author: etienne.deneuve
 post_excerpt: ""
 layout: layouts/post-sidebar.njk
@@ -11,7 +11,7 @@ published: true
 date: 2017-03-14 22:29:37
 ---
 Un petit article "Quick &amp; very very dirty" qui est soyons honnêtes complètement inutile.
-
+<!-- excerpt -->
 Mais quand c'est inutile, c'est possible que ce soit fun !
 
 /!\ Disclaimer : Je suis pas responsable de vos données perdues ! /!\

@@ -1,8 +1,6 @@
 ---
 ID: 473
-title: >
-  How to install Azure Stack Dev kit in a
-  breeze
+title: "How to install Azure Stack Dev kit in a breeze"
 author: etienne.deneuve
 summary: Quick install guide for Azure Stack Development kit
 post_excerpt: ""

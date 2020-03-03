@@ -1,43 +1,33 @@
 [{
   "title": "Terraform AzureRM 2.0 Provider",
   "date" : "Feb 24, 2020",
-  
+  "summary" : "Tips &amp; tricks arround Terraform Azure RM 2.0",
   
   "url": "/2020/02/25/terraform-azurerm-2/",
   "tags" : "Azure,PowerShell,Azure Devops,Cloud,Tests"
 },{
   "title": "IaC &amp; Tests",
-  "date" : "Feb 06, 2020",
+  "date" : "Feb 07, 2020",
   "summary" : "I was looking for the easiest way to test Azure infrastructure.",
   
   "url": "/2020/02/07/infra-testing-easy-path/",
   "tags" : "Azure,PowerShell,Azure Devops,Cloud,Tests"
 },{
-  "title": "Lancement de Powershell du Zéro",
-  "date" : "Jan 22, 2019",
-  
-  
-  "url": "/2019/01/22/lancement-de-powershell-du-zero/",
-  "tags" : ""
-},{
-  "title": "How to install Azure Stack Dev kit in a breeze
-",
+  "title": "How to install Azure Stack Dev kit in a breeze",
   "date" : "Dec 05, 2018",
-  
+  "summary" : "Quick install guide for Azure Stack Development kit",
   
   "url": "/2018/12/05/adsk-in-a-breeze/",
-  "tags" : ""
+  "tags" : "Azure Stack,PowerShell,Cloud"
 },{
-  "title": "Some Az Cli 2.0 bulk commands
-",
+  "title": "Some Az Cli 2.0 bulk commands",
   "date" : "Jul 02, 2018",
-  
+  "summary" : "Everything is in the title :)",
   
   "url": "/2018/07/02/az-cli-20-tricks/",
-  "tags" : ""
+  "tags" : "Azure,Tips & Tricks,Cloud"
 },{
-  "title": "Dynamic update of Bind9 server in Azure with Terraform !
-",
+  "title": "Dynamic update of Bind9 server in Azure with Terraform !",
   "date" : "Jul 02, 2018",
   
   
@@ -58,8 +48,7 @@
   "url": "/2018/06/26/documentation-as-code/",
   "tags" : ""
 },{
-  "title": "Open Source + Windows = Vs Code + Bash + Git
-",
+  "title": "Open Source + Windows = Vs Code + Bash + Git",
   "date" : "Jun 26, 2018",
   
   
@@ -80,24 +69,21 @@
   "url": "/2018/04/06/terraform-providers-datasource/",
   "tags" : ""
 },{
-  "title": "Os Factory Azure et Aws en Open Source avec Microsoft et Société Générale !
-",
+  "title": "Os Factory Azure et Aws en Open Source avec Microsoft et Société Générale !",
   "date" : "Mar 28, 2018",
   
   
   "url": "/2018/03/28/os-factory-azure-et-aws/",
   "tags" : ""
 },{
-  "title": "Microsoft Expérience 17 – VSTS For OPS part 3 !
-",
+  "title": "Microsoft Expérience 17 – VSTS For OPS part 3 !",
   "date" : "Oct 25, 2017",
   
   
   "url": "/2017/10/25/vsts-for-ops-part-3/",
   "tags" : ""
 },{
-  "title": "Microsoft Expérience 17 – VSTS For OPS part 2 !
-",
+  "title": "Microsoft Expérience 17 – VSTS For OPS part 2 !",
   "date" : "Oct 13, 2017",
   
   
@@ -125,8 +111,7 @@
   "url": "/2017/10/01/mvp/",
   "tags" : ""
 },{
-  "title": "Mon premier it.cast avec Maxime et Pascal (et les autres) !
-",
+  "title": "Mon premier it.cast avec Maxime et Pascal (et les autres) !",
   "date" : "Sep 29, 2017",
   
   
@@ -152,7 +137,7 @@
   
   
   "url": "/2017/09/27/frpsug-powershell-saturday-et-contenu-de-la-session-de-lutile-ou-pas/",
-  "tags" : ""
+  "tags" : "PowerShell,Fun"
 },{
   "title": "Azure Powershell &amp;#8211; Comment on fait quand ca n&amp;#8217;existe pas ?",
   "date" : "Sep 26, 2017",
@@ -203,8 +188,7 @@
   "url": "/2017/02/03/vorlon-js-un-petit-billet-pour-un-gentil-copain-dev/",
   "tags" : ""
 },{
-  "title": "Installation de Nginx en reverse proxy avec réecriture du HTML
-",
+  "title": "Installation de Nginx en reverse proxy avec réecriture du HTML",
   "date" : "Feb 02, 2017",
   
   
@@ -218,8 +202,7 @@
   "url": "/2017/01/26/visual-studio-code-pour-ansible-terraform/",
   "tags" : "Infra as Code,Visual Studio Code,Ansible,Terraform,macOs,Windows"
 },{
-  "title": "Get ink level from HP printers in Powershell
-",
+  "title": "Get ink level from HP printers in Powershell",
   "date" : "Jan 15, 2016",
   
   

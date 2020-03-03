@@ -1,8 +1,6 @@
 ---
 ID: 106
-title: >
-  Installation de Nginx en reverse proxy
-  avec réecriture du HTML
+title: "Installation de Nginx en reverse proxy avec réecriture du HTML"
 author: etienne.deneuve
 post_excerpt: ""
 layout: layouts/post-sidebar.njk
@@ -19,7 +17,7 @@ date: 2017-02-02 22:30:06
 # Nginx
 
 Nginx est un serveur Web modulaire qui fonctionne très bien en reverse proxy et possède de nombreuses possibilités. De plus il est très léger, je vous invite à consulter leur site : [www.nginx.org](http://nginx.org/)
-
+<!-- excerpt -->
 ## La problématique
 
 Un client avait un site internet assez mal écrit avec beaucoup d'url en dur dans le code et qui aurait nécessité beaucoup trop de temps pour le remettre en conformité.

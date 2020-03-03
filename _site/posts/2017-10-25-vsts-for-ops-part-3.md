@@ -1,8 +1,6 @@
 ---
 ID: 352
-title: >
-  Microsoft Expérience 17 – VSTS For
-  OPS part 3 !
+title: "Microsoft Expérience 17 – VSTS For OPS part 3 !"
 author: etienne.deneuve
 post_excerpt: ""
 layout: layouts/post-sidebar.njk

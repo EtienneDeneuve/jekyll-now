@@ -1,8 +1,9 @@
 ---
 title: Privacy Policy
 author: etienne.deneuve
-layout: page
-permalink: https://etienne.deneuve.xyz/privacy/
+layout: layouts/post-sidebar.njk
+
+permalink: privacy/index.html
 published: true
 date: 2018-06-23 19:28:42
 ---

@@ -1,8 +1,6 @@
 ---
 ID: 471
-title: >
-  Dynamic update of Bind9 server in Azure
-  with Terraform !
+title: "Dynamic update of Bind9 server in Azure with Terraform !"
 author: etienne.deneuve
 post_excerpt: ""
 layout: layouts/post-sidebar.njk

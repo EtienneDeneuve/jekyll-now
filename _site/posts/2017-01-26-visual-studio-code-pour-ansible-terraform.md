@@ -19,7 +19,7 @@ date: 2017-01-26 22:42:55
 # Visual Studio Code
 
 L'Infrastructure as Code, c'est des méthodes et des outils pour faire des infrastructures reproductibles à l'infini.
-
+<!-- excerpt -->
 J'utilise quelques outils sur mes deux postes de travail principaux : un pc sous Windows 10 et un mac sous macOs Sierra. J'ai donc besoin d'outils qui peuvent fonctionner sur les deux plateformes sans "galère" et efficace sur les deux plateformes.
 
 J'utilise <a href="https://code.visualstudio.com/">Visual Studio Code</a> qui est gratuit, dispo sur Windows, Linux et macOs.

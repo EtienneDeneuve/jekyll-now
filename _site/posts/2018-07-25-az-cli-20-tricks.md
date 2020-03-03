@@ -1,7 +1,6 @@
 ---
 ID: 472
-title: >
-  Some Az Cli 2.0 bulk commands
+title: "Some Az Cli 2.0 bulk commands"
 author: etienne.deneuve
 summary: "Everything is in the title :)"
 layout: layouts/post-sidebar.njk

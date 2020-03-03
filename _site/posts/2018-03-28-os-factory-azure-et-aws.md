@@ -1,8 +1,6 @@
 ---
 ID: 386
-title: >
-  Os Factory Azure et Aws en Open Source
-  avec Microsoft et Société Générale !
+title: "Os Factory Azure et Aws en Open Source avec Microsoft et Société Générale !"
 author: etienne.deneuve
 post_excerpt: ""
 layout: layouts/post-sidebar.njk
