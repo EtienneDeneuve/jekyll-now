@@ -12,6 +12,7 @@ date: 2018-07-02 12:35:17
 # Terraform your DNS
 
 In this blog post, I post my article posted on Cellenza Blog, translated in English. The french version is <a href="https://blog.cellenza.com/cloud-2/azure/comment-utiliser-hashicorp-terraform-pour-gerer-vos-dns-bind9-dans-azure/">here</a>. 
+<!-- excerpt -->
 
 The purpose of this blog post is to deploy and configure a Bind9 DNS Server in your Azure subscription and make it able to receive DNS Update form Terraform. I'm pretty sure that you will understand why it's so cool ! If not, the goal is to be able to have local DNS that you can manage when you deploy new resources in Azure. Of course, it can work in many other cloud or on premise environment as Bind9 is real standard DNS.
 

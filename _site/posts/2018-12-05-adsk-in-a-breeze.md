@@ -15,10 +15,11 @@ tags:
 published: true
 date: 2018-12-05 12:35:17
 ---
-
 # Azure Stack
 
 Azure Stack is an on premise appliance made by Microsoft. The main goal of Azure Stack isn't to have a new Hypervisor like vSphere or Hyper-V, but to have real cloud on prem. If you want to deploy only Virtual Machines, you aren't on the good path.
+<!-- excerpt -->
+
 
 This article is summary for installing and configuring an Azure Stack with a lot of PowerShell coming from GitHub. With all the scripts you may have a running Azure Stack.
 

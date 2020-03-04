@@ -2,22 +2,23 @@
 ID: 12
 title: Get-NextTrain !
 author: etienne.deneuve
-post_excerpt: ""
 layout: layouts/post-sidebar.njk
 mySlug: get-nexttrain
 permalink: "{{ page.date | date: '%Y/%m/%d' }}/{{ mySlug }}/index.html"
 tags:
   - Fun
   - PowerShell
+  - English
 published: true
 date: 2015-12-16 13:44:50
+updateDate: 2020-03-04 08:35:17
 ---
 
 # Let's play with SNCF Api and Powershell !
 
 My goal was to get a list of the next train in the train station near my home, from powershell...
 <!-- excerpt -->
-My functions are below, feel free to leave a comment, copy it, it's free ! (Now on Github ! [git it !](https://github.com/EtienneDeneuve/Powershell/blob/master/GetNextTrain/TheScript.ps1)</a>)
+My functions are below, feel free to leave a comment, copy it, it's free ! (Now on Github ! [git it !](https://github.com/EtienneDeneuve/Powershell/blob/master/GetNextTrain/TheScript.ps1))
 
 Of course, it's not a serious post, but more is coming ;)
 

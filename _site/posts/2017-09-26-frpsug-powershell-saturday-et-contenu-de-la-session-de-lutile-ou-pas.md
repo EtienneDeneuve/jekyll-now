@@ -17,6 +17,7 @@ date: 2017-09-26 22:19:54
 
 Suite au premier French PowerShell Saturday du [FRPSUG](https://frpsug.github.io) à Paris Le Samedi 16 septembre, dans les locaux de [Cellenza](http://www.cellenza.com/fr/). (la où je bosse, pour ceux qui ne le savent pas!)
 
+<!-- excerpt -->
 
 Si vous ne connaissez pas encore FRPSUG (Quoi???)
 
@@ -30,7 +31,7 @@ Avec [Mickael Lopes](https://twitter.com/LopesMick) on avait décidé de faire u
 
 Nous considérons que on peut tout aussi bien apprendre en s'amusant, l'event était un samedi, donc il fallait bien s'amuser un peu !
 
-Je vous joins nos slides ![FRPSUG](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/FRPSUG.pptx) (OpenSource MIT!)
+Je vous joins nos slides ![FRPSUG](/images/2017/09/FRPSUG.pptx) (OpenSource MIT!)
 
 ### Première démo
 

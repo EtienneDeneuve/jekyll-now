@@ -11,6 +11,7 @@ published: true
 date: 2018-06-28 13:43:00
 ---
 Dans le premier article [git for ops](https://etienne.deneuve.xyz/2018/06/23/git-pour-ops-par-un-ops/) nous avons appris à :
+<!-- excerpt -->
 
 - Créer un repo sur Github ou VSTS
 - Configurer une clé ssh pour Git

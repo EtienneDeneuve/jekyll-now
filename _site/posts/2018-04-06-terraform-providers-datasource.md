@@ -14,6 +14,8 @@ date: 2018-04-06 16:30:52
 ## Avant de "coder"
 
 Je ne vous présente pas à nouveau Terraform, je l'ai déjà fait [ici](https://etienne.deneuve.xyz/2017/10/01/microsoft-experience-17-infrastructure-code-modelisez-et-provisionnez-vos-services-azure-avec-terraform-et-packer/), [ici](https://stanislas.io/2017/01/24/infrastructure-dans-azure-c-est-comme-du-lego-slides-et-ressources-utiles/) ou sinon sur mon [github](https://github.com/etiennedeneuve/Azure/tree/master/Terraform). Je vous invite également à regarder la [vidéo](https://stanislas.io/2017/09/18/video-infrastructure-as-code-dans-azure-avec-terraform/) de Stanislas Quastana.
+<!-- excerpt -->
+
 Si vous êtes des partenaires Microsoft, vous pouvez (devez) suivre les webinars [Azure Lab Experiences](http://aka.ms/azure-lab) de [Mickael Debois](https://www.linkedin.com/in/oseborn/) et de [Florent Chambon](https://www.linkedin.com/in/florent-chambon/).
 L'objet de cet article est de vous montrer quelques points intéressants qu'il est bon de connaître !
 

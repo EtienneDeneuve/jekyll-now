@@ -2,16 +2,17 @@
 ID: 106
 title: "Installation de Nginx en reverse proxy avec réecriture du HTML"
 author: etienne.deneuve
-post_excerpt: ""
 layout: layouts/post-sidebar.njk
 mySlug: installation-de-nginx-en-reverse-proxy-avec-reecriture-du-html
 permalink: "{{ page.date | date: '%Y/%m/%d' }}/{{ mySlug }}/index.html"
 tags:
   - Linux
-  - nginx
-  - reverse proxy
+  - Nginx
+  - Reverse Proxy
+  - French
 published: true
 date: 2017-02-02 22:30:06
+updateDate: 2020-03-04 08:35:17
 ---
 
 # Nginx

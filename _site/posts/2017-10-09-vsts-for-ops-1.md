@@ -11,6 +11,8 @@ published: true
 date: 2017-10-09 18:30:55
 ---
 Dans cet article, je vous détaille la partie (cachée) de ma démo lors de ma session au Microsoft Expérience 17 avec Stanislas Quastana. Le but de cet article est de préparer le terrain pour les articles suivants. Les prochains arriverons rapidement, avec dans l'idée, de vous aider à mieux appréhendez le CI/CD en tant qu'OPS, pour des sujets qui nous concernent, l'infra as code.
+<!-- excerpt -->
+
 Voici le chemin que nous allons suivre :
 
 1. Préparation de l'environnement [nous sommes ici]
@@ -30,13 +32,13 @@ Il faut créer un compte sur Visual Studio Team Services [ici](https://go.micros
 <https://{votrenomavous}.visualstudio.com/_projects?_a=new>
 Indiquez le nom que vous souhaitez et sélectionnez Git comme "Version Control" :
 
-<img class="alignnone wp-image-322 size-full" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-1-1.png" alt="" width="1680" height="793" />
+<img class="alignnone wp-image-322 size-full" src="/images/2017/10/vsts-1-1.png" alt="" width="1680" height="793" />
 
 ## Initialisation du repository
 
-<img class="alignnone size-full wp-image-323" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-2-1.png" alt="" width="1675" height="697" />
+<img class="alignnone size-full wp-image-323" src="/images/2017/10/vsts-2-1.png" alt="" width="1675" height="697" />
 ## C'est prêt !
-<img class="alignnone size-full wp-image-324" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-3-1.png" alt="" width="1239" height="326" />
+<img class="alignnone size-full wp-image-324" src="/images/2017/10/vsts-3-1.png" alt="" width="1239" height="326" />
 
 Voila, 3 étapes, notre premier projet est "prêt".
 
@@ -75,4 +77,4 @@ sudo ./svc.sh start
 Pour plus d'info sur l'[agent VSTS](https://docs.microsoft.com/fr-fr/vsts/build-release/actions/agents/v2-linux)
 <h3>Vérification dans VSTS</h3>
 Si vous accédez à l'url https://{votrenomavous}.visualstudio.com/_admin/_AgentPool vous devriez voir que votre agent est en vert !
-<img class="alignnone size-full wp-image-321" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Capture-Agent-Pool.png" alt="" width="565" height="145" />
+<img class="alignnone size-full wp-image-321" src="/images/2017/10/Capture-Agent-Pool.png" alt="" width="565" height="145" />

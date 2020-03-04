@@ -11,6 +11,7 @@ published: true
 date: 2017-09-27 10:48:30
 ---
 Quand on fait de l'Azure, il peut arriver qu'on souhaite nettoyer les Tags, pour de multiples raisons.
+<!-- excerpt -->
 
 Voici un peu  de Powershell pour :
 <ol>

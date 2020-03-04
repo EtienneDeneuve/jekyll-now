@@ -10,10 +10,9 @@ permalink: "{{ page.date | date: '%Y/%m/%d' }}/{{ mySlug }}/index.html"
 published: true
 date: 2018-06-26 13:43:44
 ---
-<h2>Le constat</h2>
+## Le constat
 Bien souvent, dans l'Infra as Code, la documentation est assez sommaire, trop manuelle et donc par conséquents obsolète, une heure après l'avoir terminée ( et puis globalement, c'est ch*** non ?).
-
-<!--more-->
+<!-- excerpt -->
 
 Si vous n'avez pas encore lu les articles suivants :
 - <a href="https://etienne.deneuve.xyz/2018/06/23/git-pour-ops-par-un-ops/">[Git for ops]()</a>

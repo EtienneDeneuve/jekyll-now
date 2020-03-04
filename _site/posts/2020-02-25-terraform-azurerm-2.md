@@ -22,6 +22,7 @@ tags:
 # New Azure RM Provider 2.0
 
 This article will be updated every times I found something not yet documented on the 2.0 Azure RM provider for Terraform.
+<!-- excerpt -->
 
 ## New mandatory
 
@@ -42,8 +43,8 @@ As today, the features block is the new way to activate some features :
 
 > features block supports the following:
 >
-> - key_vault - (Optional) A key_vault block as defined below.
+> - `key_vault` - (Optional) A key_vault block as defined below.
 >
-> - virtual_machine - (Optional) A virtual_machine block as > defined below.
+> - `virtual_machine` - (Optional) A virtual_machine block as > defined below.
 >
-> - virtual_machine_scale_set - (Optional) A > virtual_machine_scale_set block as defined below.
+> - `virtual_machine_scale_set` - (Optional) A > virtual_machine_scale_set block as defined below.

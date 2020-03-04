@@ -9,11 +9,12 @@ const readingTime = require('eleventy-plugin-reading-time');
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss)
   eleventyConfig.addPlugin(pluginSyntaxHighlight)
-  // eleventyConfig.setFrontMatterParsingOptions({
-  //   excerpt: true,
-  //   // Optional, default is "---"
-  //   excerpt_separator: "<!-- excerpt -->"
-  // })
+  eleventyConfig.setFrontMatterParsingOptions({
+    excerpt: true,
+    excerpt_alias: 'summary',
+    // // Optional, default is "---"
+    excerpt_separator: "<!-- excerpt -->"
+  });
   eleventyConfig.addFilter('simpleDate', dateObj => {
     return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('LLL dd, yyyy')
   })

@@ -12,13 +12,15 @@ date: 2018-06-26 13:03:40
 ---
 Dans cet article, je vous expose mon setup pour Terraform et Ansible, avec git depuis un poste Windows 10.
 
-<!--more-->Si vous ne connaissez pas encore Git, je vous invite à lire mes articles à ce sujet :
+<!-- excerpt -->
+
+Si vous ne connaissez pas encore Git, je vous invite à lire mes articles à ce sujet :
+
 - [Git for ops](https://etienne.deneuve.xyz/2018/06/23/git-pour-ops-par-un-ops/)
 - [Git for ops, le retour](https://etienne.deneuve.xyz/2018/06/28/git-pour-les-ops-par-un-ops-le-retour/)
 Si c'est Visual Studio Code c'est par [ici](https://etienne.deneuve.xyz/2017/01/26/visual-studio-code-pour-ansible-terraform/)
 
 Et sinon, pour aller plus loin, lisez mon article sur [Documentation as Code](https://etienne.deneuve.xyz/2018/06/26/documentation-as-code/)
-
 
 ## Visual Studio Code
 

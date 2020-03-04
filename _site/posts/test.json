@@ -1,0 +1,93 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vnetname": {
+            "type": "string",
+            "metadata": {
+                "description": "Nom du Vnet"
+            },
+            "defaultValue": "vnet-test-json"
+        },
+        "vNetRemote": {
+            "type": "string",
+            "metadata": {
+                "description": "Nom du Vnet distant"
+            },
+            "defaultValue": "vnet-test-az"
+        },
+        "RGvNetRemote": {
+            "type": "string",
+            "metadata": {
+                "description": "Nom du Resource Group"
+            },
+            "defaultValue": "RG-Vnet-Exo-AZ"
+        },
+        "addressSpacePrefix": {
+            "type": "string",
+            "metadata": {
+                "description": "IP v4 (RFC1918)"
+            },
+            "defaultValue": "10.0.2.0/24"
+        },
+        "subnetName": {
+            "type": "string",
+            "metadata": {
+                "description": "Nom du Subnet"
+            },
+            "defaultValue": "jsonfrontend"
+        },
+        "subnetPrefix": {
+            "type": "string",
+            "metadata": {
+                "description": "IP v4 du Subnet"
+            },
+            "defaultValue": "10.0.2.0/26"
+        }
+    },
+    "variables": {
+    },
+    "resources": [
+        {
+            "apiVersion": "2015-06-15",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('VnetName')]",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "JSON-VNET"
+            },
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[parameters('addressSpacePrefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[parameters('subnetName')]",
+                        "properties": {
+                            "addressPrefix": "[parameters('subnetPrefix')]"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "2017-03-01",
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "name": "[concact( parameters('VnetName') , '/JSON2AZ')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": true,
+                "allowGatewayTransit": false,
+                "useRemoteGateways": false,
+                "remoteVirtualNetwork": {
+                    "id": "[resourceId( subscription().subscriptionid, parameters('RGvNetRemote') , 'Microsoft.Network/virtualNetworks', parameters('vNetRemote'))]"
+                }
+            }
+        }
+    ],
+    "outputs": {
+    }
+}

@@ -10,6 +10,7 @@ published: true
 date: 2018-06-23 19:57:39
 ---
 Git est un logiciel de contrôle de code source déjà très utilisé dans le monde des dev. Lorsque l'on fait de l'Infra as Code, nous pouvons aussi utiliser git, je pense même que cela va devenir une vraie nécessité. Pour nous les Ops, ce n'est pas nécessairement naturel et j'ai donc décidé de démystifier git dans un contexte Cloud comme Azure.
+<!-- excerpt -->
 
 Afin de suivre ce billet, vous devez installer quelques outils sur votre poste de travail afin de pouvoir tester par vous-même.
 

@@ -15,6 +15,7 @@ date: 2018-07-02 12:35:17
 ---
 
 # Az CLI 2.0
+<!-- excerpt -->
 
 ## How to delete multiple managed disk at once
 

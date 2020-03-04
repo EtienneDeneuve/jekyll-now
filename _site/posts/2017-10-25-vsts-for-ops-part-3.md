@@ -11,6 +11,8 @@ published: true
 date: 2017-10-25 10:11:10
 ---
 Dans cet article, je vous détaille la partie (cachée) de ma démo lors de ma session au Microsoft Expérience 17 avec Stanislas Quastana. Le but de cet article est de créer notre première build ! Les prochains arriveront rapidement, avec dans l’idée, de vous aider à mieux appréhender le CI/CD en tant qu’OPS, pour des sujets qui nous concernent, l’infra as code.
+<!-- excerpt -->
+
 Voici le chemin que nous allons suivre :
 1. Préparation de l’environnement
 2. Préparation d’une image de base Linux
@@ -23,7 +25,7 @@ Nous utiliserons des technologies Microsoft (VSTS, Azure, Windows Server…) mai
 
 Voici un petit récapitulatif ce qu'on aimerait :
 
-<img class="alignnone size-full wp-image-365" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Packer.png" alt="" width="1035" height="472" />
+<img class="alignnone size-full wp-image-365" src="/images/2017/10/Packer.png" alt="" width="1035" height="472" />
 
 Vous devez créer deux comptes de stockage dans Azure vous même, un de "Production" et un "Eval" vous pouvez le faire avec Azure Cloud Shell depuis le portail Azure :
 
@@ -71,23 +73,23 @@ Ouvrez VSTS :
 
 puis cliquez sur "build &amp; release" :
 
-<img class="alignnone size-full wp-image-372" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Sans-titre.png" alt="" width="592" height="164" />
+<img class="alignnone size-full wp-image-372" src="/images/2017/10/Sans-titre.png" alt="" width="592" height="164" />
 
 Puis sur "+ New"
 
-<img class="alignnone size-full wp-image-361" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-1.png" alt="" width="1027" height="158" />
+<img class="alignnone size-full wp-image-361" src="/images/2017/10/vsts-create-1.png" alt="" width="1027" height="158" />
 
 Puis sur "Empty process"
 
-<img class="alignnone size-full wp-image-362" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-2.png" alt="" width="1035" height="185" />
+<img class="alignnone size-full wp-image-362" src="/images/2017/10/vsts-create-2.png" alt="" width="1035" height="185" />
 
 Puis complétez le champs "Name" avec par exemple "Packer-Base-Windows 2012 R2"
 
-<img class="alignnone size-full wp-image-363" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-3.png" alt="" width="1035" height="475" />
+<img class="alignnone size-full wp-image-363" src="/images/2017/10/vsts-create-3.png" alt="" width="1035" height="475" />
 
 Dans la Phase 1 nous allons ajouter deux étape "build immutable image" et "azure cli" :
 
-<img class="alignnone size-full wp-image-353" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-4.png" alt="" width="1035" height="504" />
+<img class="alignnone size-full wp-image-353" src="/images/2017/10/vsts-create-4.png" alt="" width="1035" height="504" />
 
 Renseignez les variables telles que ci dessous :
 
@@ -131,33 +133,33 @@ Dans le template parameters (je suis sympa, copiez collez ca :):
 
 Puis, dans "Output", renseigner IMAGEURI :
 
-<img class="alignnone size-full wp-image-354" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-5.png" alt="" width="1108" height="727" />
+<img class="alignnone size-full wp-image-354" src="/images/2017/10/vsts-create-5.png" alt="" width="1108" height="727" />
 
 Ajoutez maintenant une tâche "Azure CLI" :
 
-<img class="alignnone size-full wp-image-355" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-6.png" alt="" width="1035" height="560" />
+<img class="alignnone size-full wp-image-355" src="/images/2017/10/vsts-create-6.png" alt="" width="1035" height="560" />
 
 Sélectionnez votre souscription azure (si elle n'est pas dans la liste, cliquez sur manage et ajoutez la) et indiquez le chemin vers le script bash "script/platform/tasks/az-move-vhd.vhd" et ajoutez les arguments "-d "$(DESTACCOUNTKEY)" -s "$(SOURCEACCOUNTKEY)""
 
-<img class="alignnone size-full wp-image-356" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-7.png" alt="" width="1109" height="648" />
+<img class="alignnone size-full wp-image-356" src="/images/2017/10/vsts-create-7.png" alt="" width="1109" height="648" />
 
 Une fois que ces deux tâches sont complétées, nous allons déclarer nos variables (si vous ne savez pas comment les récupérées, suivez le guide sur le dépôt git de Stanislas plus haut) :
 
-<img class="alignnone size-full wp-image-357" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-8.png" alt="" width="1112" height="893" />
+<img class="alignnone size-full wp-image-357" src="/images/2017/10/vsts-create-8.png" alt="" width="1112" height="893" />
 
 Vous remarquerez que certaines sont masquées, rien de bien compliqué, cliquez sur le cadenas et elle sera "protégée" :
 
-<img class="alignnone size-full wp-image-358" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-9.png" alt="" width="990" height="108" />
+<img class="alignnone size-full wp-image-358" src="/images/2017/10/vsts-create-9.png" alt="" width="990" height="108" />
 
 Dans l’idéal, les variables a protégées seraient : ARM_CLIENT_SECRET, ARM_SUBSCRIPTION_ID, ARM_TENANT_ID, DESTACCOUNTKEY, SOURCEACCOUNTKEY mais pour des questions de simplifications dans cet exercices, nous ne protégerons que les clés du compte de stockage, nous corrigerons par la suite.
 
 Pour récupérer les clés des comptes de stockage sélectionnez votre compte de stockage dans le resource group que vous avez créer et allez dans "Access Keys" :
 
-<img class="alignnone size-full wp-image-360" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/storage-account-key.png" alt="" width="1108" height="557" />
+<img class="alignnone size-full wp-image-360" src="/images/2017/10/storage-account-key.png" alt="" width="1108" height="557" />
 
 Ensuite, comme nous allons construire des images Packer Windows, il y a des chances pour que la build dure plus d'une heure (Mise à jour etc) donc dans les options de la build nous allons passer le time out de la build a 240 minutes :
 
-<img class="alignnone wp-image-378 size-full" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/timeout-e1508918816983.png" alt="" width="1225" height="545" />
+<img class="alignnone wp-image-378 size-full" src="/images/2017/10/timeout-e1508918816983.png" alt="" width="1225" height="545" />
 
 Cliquez maintenant sur "Save &amp; Queue".
 
