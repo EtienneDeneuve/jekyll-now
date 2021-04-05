@@ -38,7 +38,7 @@ Packages à installer sur le bash Windows :
 #(obligatoire)installation de git, wget, unzip, python et curl
 sudo apt install git wget unzip python curl
 
-# (obligatoire) recuperation du gestionnaire de package &quot;pip&quot;
+# (obligatoire) recuperation du gestionnaire de package "pip"
 wget https://bootstrap.pypa.io/get-pip.py
 
 # (optionnel) recuperation de terraform
@@ -63,8 +63,8 @@ mv terraform-docs /home/${USER}/.local/bin/
 python get-pip.py --user
 
 # Correction du path si necessaire pour l&#039;execution de terraform et terraform docs
-if [[ &quot;:$PATH:&quot; == *&quot;:$HOME/.local/bin&quot;* ]]; then
-echo &quot;Your path is correctly set&quot;
+if [[ ":$PATH:" == *":$HOME/.local/bin"* ]]; then
+echo "Your path is correctly set"
 else
 PATH=$PATH:/home/${USER}/.local/bin
 export PATH
@@ -122,7 +122,7 @@ hooks:
 EOF
 # puis on l&#039;ajoute à l&#039;index :
 git add .pre-commit-config.yaml
-git commit -m &quot;adding pre-commit-config&quot;
+git commit -m "adding pre-commit-config"
 ```
 
 Puis, lancer l'installation avec ``pre-commit install``. Ceci nous permet de bien valider nos fichiers avant les commits.
@@ -141,14 +141,14 @@ Voici un script que j'utilises pour générer ma documentation Ansible :
 #!/bin/bash
 # je genere la documentation avec ansible-docget pour tout le dossier 
 ansible-docgen -p .
-# je créer un dossier &quot;docs&quot; dans le projet github
+# je créer un dossier "docs" dans le projet github
 mkdir -p ./docs
 # si le dossier contien déjà un fichier fullreadme.md je le déplace 
-if [ -d &quot;./docs/fullreadme.md&quot; ]; then
-mv ./docs/fullreadme.md ./docs/fullreadme-$(date +&quot;%m_%d_%Y&quot;).old
+if [ -d "./docs/fullreadme.md" ]; then
+mv ./docs/fullreadme.md ./docs/fullreadme-$(date +"%m_%d_%Y").old
 else
 # sinon j&#039;affiche un mesage
-echo &quot;full readme doesn&#039;t exists yet&quot;
+echo "full readme doesn&#039;t exists yet"
 fi
 # j&#039;ajoute le titre à mon document
 echo &#039;# Ansible documentation&#039; &gt; ./docs/fullreadme.md
@@ -181,9 +181,9 @@ cp ./docs/fullreadme.md ./README.md
 # conservation de l&#039;ancien readme (backup)
 mv ./README.md ./README.old
 # recherche de tout les repertoires et execution de terraform-docs dans chacun d&#039;eux
-find . -type d -exec bash -c &#039;terraform-docs md &quot;{}&quot; &gt; &quot;{}&quot;/README.md;&#039; \;
+find . -type d -exec bash -c &#039;terraform-docs md "{}" &gt; "{}"/README.md;&#039; \;
 # recherche de tout les readme.md vide et suppression
-find . -name &quot;README.md&quot; -size 1c -type f -delete
+find . -name "README.md" -size 1c -type f -delete
 # creation du titre du document
 echo &#039;# Terraform Modules Documentation&#039; &gt; modules.md
 # ajout des placeholder pour la generation de la tables des matières
@@ -193,7 +193,7 @@ echo &#039;&lt;!--te--&gt;&#039; &gt;&gt; modules.md
 for f in $(find ./ -name &#039;README.md&#039;)
 do
 # ajout du nom du fichier pour la table des matieres
-echo &quot;## $f&quot; &gt;&gt; modules.md
+echo "## $f" &gt;&gt; modules.md
 # ajout du contenu du fichier avec une expression sed pour ajouter un niveau dans l&#039;arboresence
 cat $f | sed &#039;/^#/s/^/#/&#039; &gt;&gt; modules.md
 done
@@ -213,7 +213,7 @@ Ajoutez un fichier post-commit (executable) ajoutez le contenu suivant :
 
 #!/bin/bash
 
-&quot;$(dirname $0)/generate_docs.sh&quot;
+"$(dirname $0)/generate_docs.sh"
 
 ```
 

@@ -62,7 +62,7 @@ Ouvrez VSTS ou Git puis :
 
 VSTS : https://&lt;votreurl&gt;/_details/security/keys)&lt;/votreurl&gt;Git : https://github.com/settings/keys
 
-Cliquez sur &quot;Add&quot; et collez la clé publique.
+Cliquez sur "Add" et collez la clé publique.
 
 Ensuite ajoutez la clé dans l&#039;agent ssh :
 
@@ -133,7 +133,7 @@ git rm ./monchemin/monfichier --cached
 Afin d'ajouter nos fichier dans l'index en attente, il est nécessaire de valider ces fichiers, un peu comme en base de données Commit, Execute, Rollback, en cas de soucis.
 
 ```
-git commit -m &quot;le message du commit en fonction de votre travail... (pensez à vos collègues !&quot;
+git commit -m "le message du commit en fonction de votre travail... (pensez à vos collègues !"
 ```
 
 ## Pull ou Fetch ?

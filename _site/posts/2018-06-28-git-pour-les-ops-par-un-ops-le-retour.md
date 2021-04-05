@@ -37,10 +37,10 @@ La commande git checkout permet de se changer de branche de travail. C'est à di
 git checkout master
 # on creer un fichier vide :
 touch monfichier.txt
-# on l&#039;ajoute au &quot;stage&quot; :
+# on l&#039;ajoute au "stage" :
 git add monfichier.txt
 # puis on commit :
-git commit -m &quot;mon commit dans master&quot;
+git commit -m "mon commit dans master"
 # puis on change de branch, le -b permet de créer la branche si elle n&#039;existe pas encore
 git checkout -b manouvellebranche
 # on valide qu&#039;elle est bien a jour par rapport au serveur
@@ -53,7 +53,7 @@ Maintenant, ajoutons un fichier dans cette nouvelle branche :
 
 ```
 touch monfichier2.txt
-git add monfichier2.txt &amp;&amp; git commit -m &quot;mon commit dans manouvellebranche&quot;
+git add monfichier2.txt &amp;&amp; git commit -m "mon commit dans manouvellebranche"
 ```
 
 Retournons dans la branche "master" :
@@ -63,7 +63,7 @@ Retournons dans la branche "master" :
 git checkout master
 # on creer un nouveau fichier :
 touch monfichiermaster.txt
-git add monfichiermaster.txt &amp;&amp; git commit -m &quot;ajout du fichier dans master&quot;
+git add monfichiermaster.txt &amp;&amp; git commit -m "ajout du fichier dans master"
 ls
 # nous retourne :
 monfichier.txt monfichiermaster.txt
@@ -96,7 +96,7 @@ Une fois que notre feature est prête, il peut être intéressant de migrer le t
 # ajoutons quelques fichiers dans la branche manouvellebranche
 touch toto{0..9}{0..9}.txt
 git add toto*
-git commit -m &quot;adding 100 files&quot;
+git commit -m "adding 100 files"
 ```
 
 Ensuite, changeons de branche puis effectuons un merge, simple (le moins bien):
@@ -138,11 +138,11 @@ git merge --squash manouvellebranch
 git status
 On branch master
 Changes to be committed:
-(use &quot;git reset HEAD ...&quot; to unstage)
+(use "git reset HEAD ..." to unstage)
 
 new file: toto00.txt
 
 new file: toto99.txt
 # dès lors, nous devons commiter:
-git commit -m &quot;oui, c&#039;est bon on y va !&quot;
+git commit -m "oui, c&#039;est bon on y va !"
 ```

@@ -45,16 +45,16 @@ Vous noterez peut être que j'ai ajouté un provisionner "windows-update" :
 
 ```json
 
-&quot;provisioners&quot;: [
+"provisioners": [
 {
-&quot;type&quot;: &quot;windows-update&quot;
+"type": "windows-update"
 },
 
 ```
 
 Celui n'est pas standard, vous devez le mettre dans le même répertoire que votre exécutable packer, il est téléchargeable à l'adresse suivante : https://github.com/rgl/packer-provisioner-windows-update/releases mais je l'ai aussi inclus dans mon repository git au passage nous allons également mettre la dernière version de Packer. Ces actions sont à faire sur la machine "Agent" de <a href="https://etienne.deneuve.xyz/2017/10/09/vsts-for-ops-1/">vsts-for-ops-1</a> :
 
-```
+```zsh
 apt install unzip
 wget https://github.com/rgl/packer-provisioner-windows-update/releases/download/v0.4.0/packer-provisioner-windows-update-linux.tgz
 wget https://releases.hashicorp.com/packer/1.1.0/packer_1.1.0_linux_amd64.zip
@@ -103,29 +103,29 @@ Dans le template parameters (je suis sympa, copiez collez ca :):
 
 {
 
-&quot;client_id&quot;:&quot;$(ARM_CLIENT_ID)&quot;,
+"client_id":"$(ARM_CLIENT_ID)",
 
-&quot;client_secret&quot;:&quot;$(ARM_CLIENT_SECRET)&quot;,
+"client_secret":"$(ARM_CLIENT_SECRET)",
 
-&quot;resource_group_name&quot;:&quot;$(ARM_RESOURCE_GROUP_NAME)&quot;,
+"resource_group_name":"$(ARM_RESOURCE_GROUP_NAME)",
 
-&quot;storage_account&quot;:&quot;$(ARM_STORAGE_ACCOUNT)&quot;,
+"storage_account":"$(ARM_STORAGE_ACCOUNT)",
 
-&quot;subscription_id&quot;:&quot;$(ARM_SUBSCRIPTION_ID)&quot;,
+"subscription_id":"$(ARM_SUBSCRIPTION_ID)",
 
-&quot;object_id&quot;:&quot;$(ARM_OBJECT_ID)&quot;,
+"object_id":"$(ARM_OBJECT_ID)",
 
-&quot;tenant_id&quot;:&quot;$(ARM_TENANT_ID)&quot;,
+"tenant_id":"$(ARM_TENANT_ID)",
 
-&quot;windows_sku&quot;:&quot;$(WINDOWS_SKU)&quot;,
+"windows_sku":"$(WINDOWS_SKU)",
 
-&quot;build_resquestfor&quot;:&quot;$(BUILD_REQUESTEDFOR)&quot;,
+"build_resquestfor":"$(BUILD_REQUESTEDFOR)",
 
-&quot;location&quot;:&quot;$(ARM_LOCATION)&quot;,
+"location":"$(ARM_LOCATION)",
 
-&quot;vm_size&quot;:&quot;$(ARM_VM_SIZE)&quot;,
+"vm_size":"$(ARM_VM_SIZE)",
 
-&quot;capture_name&quot;:&quot;$(CAPTURE_NAME)&quot;
+"capture_name":"$(CAPTURE_NAME)"
 
 }
 

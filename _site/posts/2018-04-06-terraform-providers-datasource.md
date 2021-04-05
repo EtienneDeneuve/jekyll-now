@@ -24,7 +24,7 @@ L'objet de cet article est de vous montrer quelques points intéressants qu'il e
 Terraform repose sur des providers que nous pouvons déclarer tel que :
 
 ```
-provider &quot;nomduprovider&quot; {
+provider "nomduprovider" {
 
 }
 ```
@@ -41,24 +41,24 @@ ou encore ceux de la communauté que je ne détaillerai pas, mais à  noter la 
 Voici un exemple pour le provider random :
 
 ```
-provider &quot;random&quot; {}
+provider "random" {}
 
-resource &quot;random_pet&quot; &quot;demo_pet&quot; {
-prefix = &quot;myad&quot;
-separator = &quot;.&quot;
+resource "random_pet" "demo_pet" {
+prefix = "myad"
+separator = "."
 }
 
-resource &quot;random_id&quot; &quot;demo_id&quot; {
-prefix = &quot;web&quot;
+resource "random_id" "demo_id" {
+prefix = "web"
 byte_length = 8
 }
 
-output &quot;demo&quot; {
-value = &quot;${random_pet.demo_pet.id}&quot;
+output "demo" {
+value = "${random_pet.demo_pet.id}"
 }
 
-output &quot;demo-id&quot; {
-value = &quot;${random_id.demo_id.dec}&quot;
+output "demo-id" {
+value = "${random_id.demo_id.dec}"
 }
 ```
 
@@ -108,16 +108,16 @@ id:
 b64:
 b64_std:
 b64_url:
-byte_length: &quot;8&quot;
+byte_length: "8"
 dec:
 hex:
-prefix: &quot;web&quot;
+prefix: "web"
 
 + random_pet.demo_pet
 id:
-length: &quot;2&quot;
-prefix: &quot;myad&quot;
-separator: &quot;.&quot;
+length: "2"
+prefix: "myad"
+separator: "."
 
 Plan: 2 to add, 0 to change, 0 to destroy.
 
@@ -128,17 +128,17 @@ Only &#039;yes&#039; will be accepted to approve.
 Enter a value: yes
 
 random_pet.demo_pet: Creating...
-length: &quot;&quot; =&gt; &quot;2&quot;
-prefix: &quot;&quot; =&gt; &quot;myad&quot;
-separator: &quot;&quot; =&gt; &quot;.&quot;
+length: "" =&gt; "2"
+prefix: "" =&gt; "myad"
+separator: "" =&gt; "."
 random_id.demo_id: Creating...
-b64: &quot;&quot; =&gt; &quot;&quot;
-b64_std: &quot;&quot; =&gt; &quot;&quot;
-b64_url: &quot;&quot; =&gt; &quot;&quot;
-byte_length: &quot;&quot; =&gt; &quot;8&quot;
-dec: &quot;&quot; =&gt; &quot;&quot;
-hex: &quot;&quot; =&gt; &quot;&quot;
-prefix: &quot;&quot; =&gt; &quot;web&quot;
+b64: "" =&gt; ""
+b64_std: "" =&gt; ""
+b64_url: "" =&gt; ""
+byte_length: "" =&gt; "8"
+dec: "" =&gt; ""
+hex: "" =&gt; ""
+prefix: "" =&gt; "web"
 random_pet.demo_pet: Creation complete after 0s (ID: myad.quiet.filly)
 random_id.demo_id: Creation complete after 0s (ID: aZLeiFCrOno)
 
@@ -157,30 +157,30 @@ Voilà, grâce à ce provider, plus besoin de chercher des noms pour vos tests e
 Pour le provider template, reprenez votre fichier et ajoutez les éléments suivants :
 
 ```
-provider &quot;random&quot; {}
+provider "random" {}
 
-resource &quot;random_pet&quot; &quot;demo_pet&quot; {
-prefix = &quot;myad&quot;
-separator = &quot;.&quot;
+resource "random_pet" "demo_pet" {
+prefix = "myad"
+separator = "."
 }
 
-resource &quot;random_id&quot; &quot;demo_id&quot; {
-prefix = &quot;web&quot;
+resource "random_id" "demo_id" {
+prefix = "web"
 byte_length = 4
 }
 
-output &quot;demo&quot; {
-value = &quot;${random_pet.demo_pet.id}&quot;
+output "demo" {
+value = "${random_pet.demo_pet.id}"
 }
 
-output &quot;demo-id&quot; {
-value = &quot;${random_id.demo_id.dec}&quot;
+output "demo-id" {
+value = "${random_id.demo_id.dec}"
 }
 
-provider &quot;template&quot; {}
+provider "template" {}
 
-data &quot;template_file&quot; &quot;demo&quot; {
-template = &lt;&lt;-EOF #/bin/shell hostname $${hostname} EOF vars { hostname = &quot;${random_pet.demo_pet.id}&quot; } } output &quot;demo-template&quot; { value = &quot;${data.template_file.demo.*.rendered}&quot; } ``` puis faites votre init, comme nous avons un nouveau provider, puis votre apply : ``` PS C:\Users\etien\Documents\it\blog&gt; terraform apply
+data "template_file" "demo" {
+template = &lt;&lt;-EOF #/bin/shell hostname $${hostname} EOF vars { hostname = "${random_pet.demo_pet.id}" } } output "demo-template" { value = "${data.template_file.demo.*.rendered}" } ``` puis faites votre init, comme nous avons un nouveau provider, puis votre apply : ``` PS C:\Users\etien\Documents\it\blog&gt; terraform apply
 random_pet.demo_pet: Refreshing state... (ID: myad.quiet.filly)
 random_id.demo_id: Refreshing state... (ID: ksLYNA)
 data.template_file.demo: Refreshing state...
@@ -203,7 +203,7 @@ Ce provider est assez pratique pour générer des user_data ou des scripts custo
 
 ## DataSources
 
-Comme nous venons de le voir, à moins d&#039;avoir fait un copier coller sans lire le code, dans Terraform nous avions plusieurs type dont &quot;provider&quot;, &quot;resource&quot; ou encore &quot;output&quot; et &quot;variable&quot;, mais aussi &quot;data&quot;. Ce type est assez intéressant puisqu&#039;il permet d&#039;interroger dynamiquement le provider.
+Comme nous venons de le voir, à moins d&#039;avoir fait un copier coller sans lire le code, dans Terraform nous avions plusieurs type dont "provider", "resource" ou encore "output" et "variable", mais aussi "data". Ce type est assez intéressant puisqu&#039;il permet d&#039;interroger dynamiquement le provider.
 Admettons, vous avez une belle infra réseau dans Azure et vous souhaitez ajouter une belle machine dans ce beau réseau, avant ce n&#039;était pas super pratique, il fallait jouer avec les imports, au risque de supprimer le vnet (par erreur, un vendredi soir vers 17h, au hazard) lors de l&#039;invocation de la meilleure commande de terraform (destroy).
 
 Voici un petit exemple de l&#039;utilisation de ces datasources :

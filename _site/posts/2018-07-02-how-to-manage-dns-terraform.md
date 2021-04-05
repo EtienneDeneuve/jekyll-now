@@ -51,91 +51,91 @@ Open Visual Studio Code and create a base folder ``$workdir`` and create the fol
 In the file ``bind/provider.tf``, add this :
 
 ```
-provider &quot;azurerm&quot; {
-version = &quot;1.6.0&quot;
+provider "azurerm" {
+version = "1.6.0"
 }
 
-provider &quot;template&quot; {
-version = &quot;1.0.0&quot;
+provider "template" {
+version = "1.0.0"
 }
 ```
 
 In ``bind/data.tf``, add this :
 
 ```
-data &quot;template_cloudinit_config&quot; &quot;config&quot; {
+data "template_cloudinit_config" "config" {
 gzip = true
 base64_encode = true
 
 part {
-content_type = &quot;text/cloud-config&quot;
-content = &quot;${data.template_file.cloudconfig.rendered}&quot;
+content_type = "text/cloud-config"
+content = "${data.template_file.cloudconfig.rendered}"
 }
 }
 
-data &quot;template_file&quot; &quot;cloudconfig&quot; {
-template = &quot;${file(&quot;cloudconfig.tpl&quot;)}&quot;
+data "template_file" "cloudconfig" {
+template = "${file("cloudconfig.tpl")}"
 }
 ```
 
 And in ``bind/main.tf`` add this (don't forget to change ```` by a secure password) :
 
 ```
-resource &quot;azurerm_resource_group&quot; &quot;tf-bind&quot; {
-name = &quot;RG-bind&quot;
-location = &quot;West Europe&quot;
+resource "azurerm_resource_group" "tf-bind" {
+name = "RG-bind"
+location = "West Europe"
 
 tags = {
-Project = &quot;bind&quot;
+Project = "bind"
 }
 }
 
-resource &quot;azurerm_virtual_network&quot; &quot;tf-vnet&quot; {
-name = &quot;vnet-bind&quot;
-location = &quot;${azurerm_resource_group.tf-bind.location}&quot;
-resource_group_name = &quot;${azurerm_resource_group.tf-bind.name}&quot;
-address_space = [&quot;10.0.0.0/16&quot;]
+resource "azurerm_virtual_network" "tf-vnet" {
+name = "vnet-bind"
+location = "${azurerm_resource_group.tf-bind.location}"
+resource_group_name = "${azurerm_resource_group.tf-bind.name}"
+address_space = ["10.0.0.0/16"]
 
 tags = {
-Project = &quot;bind&quot;
+Project = "bind"
 }
 }
 
-resource &quot;azurerm_subnet&quot; &quot;tf-snet&quot; {
-name = &quot;main&quot;
-resource_group_name = &quot;${azurerm_resource_group.tf-bind.name}&quot;
-virtual_network_name = &quot;${azurerm_virtual_network.tf-vnet.name}&quot;
-address_prefix = &quot;10.0.0.0/24&quot;
+resource "azurerm_subnet" "tf-snet" {
+name = "main"
+resource_group_name = "${azurerm_resource_group.tf-bind.name}"
+virtual_network_name = "${azurerm_virtual_network.tf-vnet.name}"
+address_prefix = "10.0.0.0/24"
 }
 
-resource &quot;azurerm_virtual_machine&quot; &quot;tf-vm-bind&quot; {
+resource "azurerm_virtual_machine" "tf-vm-bind" {
 count = 1
-name = &quot;bind-vm0${count.index}&quot;
-location = &quot;${azurerm_resource_group.tf-bind.location}&quot;
-resource_group_name = &quot;${azurerm_resource_group.tf-bind.name}&quot;
-network_interface_ids = [&quot;${element(azurerm_network_interface.tf-nic.*.id, count.index)}&quot;]
-vm_size = &quot;Standard_B1ms&quot;
+name = "bind-vm0${count.index}"
+location = "${azurerm_resource_group.tf-bind.location}"
+resource_group_name = "${azurerm_resource_group.tf-bind.name}"
+network_interface_ids = ["${element(azurerm_network_interface.tf-nic.*.id, count.index)}"]
+vm_size = "Standard_B1ms"
 delete_os_disk_on_termination = true
 
 storage_image_reference {
-publisher = &quot;Canonical&quot;
-offer = &quot;UbuntuServer&quot;
-sku = &quot;16.04-LTS&quot;
-version = &quot;latest&quot;
+publisher = "Canonical"
+offer = "UbuntuServer"
+sku = "16.04-LTS"
+version = "latest"
 }
 
 storage_os_disk {
-name = &quot;dsk-vm0${count.index}&quot;
-caching = &quot;ReadWrite&quot;
-create_option = &quot;FromImage&quot;
-managed_disk_type = &quot;Standard_LRS&quot;
+name = "dsk-vm0${count.index}"
+caching = "ReadWrite"
+create_option = "FromImage"
+managed_disk_type = "Standard_LRS"
 }
 
 os_profile {
-computer_name = &quot;bind-vm0${count.index}&quot;
-admin_username = &quot;edeneuve&quot;
-admin_password = &quot;&quot;
-custom_data = &quot;${data.template_cloudinit_config.config.rendered}&quot;
+computer_name = "bind-vm0${count.index}"
+admin_username = "edeneuve"
+admin_password = ""
+custom_data = "${data.template_cloudinit_config.config.rendered}"
 }
 
 os_profile_linux_config {
@@ -143,37 +143,37 @@ disable_password_authentication = false
 }
 
 tags = {
-Project = &quot;bind&quot;
+Project = "bind"
 }
 }
 
-resource &quot;azurerm_network_interface&quot; &quot;tf-nic&quot; {
-count = &quot;1&quot;
-name = &quot;nic-vm${count.index}&quot;
-resource_group_name = &quot;${azurerm_resource_group.tf-bind.name}&quot;
-location = &quot;${azurerm_resource_group.tf-bind.location}&quot;
+resource "azurerm_network_interface" "tf-nic" {
+count = "1"
+name = "nic-vm${count.index}"
+resource_group_name = "${azurerm_resource_group.tf-bind.name}"
+location = "${azurerm_resource_group.tf-bind.location}"
 
 ip_configuration {
-name = &quot;ipconfig&quot;
-private_ip_address_allocation = &quot;dynamic&quot;
-subnet_id = &quot;${azurerm_subnet.tf-snet.id}&quot;
-public_ip_address_id = &quot;${element(azurerm_public_ip.MyResource.*.id, count.index)}&quot;
+name = "ipconfig"
+private_ip_address_allocation = "dynamic"
+subnet_id = "${azurerm_subnet.tf-snet.id}"
+public_ip_address_id = "${element(azurerm_public_ip.MyResource.*.id, count.index)}"
 }
 
 tags = {
-Project = &quot;bind&quot;
+Project = "bind"
 }
 }
 
-resource &quot;azurerm_public_ip&quot; &quot;MyResource&quot; {
-count = &quot;1&quot;
-name = &quot;pip-vm${count.index}&quot;
-resource_group_name = &quot;${azurerm_resource_group.tf-bind.name}&quot;
-location = &quot;${azurerm_resource_group.tf-bind.location}&quot;
-public_ip_address_allocation = &quot;dynamic&quot;
+resource "azurerm_public_ip" "MyResource" {
+count = "1"
+name = "pip-vm${count.index}"
+resource_group_name = "${azurerm_resource_group.tf-bind.name}"
+location = "${azurerm_resource_group.tf-bind.location}"
+public_ip_address_allocation = "dynamic"
 
 tags = {
-Project = &quot;bind&quot;
+Project = "bind"
 }
 }
 ```
@@ -200,24 +200,24 @@ You should now have a ``rdnc.key`` within the current folder and with some conte
 ```
 $ sudo cat /etc/bind/rndc.key
 
-key &quot;rndc-key&quot; {
+key "rndc-key" {
 algorithm hmac-md5;
-secret &quot;REDACTED&quot;;
+secret "REDACTED";
 };
 ```
 
 Now, we will edit the config file of Bind9, the main config is ``named.conf``. You need to add a reference to the new ``rndc.key`` :
 
 ```
-include &quot;/etc/bind/rndc.key&quot;;
+include "/etc/bind/rndc.key";
 ```
 
 Then, create new zone in ``named.conf.local`` (You can change the ``toto.int.local.`` by something different :
 
 ```
-zone &quot;toto.int.local.&quot; {
+zone "toto.int.local." {
 type master;
-file &quot;/etc/bind/zones/db.toto.int.local&quot;;
+file "/etc/bind/zones/db.toto.int.local";
 update-policy {
 grant rndc-key zonesub any;
 };
@@ -350,12 +350,12 @@ Now we will work in the ``dns``folder :
 In ``provider.tf``, add this :
 
 ```
-provider &quot;dns&quot; {
+provider "dns" {
 update {
-server = &quot;&quot;
-key_name = &quot;&quot;
-key_algorithm = &quot;hmac-md5&quot;
-key_secret = &quot;&quot;
+server = ""
+key_name = ""
+key_algorithm = "hmac-md5"
+key_secret = ""
 }
 }
 ```
@@ -365,30 +365,30 @@ Then from the dns folder launch ``terraform init``, to grab the dns plugin.
 In the ``main.tf`` file add Terraform resources :
 
 ```
-resource &quot;dns_a_record_set&quot; &quot;www&quot; {
-zone = &quot;toto.int.local.&quot;
-name = &quot;www&quot;
+resource "dns_a_record_set" "www" {
+zone = "toto.int.local."
+name = "www"
 
 addresses = [
-&quot;192.168.0.1&quot;,
-&quot;192.168.0.2&quot;,
-&quot;192.168.0.3&quot;,
+"192.168.0.1",
+"192.168.0.2",
+"192.168.0.3",
 ]
 
 ttl = 300
 }
 
-resource &quot;dns_cname_record&quot; &quot;foo&quot; {
-zone = &quot;toto.int.local.&quot;
-name = &quot;foo&quot;
-cname = &quot;tata.toto.int.local.&quot;
+resource "dns_cname_record" "foo" {
+zone = "toto.int.local."
+name = "foo"
+cname = "tata.toto.int.local."
 ttl = 300
 }
 
-resource &quot;dns_a_record_set&quot; &quot;xxx&quot; {
-zone = &quot;toto.int.local.&quot;
-name = &quot;tata&quot;
-addresses = [&quot;192.168.0.1&quot;]
+resource "dns_a_record_set" "xxx" {
+zone = "toto.int.local."
+name = "tata"
+addresses = ["192.168.0.1"]
 ttl = 300
 }
 ```
@@ -410,36 +410,36 @@ Terraform will perform the following actions:
 
 + dns_a_record_set.www
 id:
-addresses.#: &quot;3&quot;
-addresses.1737095236: &quot;192.168.0.3&quot;
-addresses.2307365224: &quot;192.168.0.1&quot;
-addresses.277792978: &quot;192.168.0.2&quot;
-name: &quot;www&quot;
-ttl: &quot;300&quot;
-zone: &quot;toto.int.local.&quot;
+addresses.#: "3"
+addresses.1737095236: "192.168.0.3"
+addresses.2307365224: "192.168.0.1"
+addresses.277792978: "192.168.0.2"
+name: "www"
+ttl: "300"
+zone: "toto.int.local."
 
 + dns_a_record_set.xxx
 id:
-addresses.#: &quot;1&quot;
-addresses.2307365224: &quot;192.168.0.1&quot;
-name: &quot;tata&quot;
-ttl: &quot;300&quot;
-zone: &quot;toto.int.local.&quot;
+addresses.#: "1"
+addresses.2307365224: "192.168.0.1"
+name: "tata"
+ttl: "300"
+zone: "toto.int.local."
 
 + dns_cname_record.foo
 id:
-cname: &quot;tata.toto.int.local.&quot;
-name: &quot;foo&quot;
-ttl: &quot;300&quot;
-zone: &quot;toto.int.local.&quot;
+cname: "tata.toto.int.local."
+name: "foo"
+ttl: "300"
+zone: "toto.int.local."
 
 Plan: 3 to add, 0 to change, 0 to destroy.
 
 ------------------------------------------------------------------------
 
-Note: You didn&#039;t specify an &quot;-out&quot; parameter to save this plan, so Terraform
+Note: You didn&#039;t specify an "-out" parameter to save this plan, so Terraform
 can&#039;t guarantee that exactly these actions will be performed if
-&quot;terraform apply&quot; is subsequently run.
+"terraform apply" is subsequently run.
 ```
 
 You can now apply with ``terraform apply``. Check the dns log with ``cat /var/log/syslog | grep named`` :

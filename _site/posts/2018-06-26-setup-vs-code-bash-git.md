@@ -32,7 +32,7 @@ Dans la configuration du workspace Crtl + P : " &gt; Open Workspace Settings"  
 
 ```json
 settings: {
-&quot;terminal.integrated.shell.windows&quot;: &quot;c:\\windows\\System32\\bash.exe&quot;
+"terminal.integrated.shell.windows": "c:\\windows\\System32\\bash.exe"
 }
 ```
 
@@ -44,31 +44,31 @@ Je vous donne un petit script bash pour installer les différents packages que j
 
 ```
 #!/bin/bash
-echo &quot;installation des packages de puis les depots ubuntu&quot;
+echo "installation des packages de puis les depots ubuntu"
 sudo apt install git wget unzip python curl python-dev build-essential -q -y
-echo &quot;Téléchargement de pip&quot;
+echo "Téléchargement de pip"
 wget https://bootstrap.pypa.io/get-pip.py
-echo &quot;Téléchargement de Terraform&quot;
+echo "Téléchargement de Terraform"
 wget https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip -O terraform.zip
-echo &quot;Téléchargement de Terraform Docs&quot;
+echo "Téléchargement de Terraform Docs"
 wget https://github.com/segmentio/terraform-docs/releases/download/v0.3.0/terraform-docs_linux_amd64 -O terraform-docs
-echo &quot;Ajout de Terraform et Terraform-docs dans /home/${USER}/.local/bin/&quot;
+echo "Ajout de Terraform et Terraform-docs dans /home/${USER}/.local/bin/"
 unzip terraform.zip
 mv terraform /home/${USER}/.local/bin/
 mv terraform-docs /home/${USER}/.local/bin/
-echo &quot;installation de pip en mode user&quot;
+echo "installation de pip en mode user"
 python get-pip.py --user
-echo &quot;verification du path&quot;
-if [[ &quot;:$PATH:&quot; == *&quot;:$HOME/.local/bin&quot;* ]]; then
-echo &quot;Your path is correctly set&quot;
+echo "verification du path"
+if [[ ":$PATH:" == *":$HOME/.local/bin"* ]]; then
+echo "Your path is correctly set"
 else
-echo &quot;Ajout de /home/${USER}/.local/bin dans le path&quot;
+echo "Ajout de /home/${USER}/.local/bin dans le path"
 PATH=$PATH:/home/${USER}/.local/bin
 export PATH
 fi
-echo &quot;Mise a jour de pip par pip&quot;
+echo "Mise a jour de pip par pip"
 pip install pip --upgrade --user
-echo &quot;installation des outils pour ansible&quot;
+echo "installation des outils pour ansible"
 pip install ansible-lint ansible-docgen pre-commit ansible[azure] pywinrm molecule --user
 ```
 
@@ -122,7 +122,7 @@ git add .pre-commit-config.yaml
 On commit :
 
 ```
-git commit . -m &quot;validation des pré commit hooks&quot; -n
+git commit . -m "validation des pré commit hooks" -n
 git push origin master
 ```
 
@@ -205,7 +205,7 @@ Le hook de pre-commit trim trailing whitespace a nettoyer les espaces en trop da
 
 ```
 git add test.yml
-git commit . -m &quot;Test&quot;
+git commit . -m "Test"
 Check Yaml...............................................................Passed
 Check Xml............................................(no files to check)Skipped
 Check JSON...........................................(no files to check)Skipped
