@@ -1,0 +1,63 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "default",
+      "pageBundle": false,
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "title": "Description",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "title": "Publishing date",
+          "name": "pubDate",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
+        },
+        {
+          "title": "Is in draft",
+          "name": "draft",
+          "type": "draft"
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "Categories",
+          "name": "categories",
+          "type": "categories"
+        },
+        {
+          "title": "Image",
+          "name": "img",
+          "type": "string"
+        },
+        {
+          "title": "Image Alt",
+          "name": "img_alt",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "blog_etienne",
+      "path": "[[workspace]]/etiennedeneuve/src/content/blog"
+    }
+  ],
+  "frontMatter.content.publicFolder": "public",
+  "frontMatter.framework.id": "astro",
+  "frontMatter.preview.host": "http://localhost:3000"
+}
