@@ -6,7 +6,7 @@ title: >
 author: etienne.deneuve
 description: ""
 tags: [""]
-img: /assets/stock-3.jpg
+img: /assets/stock-1.jpg
 img_alt: "nice abstract image"
 slug: 2018/03/28/os-factory-azure-et-aws
 published: true

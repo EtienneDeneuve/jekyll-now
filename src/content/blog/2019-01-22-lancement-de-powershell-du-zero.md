@@ -6,7 +6,7 @@ description: ""
 tags: [""]
 slug: /2019/01/22/lancement-de-powershell-du-zero
 published: true
-img: /assets/stock-3.jpg
+img: /assets/stock-1.jpg
 img_alt: "nice abstract image"
 pubDate: 2019-01-22 10:45:35
 ---

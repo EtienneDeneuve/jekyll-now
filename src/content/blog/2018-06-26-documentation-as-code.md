@@ -4,7 +4,7 @@ title: Documentation as Code
 author: etienne.deneuve
 description: ""
 tags: [""]
-img: /assets/stock-2.jpg
+img: /assets/stock-1.jpg
 slug: 2018/06/26/documentation-as-code
 published: true
 pubDate: 2018-06-26 13:43:44

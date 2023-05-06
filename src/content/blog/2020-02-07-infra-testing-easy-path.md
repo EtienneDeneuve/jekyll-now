@@ -3,7 +3,7 @@ title: "IaC & Tests"
 description: "I was looking for the easiest way to test Azure infrastructure. I wanted to find something easier (or lazier)."
 sidebar: infra-test
 pubDate: 2020-02-17
-img: /assets/stock-3.jpg
+img: /assets/stock-4.jpg
 img_alt: "nice abstract image"
 slug: 2020/02/17/testing-your-infra-my-easy-way
 tags:

@@ -12,7 +12,7 @@ tags:
    - Bind9
    - Cloud Init
 slug: 2018/07/02/how-to-manage-dns-terraform
-img: /assets/stock-3.jpg
+img: /assets/stock-4.jpg
 img_alt: "nice abstract image"
 published: true
 pubDate: 2018-07-02 12:35:17

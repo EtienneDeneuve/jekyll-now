@@ -4,7 +4,7 @@ title: "Terraform: Providers à connaître, DataSource à redécouvrir !"
 author: etienne.deneuve
 description: ""
 tags: [""]
-img: /assets/stock-3.jpg
+img: /assets/stock-4.jpg
 img_alt: "nice abstract image"
 slug: 2018/04/06/terraform-providers-datasource
 published: true

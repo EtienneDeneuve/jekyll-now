@@ -6,7 +6,7 @@ title: >
 author: etienne.deneuve
 description: ""
 tags: [""]
-img: /assets/stock-3.jpg
+img: /assets/stock-2.jpg
 img_alt: "nice abstract image"
 slug: 2018/06/26/setup-vs-code-bash-git
 published: true
@@ -33,44 +33,45 @@ Dans la configuration du workspace Crtl + P : " > Open Workspace Settings"  et 
 
 ```json
 settings: {
-&quot;terminal.integrated.shell.windows&quot;: &quot;c:\\windows\\System32\\bash.exe&quot;
+"terminal.integrated.shell.windows": "c:\\windows\\System32\\bash.exe"
 }
 ```
 
 Et relancez VS Code ;)
 
-<h2>Configuration de Bash</h2>
-Il existe pleins de tuto pour installer Bash sur Windows, je ne reviens pas là-dessus, mais voici tout de même un liens vers le store pour un <a href="https://www.microsoft.com/store/productId/9NBLGGH4MSV6">Ubuntu </a>
+## Configuration de Bash
 
-Je vous donne un petit script bash pour installer les différents packages que j'utilise pour Bash, vous pouvez également installer <a href="https://github.com/Bash-it/bash-it">bash-it</a> :
+Il existe pleins de tuto pour installer Bash sur Windows, je ne reviens pas là-dessus, mais voici tout de même un liens vers le store pour un [Ubuntu](https://www.microsoft.com/store/productId/9NBLGGH4MSV6)
 
-```
+Je vous donne un petit script bash pour installer les différents packages que j'utilise pour Bash, vous pouvez également installer [bash-it](https://github.com/Bash-it/bash-it) :
+
+```shell
 #!/bin/bash
-echo &quot;installation des packages de puis les depots ubuntu&quot;
+echo "installation des packages de puis les depots ubuntu"
 sudo apt install git wget unzip python curl python-dev build-essential -q -y
-echo &quot;Téléchargement de pip&quot;
+echo "Téléchargement de pip"
 wget https://bootstrap.pypa.io/get-pip.py
-echo &quot;Téléchargement de Terraform&quot;
+echo "Téléchargement de Terraform"
 wget https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip -O terraform.zip
-echo &quot;Téléchargement de Terraform Docs&quot;
+echo "Téléchargement de Terraform Docs"
 wget https://github.com/segmentio/terraform-docs/releases/download/v0.3.0/terraform-docs_linux_amd64 -O terraform-docs
-echo &quot;Ajout de Terraform et Terraform-docs dans /home/${USER}/.local/bin/&quot;
+echo "Ajout de Terraform et Terraform-docs dans /home/${USER}/.local/bin/"
 unzip terraform.zip
 mv terraform /home/${USER}/.local/bin/
 mv terraform-docs /home/${USER}/.local/bin/
-echo &quot;installation de pip en mode user&quot;
+echo "installation de pip en mode user"
 python get-pip.py --user
-echo &quot;verification du path&quot;
-if [[ &quot;:$PATH:&quot; == *&quot;:$HOME/.local/bin&quot;* ]]; then
-echo &quot;Your path is correctly set&quot;
+echo "verification du path"
+if [[ ":$PATH:" == *":$HOME/.local/bin"* ]]; then
+echo "Your path is correctly set"
 else
-echo &quot;Ajout de /home/${USER}/.local/bin dans le path&quot;
+echo "Ajout de /home/${USER}/.local/bin dans le path"
 PATH=$PATH:/home/${USER}/.local/bin
 export PATH
 fi
-echo &quot;Mise a jour de pip par pip&quot;
+echo "Mise a jour de pip par pip"
 pip install pip --upgrade --user
-echo &quot;installation des outils pour ansible&quot;
+echo "installation des outils pour ansible"
 pip install ansible-lint ansible-docgen pre-commit ansible[azure] pywinrm molecule --user
 ```
 
@@ -83,7 +84,7 @@ Dans le repo Git, ajoutez un fichier .pre-commit-config.yaml, c'est lui qui indi
 Wordpress ne conservant pas bien les espaces je vous invite a récupérer une version sur mon GitHub <a href="https://raw.githubusercontent.com/EtienneDeneuve/vsts-for-ops/master/.pre-commit-config.yaml">ici</a>
 
 ```
-cat &lt;./.pre-commit-config.yaml
+cat >./.pre-commit-config.yaml
 ---
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -117,27 +118,27 @@ EOF
 
 Puis on l'ajoute à l'index :
 
-```
+```shell
 git add .pre-commit-config.yaml
 ```
 
 On commit :
 
-```
-git commit . -m &quot;validation des pré commit hooks&quot; -n
+```shell
+git commit . -m "validation des pré commit hooks" -n
 git push origin master
 ```
 
 En suite, on valide l'installation des éléments voulu avec :
 
-```
+```shell
 pre-commit install
 pre-commit installed at /mnt/c/Users/etien/Documents/it/blog/.git/hooks/pre-commit
 ```
 
 et on run sur les fichiers existent :
 
-```
+```shell
 2018-06-23 10:03:04 ⌚ etienne in /mnt/c/Users/etien/Documents/it/blog
 ± | master S:7 U:1 ✗| → pre-commit run --all-files
 Check Yaml...............................................................Passed
@@ -160,7 +161,7 @@ Terraform docs...........................................................Passed
 
 Ajoutez un fichier à l'index avec `git add fichier.yml` avec ce contenu :
 
-```
+```shell
 ---
 - name: Check Installed Updates
 win_updates:
@@ -179,7 +180,7 @@ J'ai volontairement ajouté des espaces qui ne sont peut-être pas visible avec 
 
 Et tentez de faire un commit :
 
-```
+```shell
 git commit .
 Check Yaml...............................................................Passed
 Check Xml............................................(no files to check)Skipped
@@ -205,9 +206,9 @@ Terraform docs.......................................(no files to check)Skipped
 
 Le hook de pre-commit trim trailing whitespace a nettoyer les espaces en trop dans votre fichier. Il vous faudra donc ajouter à nouveau le fichier de test à l'index avec un `git add test.yml`, puis faite un nouveau commit :
 
-```
+```shell
 git add test.yml
-git commit . -m &quot;Test&quot;
+git commit . -m "Test"
 Check Yaml...............................................................Passed
 Check Xml............................................(no files to check)Skipped
 Check JSON...........................................(no files to check)Skipped

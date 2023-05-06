@@ -3,7 +3,7 @@ title: "Terraform AzureRM 2.0 Provider"
 author: etienne.deneuve
 pubDate: 2020-02-25
 slug: 2020/02/25/terraform-azurerm-2
-img: /assets/stock-3.jpg
+img: /assets/stock-2.jpg
 img_alt: "nice abstract image"
 description: ""
 tags:

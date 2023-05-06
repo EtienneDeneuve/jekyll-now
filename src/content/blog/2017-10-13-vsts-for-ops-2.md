@@ -6,7 +6,7 @@ title: >
 author: etienne.deneuve
 description: ""
 tags: [""]
-img: /assets/stock-2.jpg
+img: /assets/stock-1.jpg
 img_alt: "nice abstract image"
 slug: 2017/10/13/vsts-for-ops-2
 published: true

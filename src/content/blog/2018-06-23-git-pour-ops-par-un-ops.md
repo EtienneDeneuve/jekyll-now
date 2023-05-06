@@ -4,7 +4,7 @@ title: Git pour Ops, par un Ops
 author: etienne.deneuve
 description: ""
 tags: [""]
-img: /assets/stock-1.jpg
+img: /assets/stock-3.jpg
 slug: 2018/06/23/git-pour-ops-par-un-ops
 published: true
 pubDate: 2018-06-23 19:57:39

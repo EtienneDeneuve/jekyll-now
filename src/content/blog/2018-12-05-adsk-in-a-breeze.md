@@ -7,7 +7,7 @@ author: etienne.deneuve
 description: ""
 tags: [""]
 slug: 2018/12/05/adsk-in-a-breeze
-img: /assets/stock-3.jpg
+img: /assets/stock-2.jpg
 img_alt: "nice abstract image"
 published: true
 pubDate: 2018-12-05

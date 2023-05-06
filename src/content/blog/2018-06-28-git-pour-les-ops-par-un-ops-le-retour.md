@@ -4,7 +4,7 @@ title: Git pour les Ops, par un ops le retour
 author: etienne.deneuve
 description: ""
 tags: [""]
-img: /assets/stock-2.jpg
+img: /assets/stock-1.jpg
 img_alt: "nice abstract image"
 slug: 2018/06/28/git-pour-les-ops-par-un-ops-le-retour
 published: true
