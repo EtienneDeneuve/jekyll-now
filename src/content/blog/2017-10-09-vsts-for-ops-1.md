@@ -64,6 +64,7 @@ apt-get install libcurl4-openssl-dev
 ### Préparation dans VSTS
 
 Accédez à la partie sécurité <https://{votrenomavous}.visualstudio.com/_details/security/tokens> et créer un PAT (Personnal Access Tokens).
+
 > Attention, c'est comme un mot de passe, il ne faut pas le diffuser. (Keepass, LastPass et autres peuvent les stocker correctement!).
 
 Dans notre cas, l'agent devra avoir les droits Agent Pools et Deployment Group, car nous n'utiliserons qu'un seul agent. En prod, séparez-les !

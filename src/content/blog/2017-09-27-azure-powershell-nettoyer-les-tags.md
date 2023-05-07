@@ -21,7 +21,7 @@ Voici un peu  de Powershell pour :
 
 Comme hier, dans notre script, il faut être connecter sur Azure donc on utilise la [fonction d'hier](https://etienne.deneuve.xyz/2017/09/26/azurepscmdnotfound/) (pratique :)):
 
-```powershell
+````powershell
     function Check-AzureRMSession () {
     $Error.Clear()
     #if context already exist
@@ -49,6 +49,6 @@ function Remove-AzureRMAllTags () {
         Out-GridView -PassThru | `
         Remove-AzureRMTag
 }
-```
+````
 
 > `Out-GridView -PassThru` Vous permet de choisir ceux que vous souhaitez supprimer :)

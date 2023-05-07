@@ -6,7 +6,7 @@ description: ""
 tags: [""]
 img: /assets/stock-4.jpg
 img_alt: "nice abstract image"
-slug:  2017/09/26/frpsug-powershell-saturday-et-contenu-de-la-session-de-lutile-ou-pas
+slug: 2017/09/26/frpsug-powershell-saturday-et-contenu-de-la-session-de-lutile-ou-pas
 published: true
 pubDate: 2017-09-26 22:19:54
 ---
@@ -91,10 +91,10 @@ Vous pouvez bien sûr les utiliser, les modifier et m'en proposer d'autres !
 
 Un grand merci à :
 
-* l'équipe de Cellenza pour les locaux
-* Metsys pour la bouffe
-* FRPSUG pour être venu
-* à tous ceux qui sont venus
-* et également à ceux qui ne sont pas venus, la nourriture prévue pour eux est partie nourrir des personnes dans le besoin (Merci [Guillaume Matthieu](https://fr.linkedin.com/in/guillaume-mathieu-785431119) !)
+- l'équipe de Cellenza pour les locaux
+- Metsys pour la bouffe
+- FRPSUG pour être venu
+- à tous ceux qui sont venus
+- et également à ceux qui ne sont pas venus, la nourriture prévue pour eux est partie nourrir des personnes dans le besoin (Merci [Guillaume Matthieu](https://fr.linkedin.com/in/guillaume-mathieu-785431119) !)
 
 > Si vous étiez là, ça vous a plu ?

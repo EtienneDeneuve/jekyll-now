@@ -181,8 +181,8 @@ provider "template" {}
 data "template_file" "demo" {
 
   template = <<-EOF
-    #/bin/shell 
-    hostname $${hostname} 
+    #/bin/shell
+    hostname $${hostname}
 EOF
 
   vars = {
@@ -193,10 +193,11 @@ EOF
 output "demo-template" {
   value = data.template_file.demo.*.rendered
 }
-``` 
+```
 
-puis faites votre `init`, comme nous avons un nouveau provider, 
-puis votre apply : 
+puis faites votre `init`, comme nous avons un nouveau provider,
+puis votre apply :
+
 ```powershell
 PS C:\Users\etien\Documents\it\blog> terraform apply
 random_pet.demo_pet: Refreshing state... (ID: myad.quiet.filly)

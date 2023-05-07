@@ -12,15 +12,15 @@ pubDate: 2018-06-26 13:43:44
 
 ## Le constat
 
-Bien souvent, dans l'Infra as Code, la documentation est assez sommaire, trop manuelle et donc par conséquents obsolète, une heure après l'avoir terminée ( et puis globalement, c'est ch*** non ?).
+Bien souvent, dans l'Infra as Code, la documentation est assez sommaire, trop manuelle et donc par conséquents obsolète, une heure après l'avoir terminée ( et puis globalement, c'est ch\*\*\* non ?).
 
 <!--more-->
 
 Si vous n'avez pas encore lu les articles suivants :
 
-- [Git for ops](https://etienne.deneuve.xyz/2018/06/23/git-pour-ops-par-un-ops/) 
-- [Mon Setup de VS Code pour Bash et Git](https://etienne.deneuve.xyz/2018/06/26/setup-vs-code-bash-git/) 
-- [[Terraform](https://etienne.deneuve.xyz/2017/10/01/microsoft-experience-17-infrastructure-code-modelisez-et-provisionnez-vos-services-azure-avec-terraform-et-packer/) 
+- [Git for ops](https://etienne.deneuve.xyz/2018/06/23/git-pour-ops-par-un-ops/)
+- [Mon Setup de VS Code pour Bash et Git](https://etienne.deneuve.xyz/2018/06/26/setup-vs-code-bash-git/)
+- [[Terraform](https://etienne.deneuve.xyz/2017/10/01/microsoft-experience-17-infrastructure-code-modelisez-et-provisionnez-vos-services-azure-avec-terraform-et-packer/)
 - [Visual Studio Code](https://etienne.deneuve.xyz/2017/10/09/vsts-for-ops-1/)
 
 Je vous invite à le faire, ils sont en quelques sortes des pré-requis, si vous ne connaissez pas encore git, VS Code ou encore Terraform.
@@ -93,7 +93,7 @@ chmod +x /home/${USER}/.local/bin/gh-md-toc
 Récupérer le fichier `.pre-commit-config.yaml` dans ce même article ou sur mon [GitHub](https://raw.githubusercontent.com/EtienneDeneuve/vsts-for-ops/master/.pre-commit-config.yaml) :
 
 ```shell
-cat <<EOF > .pre-commit-config.yaml 
+cat <<EOF > .pre-commit-config.yaml
 ---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks

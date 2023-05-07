@@ -6,11 +6,11 @@ title: >
 author: etienne.deneuve
 description: ""
 tags:
-   - Terraform
-   - Azure
-   - Dns
-   - Bind9
-   - Cloud Init
+  - Terraform
+  - Azure
+  - Dns
+  - Bind9
+  - Cloud Init
 slug: 2018/07/02/how-to-manage-dns-terraform
 img: /assets/stock-4.jpg
 img_alt: "nice abstract image"
@@ -192,8 +192,8 @@ In the cloud config template `bind/files/cloudconfig.tpl`, add this:
 #cloud-config
 package_upgrade: true
 packages:
-- bind9
-- dnsutils
+  - bind9
+  - dnsutils
 ```
 
 Let's deploy !
@@ -222,7 +222,7 @@ include "/etc/bind/rndc.key";
 
 Then, create new zone in `named.conf.local` (You can change the `toto.int.local.` by something different :
 
-```conf
+```config
 zone "toto.int.local." {
 type master;
 file "/etc/bind/zones/db.toto.int.local";
@@ -236,7 +236,7 @@ Finally, create a new zone file in a subfolder called `zones` (create it) and ad
 
 > NS must match your server hostname and records must be correct to.
 
-```conf
+```config
 $ORIGIN .
 $TTL 3600       ; 1 hour
 toto.int.local          IN SOA  ns1.toto.int.local. root.toto.int.local. (

@@ -66,7 +66,7 @@ Ensuite nous allons créer un vNet et le subnet :
 
 ### ARM Template
 
- Pour commencer, utilisez un éditeur de texte un peu évoluer, le JSON sans outil, ca pique un peu... Je vous recommend Visual Studio Code, avec ce petit article : [sur mon blog](https://etienne.deneuve.xyz/2017/01/26/visual-studio-code-pour-ansible-terraform/) Un Template Json simple contient plusieurs parties : "variables", "parameters", "resources" et "outputs". Sans réexpliquer l'ensemble, voici à quoi notre Template va ressembler :
+Pour commencer, utilisez un éditeur de texte un peu évoluer, le JSON sans outil, ca pique un peu... Je vous recommend Visual Studio Code, avec ce petit article : [sur mon blog](https://etienne.deneuve.xyz/2017/01/26/visual-studio-code-pour-ansible-terraform/) Un Template Json simple contient plusieurs parties : "variables", "parameters", "resources" et "outputs". Sans réexpliquer l'ensemble, voici à quoi notre Template va ressembler :
 
 ```json
 {

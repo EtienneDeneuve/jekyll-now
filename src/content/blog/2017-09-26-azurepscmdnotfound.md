@@ -58,7 +58,7 @@ Déjà, on sait de base que le Script, on va s'en servir au moins une fois ;) do
 
 ### Le nom j'ai déjà choisi (après tout...)
 
-```powersehll
+```powershell
 Get-cAzureRMVMOs
 ```
 
@@ -90,7 +90,7 @@ En gros, c'est simple, si on est connecté, il se passe rien, sinon on nous dema
 Function Get-cAzureRMVMOs {
     [CmdletBinding()]
     param(
-    
+
     )
     Check-AzureRMSession
     $vms = get-azurermvm

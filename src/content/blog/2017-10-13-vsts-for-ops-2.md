@@ -60,7 +60,7 @@ Félicitations, vous avez réussi a cloner votre git vsts sur votre poste!
 
 ### Git, comment ça marche
 
-----------------------
+---
 
 Bon, on va faire simple, Git en usage basique comme on va le faire, ce n'est que quelques opérations :
 
