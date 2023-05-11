@@ -25,11 +25,11 @@ Pour ma part, voici mon retour sur cette nouveauté, d'un prime abord, c'est exc
 ## Quelques trucs cools
 
 - l'affichage des VMs :
-  ![VM view](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/vm.png)
+  ![VM view](https://etienne.deneuve.xyz/assets/2017/09/vm.png)
 
 - ASR (Azure Site Recovery) Automatisé :
 
-![Automated ASR](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/Honolu.png)
+![Automated ASR](https://etienne.deneuve.xyz/assets/2017/09/Honolu.png)
 
 Bon, y en a pleins d'autres, je vous laisse des surprises #nospoil
 
@@ -43,7 +43,7 @@ Bon, y en a pleins d'autres, je vous laisse des surprises #nospoil
 - La création d'une vault pour stocker ses "Credentials" (à la cmdkey /add), pour sélectionner ensuite le compte que l'on souhaite.
 - L'absence de centralisation (à la 2012), il aurait été cool d'avoir une overview complète comme celle-ci.
 - L'absence de Powershell Launcher, ça aurait été cool de pouvoir lancer des commands Powershell depuis cette interface.
-- Pas de containers, j'aime bien les containers moi, j'aurais aimé trouver une petite interface comme Cockpit sur Fedora : ![](https://bobcares.com/wp-content/uploads/2015/08/docker-management-ui.png)
+- Pas de containers, j'aime bien les containers moi, j'aurais aimé trouver une petite interface comme Cockpit sur Fedora : ![](https://bobcares.com/assets/2015/08/docker-management-ui.png)
 
 Voici les éléments pour les quels j'ai voté sur le User Voice Honolulu : <https://windowsserver.uservoice.com/users/674735389-etienne-deneuve>
 

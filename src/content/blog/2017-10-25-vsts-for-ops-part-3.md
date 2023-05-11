@@ -27,7 +27,7 @@ Voici le chemin que nous allons suivre :
 
 Voici un petit récapitulatif ce qu'on aimerait :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Packer.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/Packer.png)
 
 Vous devez créer deux comptes de stockage dans Azure vous même, un de "Production" et un "Eval" vous pouvez le faire avec Azure Cloud Shell depuis le portail Azure :
 
@@ -76,23 +76,23 @@ Ouvrez VSTS :
 
 puis cliquez sur "build & release" :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Sans-titre.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/Sans-titre.png)
 
 Puis sur "+ New"
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-1.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/vsts-create-1.png)
 
 Puis sur "Empty process"
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-2.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/vsts-create-2.png)
 
 Puis complétez le champs "Name" avec par example "Packer-Base-Windows 2012 R2"
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-3.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/vsts-create-3.png)
 
 Dans la Phase 1 nous allons ajouter deux étape "build immutable image" et "azure cli" :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-4.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/vsts-create-4.png)
 
 Renseignez les variables telles que ci dessous :
 
@@ -121,32 +121,32 @@ Dans le template parameters (je suis sympa, copiez collez ca :):
 
 Puis, dans "Output", renseigner IMAGEURI :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-5.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/vsts-create-5.png)
 
 Ajoutez maintenant une tâche "Azure CLI" :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-6.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/vsts-create-6.png)
 
 Sélectionnez votre souscription azure (si elle n'est pas dans la liste, cliquez sur manage et ajoutez la) et indiquez le chemin vers le script bash "script/platform/tasks/az-move-vhd.vhd" et ajoutez les arguments "-d "$(DESTACCOUNTKEY)" -s "$(SOURCEACCOUNTKEY)""
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-7.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/vsts-create-7.png)
 
 Une fois que ces deux tâches sont complétées, nous allons déclarer nos variables (si vous ne savez pas comment les récupérées, suivez le guide sur le dépôt git de Stanislas plus haut) :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-8.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/vsts-create-8.png)
 
 Vous remarquerez que certaines sont masquées, rien de bien compliqué, cliquez sur le cadenas et elle sera "protégée" :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-create-9.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/vsts-create-9.png)
 
 Dans l’idéal, les variables a protégées seraient : ARM_CLIENT_SECRET, ARM_SUBSCRIPTION_ID, ARM_TENANT_ID, DESTACCOUNTKEY, SOURCEACCOUNTKEY mais pour des questions de simplifications dans cet exercise, nous ne protégerons que les clés du compte de stockage, nous corrigerons par la suite.
 
 Pour récupérer les clés des comptes de stockage sélectionnez votre compte de stockage dans le resource group que vous avez créer et allez dans "Access Keys" :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/storage-account-key.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/storage-account-key.png)
 Ensuite, comme nous allons construire des images Packer Windows, il y a des chances pour que la build dure plus d'une heure (Mise à jour etc) donc dans les options de la build nous allons passer le time out de la build a 240 minutes :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/timeout-e1508918816983.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/timeout-e1508918816983.png)
 Cliquez maintenant sur "Save & Queue".
 
 Votre build est maintenant lancé.

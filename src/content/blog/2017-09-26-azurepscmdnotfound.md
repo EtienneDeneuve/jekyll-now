@@ -17,13 +17,13 @@ Bon, admettons, vous avez besoin de filter vos VM avec le type d'OS déployé de
 
 Avec Powershell, on se dit "ouais, c'est facile". Un petit coup de Get-AzureRMVM et hop...
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/get-cazurevmos-1-gvm.png)
+![](https://etienne.deneuve.xyz/assets/2017/09/get-cazurevmos-1-gvm.png)
 Cool, "OsType", pile ce qu'on cherche, aller hop, on filtre avec | Select-Object
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/get-cazurevmos-2-so.png)
+![](https://etienne.deneuve.xyz/assets/2017/09/get-cazurevmos-2-so.png)
 
 et ouais, c'est tout vide ! Et l'aide elle dit quoi ? Pas grand chose de plus :
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/get-cazurevmos-3-help.png)
+![](https://etienne.deneuve.xyz/assets/2017/09/get-cazurevmos-3-help.png)
 
 On a plus le choix, on y va!
 
@@ -33,19 +33,19 @@ On a plus le choix, on y va!
 
 Avec un petit Get-Member on liste les membres de la commande Get-AzureRMVM
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/get-cazurevmos-4-gm.png)
+![](https://etienne.deneuve.xyz/assets/2017/09/get-cazurevmos-4-gm.png)
 
 On voit que `OsType` n'existe pas, c'est donc une commande qui utilise une propriété calculée.
 En revanche un élément , `OsProfile`, parait correspondre au besoin.
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/get-cazurevmos-5-osp.png)
+![](https://etienne.deneuve.xyz/assets/2017/09/get-cazurevmos-5-osp.png)
 
 On tente le `Select-Object` ?
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/get-cazurevmos-6-os.png)
+![](https://etienne.deneuve.xyz/assets/2017/09/get-cazurevmos-6-os.png)
 Raté, ce coquin est un autre objet ! Etendons le !
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/get-cazurevmos-7-exp.png)
+![](https://etienne.deneuve.xyz/assets/2017/09/get-cazurevmos-7-exp.png)
 
 Super! On a trouvé un truc!
 
@@ -135,11 +135,11 @@ Function Get-cAzureRMVMOs {
 
 ### Résultat ?
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/get-cazurevmos-8-Cool.png)
+![](https://etienne.deneuve.xyz/assets/2017/09/get-cazurevmos-8-Cool.png)
 
 Ca fonctionne ! et le filtre ?
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/get-cazurevmos-9-youpi.png)
+![](https://etienne.deneuve.xyz/assets/2017/09/get-cazurevmos-9-youpi.png)
 
 Du coup, avec notre super fonction, on peut filtrer comme on voulait :)
 
@@ -147,4 +147,4 @@ Du coup, avec notre super fonction, on peut filtrer comme on voulait :)
 Get-cAzureRMVMOsType |?{ $_.OsType -eq "Windows" }
 ```
 
-> PS: Ce sript fonctionne très bien avec AzureRM.NetCore sur macOs :![macos powershell](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/get-cazurevmos-10-youpi.png)
+> PS: Ce sript fonctionne très bien avec AzureRM.NetCore sur macOs :![macos powershell](https://etienne.deneuve.xyz/assets/2017/09/get-cazurevmos-10-youpi.png)

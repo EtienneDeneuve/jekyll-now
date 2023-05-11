@@ -27,7 +27,7 @@ Voici le chemin que nous allons suivre :
 
 Avant de foncer dans le code de notre infra, nous allons devoir réflechir à l'organisation de nos dossier de "Code".
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/mirror-frame-2407289_960_720-195x300.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/mirror-frame-2407289_960_720-195x300.png)
 Ok, maintenant qu'on à réflechi, on y va !
 
 Nous allons générer deux images de base Ubuntu et Windows Server, utiliser des scripts "commun" et des scripts spécifiques, puis spécialiser nos images.
@@ -40,19 +40,19 @@ Ouvrez donc Visual Studio Code ([Quoi ? Il est pas déjà installé?](https://et
 
 C'est assez simple, cliquez sur "Clone Git Repository":
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Git-Clone-300x217.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/Git-Clone-300x217.png)
 
 Récupérez l'url de votre repository dans VSTS :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Git-Clone-2-1.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/Git-Clone-2-1.png)
 
 Puis collez le dans la barre de VS code :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Git-Clone-3.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/Git-Clone-3.png)
 
 Entrez votre destination, par example `c:\Users\vous\Documents\git` (la racine, le dossier sera créer automatiquement) , puis indiquez vos credentials VSTS, et enfin lorsque le clone est terminé, cliquez sur "Open This repository":
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Git-Clone-4.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/Git-Clone-4.png)
 
 Félicitations, vous avez réussi a cloner votre git vsts sur votre poste!
 
@@ -78,7 +78,7 @@ Vous inquiétez pas, VS Code va faire beaucoup à notre place !
 
 Pour créer les dossiers, soit vous le faite en "graphique" :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/addfolder-1.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/addfolder-1.png)
 
 Soit via le terminal intégrer avec vos commands préférées (`View -> Integrated Terminal`).
 
@@ -88,7 +88,7 @@ Personnellement j'ai créer 4 dossiers à la racine  : scripts, windows, ubuntu
 
 Maintenant on va "commit" nos modifications en cliquant sur les boutons (et en écrivant le pourquoi du commit :)) :
 
-<img class="alignnone size-full wp-image-346" src="https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Git-Commit.png" alt="" width="549" height="396" />
+<img class="alignnone size-full wp-image-346" src="https://etienne.deneuve.xyz/assets/2017/10/Git-Commit.png" alt="" width="549" height="396" />
 
 Youpi! votre premier commit ! (c’était dur?)
 
@@ -96,11 +96,11 @@ Youpi! votre premier commit ! (c’était dur?)
 
 Avec notre premier commit, en bas de notre fenêtre VS Code, nous avons désormais un commit à envoyer :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Push.png) Le chiffre de gauche correspond aux modifications distante (vos collègues), celui de droite, les locales (les votre quoi :))
+![](https://etienne.deneuve.xyz/assets/2017/10/Push.png) Le chiffre de gauche correspond aux modifications distante (vos collègues), celui de droite, les locales (les votre quoi :))
 
 Pour savoir ce qui se passe, ouvre la console "Output" (View, Output, puis sélectionnez Git dans le menu déroulant à gauche)
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Git-Push.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/Git-Push.png)
 Allez dans VSTS sur votre navigateur, vous avez tous vos fichiers qui se trouvent désormais sur le Server.
 
 ## Conclusion

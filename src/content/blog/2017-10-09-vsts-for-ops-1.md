@@ -32,15 +32,15 @@ Il faut créer un compte sur Visual Studio Team Services [ici](https://go.micros
 `https://{votrenomavous}.visualstudio.com/_projects?_a=new`
 Indiquez le nom que vous souhaitez et sélectionnez Git comme "Version Control" :
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-1-1.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/vsts-1-1.png)
 
 ### Initialisation du repository
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-2-1.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/vsts-2-1.png)
 
 ### C'est prêt
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/vsts-3-1.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/vsts-3-1.png)
 
 Voila, 3 étapes, notre premier projet est "prêt".
 
@@ -87,4 +87,4 @@ Pour plus d'info sur l'[agent VSTS](https://docs.microsoft.com/fr-fr/vsts/build-
 
 Si vous accédez à l'url `https://{votrenomavous}.visualstudio.com/_admin/_AgentPool` vous devriez voir que votre agent est en vert !
 
-![](https://etienne.deneuve.xyz/wp-content/uploads/2017/10/Capture-Agent-Pool.png)
+![](https://etienne.deneuve.xyz/assets/2017/10/Capture-Agent-Pool.png)

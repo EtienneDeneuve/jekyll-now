@@ -26,7 +26,7 @@ Avec [Mickael Lopes](https://twitter.com/LopesMick) on avait décidé de faire u
 
 Nous considérons que on peut tout aussi bien apprendre en s'amusant, l'event était un samedi, donc il fallait bien s'amuser un peu !
 
-Je vous joins nos slides ! [FRPSUG](https://etienne.deneuve.xyz/wp-content/uploads/2017/09/FRPSUG.pptx) (OpenSource MIT!)
+Je vous joins nos slides ! [FRPSUG](https://etienne.deneuve.xyz/assets/2017/09/FRPSUG.pptx) (OpenSource MIT!)
 
 ## Première démo
 
