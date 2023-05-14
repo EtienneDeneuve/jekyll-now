@@ -1,7 +1,7 @@
 ---
-title: Supercharge your git exeperience - Part 1
+title: Supercharge your git Experience - Part 1
 pubDate: "May 14 2023"
-description: "How to configure tooling arround git to make it easier !"
+description: "How to configure tooling around Git to make it easier !"
 tags:
   - Git
   - Github
@@ -14,18 +14,18 @@ img_alt: "nice abstract image"
 
 ## Global Azure Bootcamp - AzugFR
 
-Every year, the Gobal Azure Bootcamp <put random blabla year>
+Every year, the Gobal Azure Bootcamp is a worldwide event around Azure !
 
-This year, I offered a session [link goes here](), now, i'll explain a bit how it's working and let you use
-my setup :-)
+This year, I offered a session [Supercharge your Git Experience & CI et commiter vos secrets !*](https://globalazure.net/sessions/483134), now, i'll explain a bit how it's working and let you use my setup :-)
+
+> commit your secrets
 
 ## Git Hooks
 
 ### What are Git Hooks ?
 
 Git hooks are event sent by git before or after operation, like `commit`, `patch`, `push` or `pull` (and more).
-You can see them inside the `.git` folder of any repo. By default, none are active but, you can configure them
-, they are just scripts.
+You can see them inside the `.git` folder of any repo. By default, none are active but, you can configure them, they are just scripts.
 
 Theses hooks can help you to run some operation, without needing to run each of them manually:
 
@@ -59,7 +59,7 @@ EOF
 
 ##### rev-parse
 
-> `git --rev-parse --show-toplevel` will give you the root of the repo, it's easier for scripting ;)
+> `git rev-parse --show-toplevel` will give you the root of the repo, it's easier for scripting ;)
 
 ##### More on manual hooks
 
@@ -143,7 +143,7 @@ test from hooks # this come from husky
 > rm .husky/prepare-commit-msg
 > ```
 
-#### Make it smarter !
+#### Make it smarter
 
 Using `lint-staged`, we can make `husky` smarter !
 
