@@ -1,0 +1,6 @@
+{
+    "path": ".",
+    "tag-prefix": "etiennedeneuve/",
+    "releaseCommitMessageFormat": "chore(release): etiennedeneuve@{{currentTag}}"
+  }
+  

@@ -37,7 +37,7 @@ Bon, y en a pleins d'autres, je vous laisse des surprises #nospoil
 
 - Dans l'installer proposer directement un certificat let's encrypt plutôt qu'un auto-signé (2017!)
 - Au niveau de l'import :
-  - - L'import des servers depuis l'AD et le DNS (à la 2012)
+    - - L'import des servers depuis l'AD et le DNS (à la 2012)
   - L'import des VM (Windows) existent dans Azure
   - Ajout des machines virtuelles lors de l'ajout de serveurs avec installé Hyper V
 - La création d'une vault pour stocker ses "Credentials" (à la cmdkey /add), pour sélectionner ensuite le compte que l'on souhaite.
