@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](///compare/etiennedeneuve/0.0.8...etiennedeneuve/0.0.9) (2023-05-22)
+
 ### [0.0.8](///compare/etiennedeneuve/0.0.7...etiennedeneuve/0.0.8) (2023-05-22)
 
 ### [0.0.7](///compare/etiennedeneuve/0.0.6...etiennedeneuve/0.0.7) (2023-05-22)
