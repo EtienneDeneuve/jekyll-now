@@ -27,4 +27,4 @@ Et voila :
 
 ![](https://etienne.deneuve.xyz/assets/2017/09/download.png)
 
-[update] Powershell va arriver en Public Preview ! [Powershell]<https://azure.microsoft.com/en-us/blog/powershell-comes-to-azure-cloud-shell/>
+[update] Powershell va arriver en Public Preview ! [Powershell]https://azure.microsoft.com/en-us/blog/powershell-comes-to-azure-cloud-shell/

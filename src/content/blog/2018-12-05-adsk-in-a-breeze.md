@@ -34,7 +34,7 @@ This article is summary for installing and configuring an Azure Stack with a lot
 You need a server with at least the following configuration :
 
 | Component                                   | Minimum                                                                                                 | Recommended                                                                                             |
-|---------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | Disk drives: Operating System               | 1 OS disk with minimum of 200 GB available for system partition (SSD or HDD)                            | 1 OS disk with minimum of 200 GB available for system partition (SSD or HDD)                            |
 | Disk drives: General development kit data\* | 4 disks. Each disk provides a minimum of 140 GB of capacity (SSD or HDD). All available disks are used. | 4 disks. Each disk provides a minimum of 250 GB of capacity (SSD or HDD). All available disks are used. |
 | Compute: CPU                                | Dual-Socket: 12 Physical Cores (total)                                                                  | Dual-Socket: 16 Physical Cores (total)                                                                  |

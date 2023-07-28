@@ -47,15 +47,15 @@ Une fois votre compte actif, créez un repository Git via le bouton vert "Create
 
 ### Repo sur Vsts
 
-J'ai déjà publié un article concernant vsts [ici](https://etienne.deneuve.xyz/2017/10/09/vsts-for-ops-1/)
+J'ai déjà publié un article concernant vsts<a href="https://etienne.deneuve.xyz/2017/10/09/vsts-for-ops-1/"> ici</a>
 
 ### Git en SSH
 
 Afin d'avoir accès à VSTS ou à GitHub depuis un bash Windows ou Linux, il faut générer une clé SSH :
 
-> Je vous recommend vivement l'utilisation de bash pour git et la suite de cet article. Si vous n'avez pas encore installer bash sur votre Windows, installer le puis suivez cet article : [Open Source + Windows = Vs Code + Bash + Git](https://etienne.deneuve.xyz/2018/06/26/setup-vs-code-bash-git/)
+> Je vous recommend vivement l'utilisation de bash pour git et la suite de cet article. Si vous n'avez pas encore installer bash sur votre Windows, installer le puis suivez cet article : <a href="https://etienne.deneuve.xyz/2018/06/26/setup-vs-code-bash-git/" target="_blank" rel="noopener">Open Source + Windows = Vs Code + Bash + Git</a>
 
-```shell
+```
 mkdir -p ~/.ssh
 ssh-keygen -f ~/.ssh/vsts
 cat vsts.pub
@@ -63,13 +63,13 @@ cat vsts.pub
 
 Ouvrez VSTS ou Git puis :
 
-VSTS : <https://<votreurl>/\_details/security/keys)>/votreurl>Git> : <https://github.com/settings/keys>
+VSTS : <https://<votreurl>/\_details/security/keys)&lt;/votreurl>Git> : <https://github.com/settings/keys>
 
-Cliquez sur "Add" et collez la clé publique.
+Cliquez sur &quot;Add&quot; et collez la clé publique.
 
 Ensuite ajoutez la clé dans l"agent ssh :
 
-```shell
+```
 ssh-agent bash
 ssh-add ~/.ssh/vsts
 ```
@@ -84,7 +84,7 @@ Pour faire un clone ou ajouter un repository distant, il suffit de récupérer l
 
 - Clone
 
-```shell
+```
 git clone https://xxxx/git.git
 # ou avec la belle cle ssh :
 git clone ssh://
@@ -96,7 +96,7 @@ git clone ssh://
 
 Cette méthode est plus complexe et pas forcément nécessaire, il est juste intéressant de la connaitre.
 
-```shell
+```
 git remote add origin url
 git commit . -m "initial commit"
 git push origin master
@@ -114,7 +114,7 @@ Avec Git, quand on créer un nouveau fichier, par défaut il n'est pas forcémen
 
 - Ajout de fichiers
 
-```shell
+```
 git add ./monchemin/monfichier
 # ou un dossier complet :
 git add ./mondossier/
@@ -127,7 +127,7 @@ git add ./mondossier/
 > _Je ne suis pas responsible de vos fichiers perdus ;)_
 > Lorsqu'on supprime un fichier du repertoire local, il n'est pas supprimé de l'index de git sans faire la commande :
 
-```shell
+```
 git rm ./monchemin/monfichier --cached
 ```
 
@@ -135,8 +135,8 @@ git rm ./monchemin/monfichier --cached
 
 Afin d'ajouter nos fichier dans l'index en attente, il est nécessaire de valider ces fichiers, un peu comme en base de données Commit, Execute, Rollback, en cas de soucis.
 
-```shell
-git commit -m "le message du commit en fonction de votre travail... (pensez à vos collègues !"
+```
+git commit -m &quot;le message du commit en fonction de votre travail... (pensez à vos collègues !&quot;
 ```
 
 ## Pull ou Fetch ?
@@ -145,7 +145,7 @@ Avant de valider ce `commit` sur le server, il est important de vérifier si on 
 
 - Pull
 
-```shell
+```
 git pull
 ```
 
@@ -153,7 +153,7 @@ git pull
 
 - Fetch
 
-```shell
+```
 git fetch
 ```
 
@@ -164,7 +164,7 @@ git fetch
 Afin de partager votre travail avec vos collègues, vous devez envoyer vos modifications sur le server (si, si, si).
 Il y a plusieurs façons de travailler avec git, mais lorsqu'on est dans une branche de travail (et pas de prod!) nous pouvons faire un push :
 
-```shell
+```
 git push
 ```
 
@@ -176,17 +176,18 @@ En gros, on part du postulat qu'il y aura plusieurs versions du produit et donc 
 
 - la premiere branche :
 
-```shell
+```
 git checkout -b v0
 ```
 
 - puis les autres :
 
-```shell
+```
 # support d"aws
 git checkout -b v0-aws
 # support d"azure
 git checkout -b v0-azure
+
 ```
 
-Voilà, vous savez maintenant utiliser les bases de git, je vous invite à poursuivre avec [Open Source + Windows = VS Code + Bash + Git](https://etienne.deneuve.xyz/2018/06/26/setup-vs-code-bash-git/).
+Voilà, vous savez maintenant utiliser les bases de git, je vous invite à poursuivre avec <a href="https://etienne.deneuve.xyz/2018/06/26/setup-vs-code-bash-git/" target="_blank" rel="noopener">Open Source + Windows = VS Code + Bash + Git</a>.
