@@ -16,7 +16,7 @@ img_alt: "nice abstract image"
 
 Every year, the Gobal Azure Bootcamp is a worldwide event around Azure !
 
-This year, I offered a session [Supercharge your Git Experience & CI et commiter vos secrets !*](https://globalazure.net/sessions/483134), now, i'll explain a bit how it's working and let you use my setup :-)
+This year, I offered a session [Supercharge your Git Experience & CI et commiter vos secrets !\*](https://globalazure.net/sessions/483134), now, i'll explain a bit how it's working and let you use my setup :-)
 
 > commit your secrets
 

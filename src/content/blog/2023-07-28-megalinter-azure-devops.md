@@ -97,77 +97,77 @@ parameters:
     default: true
 
 schedules:
-- cron: "0 0 * * *" # adapt the settings as you need
-  displayName: Daily build at midnight
-  branches:
-    include:
-    - main # < Don't forget to have the 
+  - cron: "0 0 * * *" # adapt the settings as you need
+    displayName: Daily build at midnight
+    branches:
+      include:
+        - main # < Don't forget to have the
 
 jobs:
-- job: CreateBranchPR
-  displayName: Create MegaLinter PR
-  steps:  
-  - checkout: self
-    persistCredentials: true
-  - script: |
-      az config set extension.use_dynamic_install=yes_without_prompt   
-      az extension add --name azure-devops 
-    displayName: Install Azure DevOps CLI
-    condition: ${{ parameters.azdo_install }}
-  - script: |
-      # Update the email, if you want
-      git config --global user.name "Mega Linter by Simplifi\'ed"
-      git config --global user.email "etienne@simplified.fr"
-      BRANCH_NAME=MegaLinter-PR/$(date +'%d-%m-%Y')
-      echo "##vso[task.setvariable variable=BRANCH_NAME]${BRANCH_NAME}"
-      git ls-remote --heads origin "${BRANCH_NAME}" | grep "${BRANCH_NAME}" >/dev/null
-      if [ "$?" == "1" ]; then
-        echo "Branch doesn't exist"
-        git switch -c ${BRANCH_NAME}
-      else
-        echo "Branch already exist"
-        git switch ${BRANCH_NAME}
-        git pull --force
-      fi
-      git commit --allow-empty -m "chore: megalinter run 🏃‍♂️"
-      git push -u origin ${BRANCH_NAME}
-    displayName: Create a branch for MegaLinter
-  - script: | 
-      echo $(System.AccessToken) | az devops login --org ${AZDO_ORG}
-      DEFAULT_BRANCH=$(az repos show --organization ${AZDO_ORG} \
-                                     --project "${AZDO_PROJECT}" \
-                                     --repository "${AZDO_REPO}" | \
-                                     jq .defaultBranch | \
-                                     sed -e 's/refs\/heads\///g')
-      PULL_REQUEST=$(az repos pr list --organization ${AZDO_ORG} \
-                          --project "${AZDO_PROJECT}" \
-                          --repository "${AZDO_REPO}" \
-                          --source-branch "${BRANCH_NAME}" \
-                          --target-branch "${DEFAULT_BRANCH}" --status active)
-      if [[ -z "$PULL_REQUEST" ]]; then
-        echo "Pull Request doesn't exist yet, creating a new one"
-        az repos pr create --organization ${AZDO_ORG} \
-                          --project "${AZDO_PROJECT}" \
-                          --repository "${AZDO_REPO}" \
-                          --source-branch "${BRANCH_NAME}" \
-                          --target-branch "${DEFAULT_BRANCH}" \
-                          --title "MegaLinter linting for : $(date +'%d-%m-%Y')" \
-                          --description "This pull request have been created by Megalinter on $(date +'%d-%m-%Y')."
-      fi
-    displayName: Create Pull-Request for MegaLinter
-    env:
-      BRANCH_NAME: $(BRANCH_NAME)
-      AZDO_ORG: $(System.TeamFoundationCollectionUri)
-      AZDO_REPO: $(Build.Repository.Name)
-      AZDO_PROJECT: $(System.TeamProject)
+  - job: CreateBranchPR
+    displayName: Create MegaLinter PR
+    steps:
+      - checkout: self
+        persistCredentials: true
+      - script: |
+          az config set extension.use_dynamic_install=yes_without_prompt   
+          az extension add --name azure-devops
+        displayName: Install Azure DevOps CLI
+        condition: ${{ parameters.azdo_install }}
+      - script: |
+          # Update the email, if you want
+          git config --global user.name "Mega Linter by Simplifi\'ed"
+          git config --global user.email "etienne@simplified.fr"
+          BRANCH_NAME=MegaLinter-PR/$(date +'%d-%m-%Y')
+          echo "##vso[task.setvariable variable=BRANCH_NAME]${BRANCH_NAME}"
+          git ls-remote --heads origin "${BRANCH_NAME}" | grep "${BRANCH_NAME}" >/dev/null
+          if [ "$?" == "1" ]; then
+            echo "Branch doesn't exist"
+            git switch -c ${BRANCH_NAME}
+          else
+            echo "Branch already exist"
+            git switch ${BRANCH_NAME}
+            git pull --force
+          fi
+          git commit --allow-empty -m "chore: megalinter run 🏃‍♂️"
+          git push -u origin ${BRANCH_NAME}
+        displayName: Create a branch for MegaLinter
+      - script: |
+          echo $(System.AccessToken) | az devops login --org ${AZDO_ORG}
+          DEFAULT_BRANCH=$(az repos show --organization ${AZDO_ORG} \
+                                         --project "${AZDO_PROJECT}" \
+                                         --repository "${AZDO_REPO}" | \
+                                         jq .defaultBranch | \
+                                         sed -e 's/refs\/heads\///g')
+          PULL_REQUEST=$(az repos pr list --organization ${AZDO_ORG} \
+                              --project "${AZDO_PROJECT}" \
+                              --repository "${AZDO_REPO}" \
+                              --source-branch "${BRANCH_NAME}" \
+                              --target-branch "${DEFAULT_BRANCH}" --status active)
+          if [[ -z "$PULL_REQUEST" ]]; then
+            echo "Pull Request doesn't exist yet, creating a new one"
+            az repos pr create --organization ${AZDO_ORG} \
+                              --project "${AZDO_PROJECT}" \
+                              --repository "${AZDO_REPO}" \
+                              --source-branch "${BRANCH_NAME}" \
+                              --target-branch "${DEFAULT_BRANCH}" \
+                              --title "MegaLinter linting for : $(date +'%d-%m-%Y')" \
+                              --description "This pull request have been created by Megalinter on $(date +'%d-%m-%Y')."
+          fi
+        displayName: Create Pull-Request for MegaLinter
+        env:
+          BRANCH_NAME: $(BRANCH_NAME)
+          AZDO_ORG: $(System.TeamFoundationCollectionUri)
+          AZDO_REPO: $(Build.Repository.Name)
+          AZDO_PROJECT: $(System.TeamProject)
 
-  - script: |
-      git switch -c "${BRANCH_NAME}"
-      git commit --amend --no-edit
-      git push -u origin "${BRANCH_NAME}"
-    displayName: Create a branch for MegaLinter
-    env:
-      BRANCH_NAME: $(BRANCH_NAME)
+      - script: |
+          git switch -c "${BRANCH_NAME}"
+          git commit --amend --no-edit
+          git push -u origin "${BRANCH_NAME}"
+        displayName: Create a branch for MegaLinter
+        env:
+          BRANCH_NAME: $(BRANCH_NAME)
 ```
 
 Now, merge this file in your default branch to ensure the trigger will apply.
@@ -191,73 +191,73 @@ pool: simplified-azure # Adjust here
 trigger:
   branches:
     include:
-    - MegaLinter-PR/*
-  
+      - MegaLinter-PR/*
+
 resources:
   pipelines:
-  - pipeline: start 
-    source: MegaLinter Scheduler # Change it if your pipeline don't have this name !
-    project: Terraform CI-CD # Change this to reflect the project where you are !
-    trigger: true 
+    - pipeline: start
+      source: MegaLinter Scheduler # Change it if your pipeline don't have this name !
+      project: Terraform CI-CD # Change this to reflect the project where you are !
+      trigger: true
 
 jobs:
   - job: PullMegaLinter
     condition: and(eq(variables['Build.Reason'], 'PullRequest'), startsWith(variables['System.PullRequest.SourceBranch'], 'refs/heads/Megalinter-PR'))
     steps:
-    - checkout: self
-      persistCredentials: true
-    - script: |
-        BRANCH_NAME=$(echo "$(System.PullRequest.SourceBranch)" | sed -e 's/refs\/heads\///g')
-        echo "##vso[task.setvariable variable=BRANCH_NAME]${BRANCH_NAME}"
-        # change the email, if you want...
-        git config --global user.name "Mega Linter by Simplifi\'ed"
-        git config --global user.email "etienne@simplified.fr"
-        git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-        git fetch origin "${BRANCH_NAME}"
-        git checkout "${BRANCH_NAME}"
-        git reset --hard origin/"${BRANCH_NAME}"
-      displayName: Checkout PR Branch
-      env: 
-        PR_SOURCE_BRANCH: $(System.PullRequest.SourceBranch)
+      - checkout: self
+        persistCredentials: true
+      - script: |
+          BRANCH_NAME=$(echo "$(System.PullRequest.SourceBranch)" | sed -e 's/refs\/heads\///g')
+          echo "##vso[task.setvariable variable=BRANCH_NAME]${BRANCH_NAME}"
+          # change the email, if you want...
+          git config --global user.name "Mega Linter by Simplifi\'ed"
+          git config --global user.email "etienne@simplified.fr"
+          git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+          git fetch origin "${BRANCH_NAME}"
+          git checkout "${BRANCH_NAME}"
+          git reset --hard origin/"${BRANCH_NAME}"
+        displayName: Checkout PR Branch
+        env:
+          PR_SOURCE_BRANCH: $(System.PullRequest.SourceBranch)
 
-    - script: | 
-        docker run -v $(System.DefaultWorkingDirectory):/tmp/lint \
-          --env-file <(env | grep -e SYSTEM_ -e BUILD_ -e TF_ -e AGENT_) \
-          -e SYSTEM_ACCESSTOKEN=$(System.AccessToken) \
-          -e APPLY_FIXES=all \
-          -e GIT_AUTHORIZATION_BEARER=$(System.AccessToken) \
-          -e SARIF_REPORTER=true \
-          oxsecurity/megalinter:v7.2.0
-      displayName: Run MegaLinter 
+      - script: |
+          docker run -v $(System.DefaultWorkingDirectory):/tmp/lint \
+            --env-file <(env | grep -e SYSTEM_ -e BUILD_ -e TF_ -e AGENT_) \
+            -e SYSTEM_ACCESSTOKEN=$(System.AccessToken) \
+            -e APPLY_FIXES=all \
+            -e GIT_AUTHORIZATION_BEARER=$(System.AccessToken) \
+            -e SARIF_REPORTER=true \
+            oxsecurity/megalinter:v7.2.0
+        displayName: Run MegaLinter
 
-    - script: |
-        cp -R $(System.DefaultWorkingDirectory)/megalinter-reports/updated_sources/* $(System.DefaultWorkingDirectory)
-        git add .
-        git commit -m "chore(megalinter): 🔍 updated sources with fixes"
-        git push -u origin $(BRANCH_NAME)
-      displayName: Commit updated sources
-      condition: succeededOrFailed()
+      - script: |
+          cp -R $(System.DefaultWorkingDirectory)/megalinter-reports/updated_sources/* $(System.DefaultWorkingDirectory)
+          git add .
+          git commit -m "chore(megalinter): 🔍 updated sources with fixes"
+          git push -u origin $(BRANCH_NAME)
+        displayName: Commit updated sources
+        condition: succeededOrFailed()
 
-    - script: |
-        cp -Rn $(System.DefaultWorkingDirectory)/megalinter-reports/IDE-config/* $(System.DefaultWorkingDirectory)
-        git add .
-        git commit -m "chore(megalinter): 🔍 add IDE-Config in the root of the repo"
-        git push -u origin $(BRANCH_NAME)
-      displayName: Commit IDE Config
-      condition: succeededOrFailed()
+      - script: |
+          cp -Rn $(System.DefaultWorkingDirectory)/megalinter-reports/IDE-config/* $(System.DefaultWorkingDirectory)
+          git add .
+          git commit -m "chore(megalinter): 🔍 add IDE-Config in the root of the repo"
+          git push -u origin $(BRANCH_NAME)
+        displayName: Commit IDE Config
+        condition: succeededOrFailed()
 
-    - task: PublishPipelineArtifact@1
-      condition: succeededOrFailed()
-      displayName: Upload MegaLinter reports
-      inputs:
-        targetPath: "$(System.DefaultWorkingDirectory)/megalinter-reports/"
-        artifactName: MegaLinterReport
+      - task: PublishPipelineArtifact@1
+        condition: succeededOrFailed()
+        displayName: Upload MegaLinter reports
+        inputs:
+          targetPath: "$(System.DefaultWorkingDirectory)/megalinter-reports/"
+          artifactName: MegaLinterReport
 
-    - task: PublishBuildArtifacts@1
-      condition: succeededOrFailed()
-      inputs:
-        pathToPublish: $(System.DefaultWorkingDirectory)/megalinter-reports/megalinter-report.sarif
-        artifactName: CodeAnalysisLogs
+      - task: PublishBuildArtifacts@1
+        condition: succeededOrFailed()
+        inputs:
+          pathToPublish: $(System.DefaultWorkingDirectory)/megalinter-reports/megalinter-report.sarif
+          artifactName: CodeAnalysisLogs
 ```
 
 Same as the first one, merge this file in your default branch to ensure the trigger will apply.
@@ -277,7 +277,6 @@ Now, we need to allow Pipelines to create branch, contribute to PR.
 Go in "Project Settings", "Repositories", "Security", like below:
 
 ![Repository Settings for Build Service](/assets/2023/07/Settings-AzDo-Megalinter.png)
-
 
 ### Create Branch policy
 
