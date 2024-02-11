@@ -7,7 +7,7 @@ tags:
   - Azure
   - GCP
   - Open Source
-slug: 2023/07/28/zero-trust-overview
+slug: 2024/02/11/zero-trust-overview
 img: /assets/stock-1.jpg
 img_alt: "nice abstract image"
 draft: true
@@ -37,45 +37,11 @@ Les grands acteurs du marché (propriétaires ou open source) proposent des ress
 
 [Forester Report](https://reprints2.forrester.com/#/assets/2/108/RES179872/report)
 
-### Microsoft
+## Comment démarrer ?
 
-[Microsoft Zero Trust](https://www.microsoft.com/fr-fr/security/business/zero-trust/?ef_id=_k_1fdf140c86cf1f2cb58e70e2ecafd6b2_k_&OCID=AIDcmmdamuj0pc_SEM__k_1fdf140c86cf1f2cb58e70e2ecafd6b2_k_&msclkid=1fdf140c86cf1f2cb58e70e2ecafd6b2)
+Pour entamer cette démarche, j'ai identifié 4 éléments technique importants dans cette transition vers le Zero Trust.
 
-Microsoft a adopté une stratégie de Zero Trust pour sécuriser les données de l’entreprise et des clients.
-
-Cette approche repose sur des principes clés :
-
-1. Vérification explicite : Toujours authentifier et autoriser en fonction de tous les points de données disponibles, notamment l’identité de l’utilisateur, la localisation, l’état de l’appareil, le service ou la charge de travail, la classification des données et les anomalies.
-2. Accès avec le principe du moindre privilège : Limiter l’accès des utilisateurs avec des politiques d’accès juste-à-temps (JIT/JEA) et basées sur les risques, ainsi que la protection des données pour sécuriser à la fois les données et la productivité.
-3. Supposer la compromission : Réduire le rayon d’action des attaques et segmenter l’accès. Vérifier le chiffrement de bout en bout et utiliser l’analyse pour obtenir une visibilité, détecter les menaces et améliorer les défenses.
-4. Approche hybride sécurisée : Favoriser l’agilité commerciale avec une approche Zero Trust de la sécurité. Permettre aux utilisateurs de travailler en toute sécurité partout et à tout moment, sur n’importe quel appareil.
-5. Protection des actifs critiques : Sécuriser les données même lorsqu’elles sortent du réseau avec une protection unifiée des données et des meilleures pratiques de gouvernance.
-6. Modernisation de la posture de sécurité : Réduire les vulnérabilités de sécurité grâce à une visibilité étendue sur votre environnement numérique, des contrôles d’accès basés sur les risques et des politiques automatisées.
-7. Minimisation de l’impact des acteurs malveillants : Protéger l’organisation des risques internes et externes avec une défense multicouche qui vérifie explicitement toutes les demandes d’accès.
-8. Conformité réglementaire : Suivre l’évolution du paysage de la conformité avec une stratégie complète pour protéger, gérer et gouverner vos données.
-
-En résumé, le modèle Zero Trust de Microsoft remet en question la confiance implicite et vise à sécuriser les utilisateurs, les appareils, les applications et les données, où qu’ils se trouvent.
-
-### BeyondCorp (Google)
-
-[BeyondCorp](https://cloud.google.com/security/products/beyondcorp-enterprise?hl=fr)
-
-Google Cloud propose une solution Zero Trust robuste appelée BeyondCorp. Ce modèle de sécurité d’entreprise permet aux employés de travailler en toute sécurité depuis n’importe quel endroit sans dépendre d’un VPN traditionnel.
-
-Voici les points clés concernant BeyondCorp :
-
-1. Architecture BeyondCorp : Contrairement à l’approche de sécurité basée sur le périmètre traditionnel, BeyondCorp suppose que chaque interaction n’est pas intrinsèquement digne de confiance. Il se concentre sur la vérification de chaque interaction, quelle que soit son origine. Les employés peuvent accéder aux ressources en toute sécurité, qu’ils soient dans le réseau d’entreprise ou en télétravail.
-2. Pas de VPN requis : BeyondCorp élimine le besoin d’un réseau privé virtuel (VPN). Au lieu de cela, il exploite des contrôles d’accès contextuels basés sur des facteurs tels que l’état de l’appareil, l’identité de l’utilisateur et le contexte de l’application.
-3. XDR et SIEM unifiés : BeyondCorp unifie diverses fonctions de sécurité en une seule plateforme. Il offre des fonctionnalités telles que l’évaluation de la sécurité des endpoints, la détection de logiciels malveillants, la surveillance de l’intégrité des fichiers, la chasse aux menaces, l’analyse des journaux, la détection de vulnérabilités et la réponse aux incidents. Il couvre à la fois les clouds publics et privés, ainsi que les centres de données sur site.
-4. Approche de Google : Google a également publié un livre blanc sur son modèle BeyondProd, qui explique comment ils protègent leur architecture cloud native. Ce modèle aide les organisations à appliquer les principes de sécurité Zero Trust à leurs propres environnements.
-
-En résumé, BeyondCorp est la réponse de Google au paradigme Zero Trust, mettant l’accent sur la vérification continue et la sécurité dans des environnements diversifiés.
-
-### Open Source
-
-Le zéro trust, sans fournisseurs de cloud, est possible. Cependant, cela nécessite un niveau de compétence assez élevé et un temps d'implémentation non négligeable.
-
-Pour entamer cette démarche, j'ai identifié 4 éléments importants dans cette transition vers le Zero Trust. Vous aurez besoin de :
+Vous aurez besoin de :
 
 - Gérer les identités avec des protocoles modernes (oAuth2, OIDC)
 - Gérer les accès réseaux depuis l'extérieur et l'intérieur
