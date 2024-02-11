@@ -12,7 +12,7 @@
   "dependencies": {
     "@astrojs/markdown-remark": "^4.2.1",
     "@astrojs/sitemap": "^3.0.5",
-    "@jop-software/astro-cookieconsent": "^2.0.0",
+    "@jop-software/astro-cookieconsent": "^3.0.0",
     "astro": "^4.3.5",
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",
