@@ -4,8 +4,9 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
 import partytown from "@astrojs/partytown";
-
 import sitemap from "@astrojs/sitemap";
+
+import jopSoftwarecookieconsent from "@jop-software/astro-cookieconsent";
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,6 +20,7 @@ export default defineConfig({
         forward: ["dataLayer.push"],
       },
     }),
+    jopSoftwarecookieconsent(),
   ],
   markdown: {
     shikiConfig: {
