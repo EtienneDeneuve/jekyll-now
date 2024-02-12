@@ -52,6 +52,7 @@ export default defineConfig({
               title: "J'utilise quelques cookies",
               description:
                 "Je vous rassure, pas grand chose... mais je vais vous le dire.",
+
               acceptAllBtn: "Tout accepter",
               acceptNecessaryBtn: "Tout refuser",
               showPreferencesBtn: "Gérer les préférences individuelles",
