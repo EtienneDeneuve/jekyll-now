@@ -50,7 +50,9 @@ export default defineConfig({
           fr: {
             consentModal: {
               title: "J'utilise quelques cookies",
-              description: "Description de la fenêtre modale des cookies",
+              description:
+                "Je vous rassure, pas grand chose... mais je vais vous le dire.",
+
               acceptAllBtn: "Tout accepter",
               acceptNecessaryBtn: "Tout refuser",
               showPreferencesBtn: "Gérer les préférences individuelles",
@@ -74,8 +76,8 @@ export default defineConfig({
 
           en: {
             consentModal: {
-              title: "We use cookies",
-              description: "Cookie modal description",
+              title: "I use some cookies",
+              description: "But, I'll tell you about it...",
               acceptAllBtn: "Accept all",
               acceptNecessaryBtn: "Reject all",
               showPreferencesBtn: "Manage Individual preferences",
