@@ -3,6 +3,7 @@ import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
+import { remarkModifiedTime } from "./remark-modified-time.mjs";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 
@@ -20,7 +21,84 @@ export default defineConfig({
         forward: ["dataLayer.push"],
       },
     }),
-    jopSoftwarecookieconsent(),
+    ,
+    jopSoftwarecookieconsent({
+      categories: {
+        necessary: {
+          enabled: true, // this category is enabled by default
+          readOnly: true, // this category cannot be disabled
+        },
+        analytics: {},
+      },
+      guiOptions: {
+        consentModal: {
+          layout: "bar inline",
+          position: "bottom",
+          flipButtons: true,
+          equalWeightButtons: true,
+        },
+        preferencesModal: {
+          layout: "box",
+          // position: 'left right',
+          flipButtons: false,
+          equalWeightButtons: true,
+        },
+      },
+      language: {
+        default: "fr",
+        translations: {
+          fr: {
+            consentModal: {
+              title: "J'utilise quelques cookies",
+              description: "Description de la fenêtre modale des cookies",
+              acceptAllBtn: "Tout accepter",
+              acceptNecessaryBtn: "Tout refuser",
+              showPreferencesBtn: "Gérer les préférences individuelles",
+            },
+            preferencesModal: {
+              title: "Gérer les préférences des cookies",
+              acceptAllBtn: "Tout accepter",
+              acceptNecessaryBtn: "Tout refuser",
+              savePreferencesBtn: "Accepter la sélection actuelle",
+              closeIconLabel: "Fermer la fenêtre modale",
+              sections: [
+                {
+                  title: "Performance et analyse",
+                  description:
+                    "Ces cookies collectent des informations sur votre utilisation de ce site web. Toutes les données sont anonymisées et ne peuvent pas être utilisées pour vous identifier.",
+                  linkedCategory: "analytics",
+                },
+              ],
+            },
+          },
+
+          en: {
+            consentModal: {
+              title: "We use cookies",
+              description: "Cookie modal description",
+              acceptAllBtn: "Accept all",
+              acceptNecessaryBtn: "Reject all",
+              showPreferencesBtn: "Manage Individual preferences",
+            },
+            preferencesModal: {
+              title: "Manage cookie preferences",
+              acceptAllBtn: "Accept all",
+              acceptNecessaryBtn: "Reject all",
+              savePreferencesBtn: "Accept current selection",
+              closeIconLabel: "Close modal",
+              sections: [
+                {
+                  title: "Performance and Analytics",
+                  description:
+                    "These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.",
+                  linkedCategory: "analytics",
+                },
+              ],
+            },
+          },
+        },
+      },
+    }),
   ],
   markdown: {
     shikiConfig: {
@@ -35,7 +113,7 @@ export default defineConfig({
       wrap: true,
     },
     // Example: Switch to use prism for syntax highlighting in Markdown
-    remarkPlugins: [remarkToc, remarkReadingTime],
+    remarkPlugins: [remarkToc, remarkReadingTime, remarkModifiedTime],
     rehypePlugins: [
       rehypeSlug,
       [

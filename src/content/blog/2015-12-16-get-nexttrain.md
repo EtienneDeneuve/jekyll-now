@@ -1,22 +1,33 @@
 ---
 title: Get-NextTrain !
-description: "test"
+description: "Découvrez comment utiliser Powershell pour interroger l'API SNCF et obtenir des informations sur les prochains trains dans votre gare locale. Facilitez-vous la vie avec l'automatisation des tâches liées aux transports en commun !"
 slug: 2015/12/16/get-nexttrain
-tags: ["test"]
+tags:
+  - Powershell
+  - SNCF
+  - API
+  - Trains
+  - Développement
+  - Programmation
+  - Automatisation
+  - Transport
+  - Gare
+  - Scripts
 pubDate: 2015-12-16 13:44:50
+updateDate: 2024-02-12 11:16:00
 img: /assets/stock-1.jpg
 img_alt: "nice abstract image"
 ---
 
-## Let's play with SNCF Api and Powershell
+## Jouons avec l'API SNCF et Powershell
 
-My goal was to get a list of the next train in the train station near my home, from powershell...
+Mon objectif était d'obtenir une liste des prochains trains dans la gare près de chez moi, depuis Powershell...
 
-My functions are below, feel free to leave a comment, copy it, it's free ! (Now on Github ! [git it !](https://github.com/EtienneDeneuve/Powershell/blob/master/GetNextTrain/TheScript.ps1)</a>)
+Mes fonctions sont ci-dessous, n'hésitez pas à laisser un commentaire, à les copier, c'est gratuit ! (Maintenant sur Github ! [Obtenez-le !](https://github.com/EtienneDeneuve/Powershell/blob/master/GetNextTrain/TheScript.ps1)</a>)
 
-Of course, it's not a serious post, but more is coming ;)
+Bien sûr, ce n'est pas un post sérieux, mais d'autres choses arrivent ;)
 
-You can try this :
+Vous pouvez essayer ceci :
 
 ```powershell
 (Get-gare -gare "clamart").idgare | Get-TrainDirection |%{ Get-NextTrain -idgare $_.idgare -traindirection $_.direction } | FT
