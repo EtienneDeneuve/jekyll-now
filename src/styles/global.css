@@ -192,6 +192,40 @@ h5 {
   font-size: var(--text-xl);
 }
 
+.cc--darkmode {
+  ---cc-bg: var(--gray-999);
+  /** Change font **/
+  --cc-font-family: var(--font-system);
+  --cc-modal-border-radius: 0.5rem;
+  /** Change button primary color to black **/
+  --cc-btn-primary-bg: var(--accent-regular);
+  --cc-btn-primary-border-color: var(--accent-regular);
+  --cc-btn-primary-hover-bg: var(--accent-dark);
+  --cc-btn-primary-hover-border-color: var(--accent-dark);
+
+  /** Also make toggles the same color as the button **/
+  --cc-toggle-on-bg: var(--cc-btn-primary-bg);
+
+  /** Make the buttons a bit rounder **/
+  --cc-btn-border-radius: 10px;
+}
+#cc-main {
+  ---cc-bg: var(--gray-999);
+  /** Change font **/
+  --cc-font-family: var(--font-system);
+  --cc-modal-border-radius: 0.5rem;
+  /** Change button primary color to black **/
+  --cc-btn-primary-bg: var(--accent-regular);
+  --cc-btn-primary-border-color: var(---accent-regular);
+  --cc-btn-primary-hover-bg: var(--accent-light);
+  --cc-btn-primary-hover-border-color: var(--accent-light);
+
+  /** Also make toggles the same color as the button **/
+  --cc-toggle-on-bg: var(--cc-btn-primary-bg);
+
+  /** Make the buttons a bit rounder **/
+  --cc-btn-border-radius: 10px;
+}
 /* Utilities */
 
 .sr-only {
