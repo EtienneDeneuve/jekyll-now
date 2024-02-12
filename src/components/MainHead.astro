@@ -24,8 +24,13 @@ const {
   async="async"
   crossorigin="anonymous"
   data-cookiecategory="analytics"
+  data-service="Google Analytics"
   src="https://www.googletagmanager.com/gtag/js?id=UA-71551100-1"></script>
-<script type="text/partytown" data-cookiecategory="analytics">
+<script
+  type="text/partytown"
+  data-cookiecategory="analytics"
+  data-service="Google Analytics"
+>
   window.dataLayer = window.dataLayer || [];
   function gtag() {
     dataLayer.push(arguments);
@@ -53,12 +58,17 @@ const {
       : "light";
   };
   const isDark = getThemePreference() === "dark";
-  document.documentElement.classList[isDark ? "add" : "remove"]("theme-dark");
+  // document.documentElement.classList[isDark ? "add" : "remove"]("");
+  document.documentElement.classList[isDark ? "add" : "remove"](
+    "theme-dark",
+    "cc--darkmode"
+  );
 
   if (typeof localStorage !== "undefined") {
     // Watch the document element and persist user preference when it changes.
     const observer = new MutationObserver(() => {
       const isDark = document.documentElement.classList.contains("theme-dark");
+
       localStorage.setItem("theme", isDark ? "dark" : "light");
     });
     observer.observe(document.documentElement, {

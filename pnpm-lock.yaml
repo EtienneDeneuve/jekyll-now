@@ -12,8 +12,8 @@ dependencies:
     specifier: ^3.0.5
     version: 3.0.5
   '@jop-software/astro-cookieconsent':
-    specifier: ^2.0.0
-    version: 2.0.0(vanilla-cookieconsent@2.9.2)
+    specifier: ^3.0.0
+    version: 3.0.0(vanilla-cookieconsent@3.0.0)
   astro:
     specifier: ^4.3.5
     version: 4.3.5(typescript@5.3.3)
@@ -39,8 +39,8 @@ dependencies:
     specifier: ^9.0.0
     version: 9.0.0
   vanilla-cookieconsent:
-    specifier: ^2.9.2
-    version: 2.9.2
+    specifier: ^3.0.0
+    version: 3.0.0
 
 devDependencies:
   '@astrojs/partytown':
@@ -49,6 +49,9 @@ devDependencies:
   '@typescript-eslint/parser':
     specifier: ^6.21.0
     version: 6.21.0(eslint@8.56.0)(typescript@5.3.3)
+  dayjs:
+    specifier: ^1.11.10
+    version: 1.11.10
   eslint:
     specifier: ^8.56.0
     version: 8.56.0
@@ -652,12 +655,12 @@ packages:
     resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
     dev: true
 
-  /@jop-software/astro-cookieconsent@2.0.0(vanilla-cookieconsent@2.9.2):
-    resolution: {integrity: sha512-79uY+scObfEhzfLY+KAOMxEgg0P9EeA5lJM0q+Y6WRhRvqSu4ufvuHOvWrrq8vv9FttxlnKQHCd75dsapINoyQ==}
+  /@jop-software/astro-cookieconsent@3.0.0(vanilla-cookieconsent@3.0.0):
+    resolution: {integrity: sha512-EbjaGgzqKW17Ik8JI7HqBboCPIWsz+6CUh3s6Nw3AXp+TbFpg+GVI6Hqhtw7A+8tmO2N3KGsuaKP7GQbrZyTHw==}
     peerDependencies:
-      vanilla-cookieconsent: ^2.9.1
+      vanilla-cookieconsent: ^3.0.0
     dependencies:
-      vanilla-cookieconsent: 2.9.2
+      vanilla-cookieconsent: 3.0.0
     dev: false
 
   /@jridgewell/gen-mapping@0.3.3:
@@ -1605,6 +1608,10 @@ packages:
 
   /damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
+    dev: true
+
+  /dayjs@1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
     dev: true
 
   /debug@2.6.9:
@@ -4836,8 +4843,8 @@ packages:
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  /vanilla-cookieconsent@2.9.2:
-    resolution: {integrity: sha512-SHAS5W0DBvvcUtjmVvvYkhmLPmTlgwKzFvViUp5mBimbZCdZKbDQzwyk/TgYq02+61RrtxmDdLGzDWNFpSbsGQ==}
+  /vanilla-cookieconsent@3.0.0:
+    resolution: {integrity: sha512-oeK7FivRDb424mt3/UT8DG98Pu5m6Uuye7JsdzO6HnYkstW5QHXhkslXyUpE3phtKz3NEeIo7hzLUtfRNRMfbQ==}
     dev: false
 
   /vfile-location@5.0.2:

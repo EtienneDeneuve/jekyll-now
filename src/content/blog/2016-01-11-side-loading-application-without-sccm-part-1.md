@@ -1,44 +1,55 @@
 ---
 title: "Side loading application without SCCM - Part 1"
 description: ""
-tags: [""]
+tags:
+  - PowerShell
+  - Windows 8
+  - Sideloading
+  - SCCM
+  - Automatisation
+  - Développement d'applications
+  - AppxBundle
+  - Signtool
+  - Déploiement logiciel
+  - Gestion de l'entreprise
 slug: 2016/01/11/side-loading-app
 pubDate: 2016-01-11 17:20:38
+updateDate: 2024-02-12 11:16:00
 img: /assets/stock-2.jpg
 img_alt: "nice abstract image"
 ---
 
-I publish my way to install side loaded application to Windows 8 and above. I looked on Internet and found nothing to install theses apps  on  computers in a company which doesn't have SCCM. I've written a powershell script which will do the work but I want to share the way I built it, instead of sharing it without any kind of explanation. This blog post is the first one of the series for passing to a long and non interesting tasks to a near complete automated one. You will need makeappx and signtool on the computer to run the script or make the process manually. It's preferable to make the process one time before launching the script. It's easier to debug something you know (yes ! ;)).
+Je publie ma méthode pour installer des applications `sideload` sur Windows 8 et versions ultérieures. J'ai cherché sur Internet et n'ai rien trouvé pour installer ces applications sur des ordinateurs dans une entreprise qui n'a pas SCCM. J'ai écrit un script PowerShell qui fera le travail, mais je veux partager la manière dont je l'ai construit, au lieu de le partager sans aucune explication. Ce billet de blog est le premier d'une série visant à passer d'une tâche longue et peu intéressante à une tâche presque entièrement automatisée. Vous devrez avoir makeappx et signtool sur l'ordinateur pour exécuter le script ou effectuer le processus manuellement. Il est préférable de réaliser le processus une fois avant de lancer le script. Il est plus facile de déboguer quelque chose que l'on connaît (oui ! ;)).
 
-## Applications for Windows Modern UI
+## Applications pour l'interface utilisateur moderne de Windows
 
-Let's start this post by a little explanation about Windows Sideloading Mechanics. When you build application with tools like Adobe DPS, you will get a "appxbundle". For side loading you need sign the appxbundle and the appx in the bundle. So, you need to "unbundle" the bundle, and then unpack the appx. Unfortunately you need to modify the AppManifest.xml and the BlockMap.xml (a file where all the hash are stored), and theses two files exist for both AppxBundle and Appx.
+Commençons ce billet par une petite explication sur le fonctionnement du chargement latéral de Windows. Lorsque vous construisez une application avec des outils comme Adobe DPS, vous obtenez un "appxbundle". Pour le chargement latéral, vous devez signer l'appxbundle et l'appx dans le bundle. Ainsi, vous devez "débundler" le bundle, puis décompresser l'appx. Malheureusement, vous devez modifier le fichier AppManifest.xml et le fichier BlockMap.xml (un fichier où tous les hachages sont stockés), et ces deux fichiers existent à la fois pour AppxBundle et Appx.
 
-The tree of an AppxBundle look like :
+L'arborescence d'un AppxBundle ressemble à ceci :
 
-- / (root of the AppxBundle)
+- / (racine de l'AppxBundle)
 - /AppManifest
 - /AppManifest/AppxManifest.xml
 - /BlockMaps.xml
 - /ARM.appx
 - /x86.appx
 - /x64.appx
-- (all the architectures are in the bundle, I removed the non essential files)
+- (toutes les architectures sont dans le bundle, j'ai supprimé les fichiers non essentiels)
 
-For Sideloading and changing the certificate to a good one here are the steps we need :
+Pour le chargement latéral et le changement de certificat pour un bon certificat, voici les étapes dont nous avons besoin :
 
-1. Unbundle appxbundle
-2. Unpack all the appx
-3. Modify the AppManifest.xml, for all of them. We need to change the "Publisher" attributes in the XML.
-4. Modify the BlockMaps.xml, for all of them. We need to remove the Hash and size of the modified AppManifest.xml.
-5. Pack the appx and sign it
-6. Create the bundle and sign it
-7. Create a powershell script to install the dependencies and the bundle.
-8. Find a way to launch the Powershell Script on all our client
-   The part 2 is coming, soon...
+1. Débundler l'appxbundle
+2. Décompresser tous les appx
+3. Modifier le fichier AppManifest.xml, pour chacun d'eux. Nous devons changer les attributs "Éditeur" dans le XML.
+4. Modifier le fichier BlockMaps.xml, pour chacun d'eux. Nous devons supprimer le hachage et la taille du fichier AppManifest.xml modifié.
+5. Compresser l'appx et le signer
+6. Créer le bundle et le signer
+7. Créer un script PowerShell pour installer les dépendances et le bundle.
+8. Trouver un moyen de lancer le script PowerShell sur tous nos clients.
+   La partie 2 arrive bientôt...
 
-Other Parts  :
+Autres parties :
 
-- [Part 2](http://etienne.deneuve.xyz/2016/01/11/side-loading-application-without-sccm-part-2/)
-- [Part 3](http://etienne.deneuve.xyz/2016/01/11/side-loading-application-without-sccm-part-3/)
+- [Part 2](./2016/01/11/side-loading-application-without-sccm-part-2/)
+- [Part 3](./2016/01/11/side-loading-application-without-sccm-part-3/)
 - The full script is on my (New) Git : [Go to Git !](https://github.com/EtienneDeneuve/Powershell)
