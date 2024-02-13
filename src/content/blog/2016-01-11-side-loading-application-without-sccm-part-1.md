@@ -3,15 +3,9 @@ title: "Side loading application without SCCM - Part 1"
 description: ""
 tags:
   - PowerShell
-  - Windows 8
+  - Windows
   - Sideloading
   - SCCM
-  - Automatisation
-  - Développement d'applications
-  - AppxBundle
-  - Signtool
-  - Déploiement logiciel
-  - Gestion de l'entreprise
 slug: 2016/01/11/side-loading-app
 pubDate: 2016-01-11 17:20:38
 updateDate: 2024-02-12 11:16:00
@@ -46,10 +40,11 @@ Pour le chargement latéral et le changement de certificat pour un bon certifica
 6. Créer le bundle et le signer
 7. Créer un script PowerShell pour installer les dépendances et le bundle.
 8. Trouver un moyen de lancer le script PowerShell sur tous nos clients.
-   La partie 2 arrive bientôt...
+
+La partie 2 arrive bientôt...
 
 Autres parties :
 
-- [Part 2](./2016/01/11/side-loading-application-without-sccm-part-2/)
-- [Part 3](./2016/01/11/side-loading-application-without-sccm-part-3/)
+- [Part 2](/2016/01/11/side-loading-application-without-sccm-part-2)
+- [Part 3](/2016/01/11/side-loading-application-without-sccm-part-3)
 - The full script is on my (New) Git : [Go to Git !](https://github.com/EtienneDeneuve/Powershell)
