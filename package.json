@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^4.2.1",
+    "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.0.5",
     "@jop-software/astro-cookieconsent": "^3.0.0",
     "astro": "^4.3.5",
