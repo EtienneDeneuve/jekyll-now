@@ -1,152 +1,114 @@
 ---
-title: "Side loading application without SCCM - Part 3"
-description: ""
-tags: [""]
+title: "Side loading application without SCCM - Part 2"
+description: "Automatisez le déploiement des applications avec Powershell : simplifiez le sideloading d'Appx et gérez les certificats. Découvrez le script complet sur GitHub."
+tags:
+  [
+    "Powershell",
+    "Automatisation des tâches",
+    "Développement logiciel",
+    "Déploiement d'applications",
+  ]
 slug: 2016/01/11/side-loading-application-without-sccm-part-3
 pubDate: 2016-01-11 19:57:23
 img: /assets/stock-4.jpg
-img_alt: "nice abstract image"
+img_alt: "image abstraite intéressante"
 ---
 
-So I assume you have read the part 1 and the part 2 of this little series.
+Si vous avez suivi les parties précédentes de cette série, vous êtes prêt à approfondir l'automatisation du déploiement d'applications sans SCCM. Dans cette troisième partie, nous nous concentrons sur un script PowerShell essentiel pour le chargement latéral d'applications Appx.
 
-## The first Function
+## Première Fonction: Set-Manifest
 
-Here is my Function called "Set-Manifest" because I create it for changing the XML and the Block Map :
+La fonction `Set-Manifest` que j'ai créée permet de modifier le fichier XML et la BlockMap selon les besoins. Voici comment elle se présente :
 
 ```powershell
 Function Set-Manifest {
-param(
-[String]
-[ValidateSet("Bundle","Block","Manifest","BlockAppx")]
-$Mode,
-[XML]
-$xmlfile,
-[String]
-$CertificateSAN,
-[String]
-$filename,
-[String]
-$BlockMap
-)
+    param(
+        [String]
+        [ValidateSet("Bundle", "Block", "Manifest", "BlockAppx")]
+        $Mode,
+        [XML] $xmlfile,
+        [String] $CertificateSAN,
+        [String] $filename,
+        [String] $BlockMap
+    )
 
-switch ($Mode)
-{
-'Bundle'
-{
-$xmlfile.Bundle.Identity.Publisher = $CertificateSAN
-$xmlfile.Save($filename)
+    switch ($Mode) {
+        'Bundle' {
+            $xmlfile.Bundle.Identity.Publisher = $CertificateSAN
+            $xmlfile.Save($filename)
+        }
+        'Block' {
+            $xmlfile.BlockMap.File.RemoveAttribute("Size")
+            $xmlfile.BlockMap.File.RemoveAttribute("LfhSize")
+            $xmlfile.BlockMap.File.RemoveChild($xmlfile.BlockMap.File.Block)
+            $xmlfile.Save($filename)
+        }
+        'Manifest' {
+            $xmlfile.Package.Identity.Publisher = $CertificateSAN
+            $xmlfile.Save($filename)
+        }
+        'BlockAppx' {
+            $xmltemp = $xmlfile.BlockMap.File |? { $_.Name -eq "AppxManifest.xml" }
+            $xmlfile.BlockMap.RemoveChild($xmltemp)
+            $xmltemp.RemoveChild($xmltemp.Block)
+            $xmltemp.RemoveAttribute("Size")
+            $xmltemp.RemoveAttribute("LfhSize")
+            $xmlfile.BlockMap.AppendChild($xmltemp)
+            $xmlfile.Save($filename)
+        }
+    }
 }
-'Block'
-{
-$xmlfile.BlockMap.File.RemoveAttribute("Size")
-$xmlfile.BlockMap.File.RemoveAttribute("LfhSize")
-$xmlfile.BlockMap.File.RemoveChild($xmlfile.BlockMap.File.Block)
-$xmlfile.Save($filename)
-}
-'Manifest'
-{
-$xmlfile.Package.Identity.Publisher = $CertificateSAN
-$xmlfile.Save($filename)
-}
-'BlockAppx'
-{
-$xmltemp = $xmlfile.BlockMap.File |? { $_.Name -eq "AppxManifest.xml"}
-$xmlfile.BlockMap.RemoveChild($xmltemp)
-$xmltemp.RemoveChild($xmltemp.Block)
-$xmltemp.RemoveAttribute("Size")
-$xmltemp.RemoveAttribute("LfhSize")
-$xmlfile.BlockMap.AppendChild($xmltemp)
-$xmlfile.Save($filename)
-}
-}
-}
-
 ```
 
-I used this function like that in my "main" script:
+### Utilisation dans le Script Principal
+
+Le script "principal" utilise `Set-Manifest` pour ajuster les manifestes et les cartes de blocage des applications. Le processus est détaillé ci-dessous :
 
 ```powershell
-
-## region manifest
-
-Write-Host "Getting the manifest in :`t $("$($destinationroot)\expanded\") !" -ForegroundColor Green
+# Manifeste
+Write-Host "Récupération du manifeste dans :`t $($destinationroot)\expanded\` !" -ForegroundColor Green
 $ManifestBundle = Get-ChildItem -Filter AppxBundleManifest.xml -Path "$($destinationroot)\expanded\bundle" -Recurse
 $ManifestAppxs = Get-ChildItem -Filter AppxManifest.xml -Path "$($destinationroot)\expanded\Appx\" -Recurse
 
-## region bundle manifest
-
-Write-Host "Settings the Bundle manifest in :`t $("$($destinationroot)\expanded\") !" -ForegroundColor Green
-if($($ManifestBundle.count)){
-foreach($Manifest in $ManifestBundle){
-[xml]$manifestxml = Get-Content $Manifest.FullName
-Set-Manifest -Mode Bundle -certificate $certificateSAN -filename $($Manifest.fullname)  -xmlfile $manifestxml | Out-Null
-}
-}else{
-[xml]$ManifestXML = Get-Content $ManifestBundle.FullName
-Set-Manifest -Mode Bundle -certificate $certificateSAN -filename $($ManifestBundle.fullname)  -xmlfile $ManifestXML | Out-Null
+# Configuration du manifeste de bundle
+Write-Host "Paramétrage du manifeste de bundle dans :`t $($destinationroot)\expanded\` !" -ForegroundColor Green
+foreach ($Manifest in $ManifestBundle) {
+    [xml]$manifestxml = Get-Content $Manifest.FullName
+    Set-Manifest -Mode Bundle -certificate $certificateSAN -filename $Manifest.fullname -xmlfile $manifestxml | Out-Null
 }
 
-## endregion
-
-## region Appxs Manifests
-
-Write-Host "Settings the Appx manifest in :`t $("$($destinationroot)\expanded\") !" -ForegroundColor Green
-if($($ManifestAppxs.count)){
-foreach($ManifestAppx in $ManifestAppxs){
-[xml]$ManifestXML = Get-Content $ManifestAppx.FullName
-Set-Manifest -Mode Manifest -certificate $certificateSAN -filename $($ManifestAppx.fullname)  -xmlfile $ManifestXML | Out-Null
-}
-}else{
-[xml]$manifestxml = Get-Content $ManifestAppx.FullName
-Set-Manifest -Mode Manifest -certificate $certificateSAN -filename $($ManifestAppx.fullname)  -xmlfile $ManifestXML | Out-Null
+# Configuration du manifeste d'Appx
+Write-Host "Paramétrage du manifeste d'Appx dans :`t $($destinationroot)\expanded\` !" -ForegroundColor Green
+foreach ($ManifestAppx in $ManifestAppxs) {
+    [xml]$manifestxml = Get-Content $ManifestAppx.FullName
+    Set-Manifest -Mode Manifest -certificate $certificateSAN -filename $ManifestAppx.fullname -xmlfile $manifestxml | Out-Null
 }
 
-## endregion
-
-## endregion
-
-## region bundle BlockMaps
-
+# Cartes de Blocage de bundle
 $ManifestBundleBlockMaps = Get-ChildItem -Filter AppxBlockMap.xml -Path "$($destinationroot)\expanded\bundle" -Recurse
+Write-Host "Paramétrage des Cartes de Blocage de bundle dans :`t $($destinationroot)\expanded\` !" -ForegroundColor Green
+foreach ($BlockMap in $ManifestBundleBlockMaps) {
+    [xml]$blockmapxml = Get-Content $BlockMap.FullName
+    Set-Manifest -Mode Block -certificate $certificateSAN -filename $BlockMap.fullname -xmlfile $blockmapxml | Out-Null
+}
+
+# Cartes de Blocage d'Appx
 $ManifestAppxBlockMaps = Get-ChildItem -Filter AppxBlockMap.xml -Path "$($destinationroot)\expanded\Appx\" -Recurse
-Write-Host "Settings the Bundle Block Maps in :`t $("$($destinationroot)\expanded\") !" -ForegroundColor Green
-if($($ManifestBundleBlockMaps.count)){
-foreach($BlockMaps in $ManifestBundleBlockMaps){
-[xml]$BlockMapsXml = Get-Content $BlockMaps.FullName
-Set-Manifest -Mode Block -certificate $certificateSAN -filename $($BlockMaps.fullname)  -xmlfile $BlockMapsXml | Out-Null
+Write-Host "Paramétrage des Cartes de Blocage d'Appx dans :`t $($destinationroot)\expanded\` !" -ForegroundColor Green
+foreach ($BlockMap in $ManifestAppxBlockMaps) {
+    [xml]$blockmapxml = Get-Content $BlockMap.FullName
+    Set-Manifest -Mode BlockAppx -certificate $certificateSAN -filename $BlockMap.fullname -xmlfile $blockmapxml | Out-Null
 }
-}else{
-[xml]$BlockMapsXML = Get-Content $BlockMaps.FullName
-Set-Manifest -Mode Block -certificate $certificateSAN -filename $($BlockMaps.fullname)  -xmlfile $BlockMapsXML | Out-Null
-}
-
-## endregion
-
-## region Appxs BlockMaps
-
-Write-Host "Settings the Appx Block Maps in :`t $("$($destinationroot)\expanded\") !" -ForegroundColor Green
-if($($ManifestAppxBlockMaps.count)){
-foreach($BlockMaps in $ManifestAppxBlockMaps){
-[xml]$BlockMapsXml = Get-Content $BlockMaps.FullName
-Set-Manifest -Mode BlockAppx -certificate $certificateSAN -filename $($BlockMaps.fullname)  -xmlfile $BlockMapsXML | Out-Null
-}
-}else{
-[xml]$BlockMapsXml = Get-Content $ManifestAppxBlockMaps.FullName
-Set-Manifest -Mode BlockAppx -certificate $certificateSAN -filename $($ManifestAppxBlockMaps.fullname)  -xmlfile $BlockMapsXml | Out-Null
-}
-
-## endregion
-
-## endregion
-
 ```
 
-Part 4 is coming soon :)
+Cette méthode simplifie le déploiement d'applications en ajustant automatiquement les fichiers nécessaires à l'aide de PowerShell, rendant le chargement latéral d'Appx plus accessible et moins dépendant d'outils externes comme SCCM.
 
-Other Parts  :
+Restez à l'écoute pour la partie 4, qui viendra compléter cette série en vous fournissant encore plus d'outils et de techniques pour l'automatisation de vos déploiements d'applications.
 
-- [Part 1](http://etienne.deneuve.xyz/2016/01/11/side-loading-application-without-sccm-part-1/)
-- [Part 2](http://etienne.deneuve.xyz/2016/01/11/side-loading-application-without-sccm-part-2/)
-- [Part 3 (you are here)](http://etienne.deneuve.xyz/2016/01/11/side-loading-application-without-sccm-part-3/)
-- The full script is on my (New) Git : [Go to Git !](https://github.com/EtienneDeneuve/Powershell)
+Pour plus d'informations et pour accéder au script complet, consultez [mon GitHub](https://github.com/E).
+
+_Autres parties de la série :_
+
+- [Partie 1](/2016/01/11/side-loading-application-without-sccm-part-1)
+- [Partie 2](/2016/01/11/side-loading-application-without-sccm-part-2)
+- [Partie 3 (Vous êtes ici)](/2016/01/11/side-loading-application-without-sccm-part-3)

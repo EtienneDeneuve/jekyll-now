@@ -1,18 +1,22 @@
 ---
 title: "Side loading application without SCCM - Part 2"
-description: ""
-tags: [""]
+description: "Automatisez le déploiement des applications avec Powershell : simplifiez le sideloading d'Appx et gérez les certificats. Découvrez le script complet sur GitHub."
+tags:
+  - Déploiement d'applications
+  - Développement logiciel
+  - Automatisation des tâches
+  - Powershell
 slug: 2016/01/11/side-loading-application-without-sccm-part-2
 pubDate: 2016-01-11 18:25:02
 img: /assets/stock-3.jpg
 img_alt: "nice abstract image"
 ---
 
-So you have read the first article of these little series ( part 1[here :](http://etienne.deneuve.xyz/2016/01/11/side-loading-application-without-sccm-part-1/)>
+Normalement, vous avez lu le premier article de cette petite série (partie 1 [ici :](2016/01/11/side-loading-application-without-sccm-part-1)>
 
 ## Powershell
 
-With powershell we can automate tasks and manage our servers. Some one asks me to publish an AppxBundle with a need certificate (a good one, sign by a 3rd party provider, not a crappy self signed) for a customer, for side loading the appx and doesn't have to renew the certificate every year. It's not very funny to rebuild a package each year for a certificate, and it's not possible to publish the apps to the market as no one will care about it and there's no use for others. Before making a script for it, I've made the process one time manually and found it too much longer and not very interesting. So I started my scripts by a function to make the XML modifications. Powershell handles XML files better, than me, so I just need to do [xml]$variable = Get-Content $myappxfile. But I realizes my files a differents and need multiples modifications, so created a Switch (hint : Use the Powershell ISE and hit Crtl + J to get Intellisense doing the work for you) and addsome parameters to the function and the ability to choose between multiple values, with the "ValidateSet", useful for autocompletion. (I don't publish the true function right now):
+Avec Powershell, nous pouvons automatiser des tâches et gérer nos serveurs. Quelqu'un m'a demandé de publier un AppxBundle avec un certificat nécessaire (un bon, signé par un fournisseur tiers, pas un auto-signé de mauvaise qualité) pour un client, afin de charger latéralement l'Appx et de ne pas avoir à renouveler le certificat chaque année. Il n'est pas très amusant de reconstruire un package chaque année pour un certificat, et il n'est pas possible de publier les applications sur le marché car personne ne s'en souciera et il n'y aura aucun intérêt pour les autres. Avant de créer un script pour cela, j'ai effectué une fois le processus manuellement et j'ai trouvé que c'était trop long et pas très intéressant. J'ai donc commencé mes scripts par une fonction pour effectuer les modifications XML. Powershell gère mieux les fichiers XML que moi, donc je n'ai besoin que de faire `[xml]$variable = Get-Content $myappxfile`. Mais je me suis rendu compte que mes fichiers étaient différents et nécessitaient plusieurs modifications, j'ai donc créé un Switch (astuce : utilisez Powershell ISE et appuyez sur Ctrl + J pour obtenir l'Intellisense qui fait le travail pour vous) et ajouté des paramètres à la fonction ainsi que la possibilité de choisir entre plusieurs valeurs, avec "ValidateSet", utile pour l'autocomplétion. (Je ne publie pas la fonction actuelle pour le moment) :
 
 ```powershell
 Function Update-AppxXML{
@@ -22,20 +26,21 @@ $param1,
 $param2,
 )
 switch($param1){
-"Option1" { do that }
-"Option2" { do that }
-"Option3" { do that }
+"Option1" { faire cela }
+"Option2" { faire cela }
+"Option3" { faire cela }
 }
 }
 ```
 
-When I wrote my script, I splitted in multiple functions. It's pretty cool to have a script almost ready, where you don't have to write it again completely from scratch. You can also have a "Main" function for calling all the functions instead of making an intensive use of the magic pipe.
+Quand j'ai écrit mon script, je l'ai divisé en plusieurs fonctions. C'est plutôt cool d'avoir un script presque prêt, où vous n'avez pas à le réécrire complètement à partir de zéro. Vous pouvez également avoir une fonction "Main" pour appeler toutes les fonctions au lieu d'utiliser intensivement le tube magique.
 
-In the part 3, I'll go deeper in the scripts. Stay tuned...
+Dans la partie 3, j'approfondirai les scripts. Restez à l'écoute...
 
-Other Parts  :
+Autres parties  :
 
-- [Part 1](http://etienne.deneuve.xyz/2016/01/11/side-loading-application-without-sccm-part-1/)
-- [Part 2](http://etienne.deneuve.xyz/2016/01/11/side-loading-application-without-sccm-part-2/) (you are here)
-- [Part 3](http://etienne.deneuve.xyz/2016/01/11/side-loading-application-without-sccm-part-3/)
-- The full script is on my (New) Git : [Go to Git !](https://github.com/EtienneDeneuve/Powershell)
+- [Partie 1](/2016/01/11/side-loading-application-without-sccm-part-1)
+- [Partie 2](/2016/01/11/side-loading-application-without-sccm-part-2) (vous êtes ici)
+- [Partie 3](/2016/01/11/side-loading-application-without-sccm-part-3)
+
+- Le script complet est sur mon dépôt GitHub : [Allez sur Git !](https://github.com/EtienneDeneuve/Powershell)
