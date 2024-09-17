@@ -31,11 +31,13 @@ const projects = (await getCollection("blog"))
       <header class="hero">
         <Hero
           title="Hello, je suis Etienne Deneuve"
-          tagline="Je suis passioné par le Cloud, le DevOps et beaucoup d'autres sujets."
+          tagline="Je suis passioné par le Cloud, le DevSecOps, le Platform Engineering, la cybersécurité et beaucoup d'autres sujets."
           align="start"
         >
           <div class="roles">
-            <Pill><Icon icon="code" size="1.33em" /> Architect Solutions</Pill>
+            <Pill
+              ><Icon icon="code" size="1.33em" /> Senior Architect Solutions</Pill
+            >
             <Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
             <Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
           </div>
@@ -79,7 +81,7 @@ const projects = (await getCollection("blog"))
         </div>
       </section>
 
-      <section class="section with-background bg-variant">
+      <!-- <section class="section with-background bg-variant">
         <header class="section-header stack gap-2 lg:gap-4">
           <h3>Mentions</h3>
           <p>
@@ -105,7 +107,7 @@ const projects = (await getCollection("blog"))
             }
           </Grid>
         </div>
-      </section>
+      </section> -->
     </main>
   </div>
 </BaseLayout>
