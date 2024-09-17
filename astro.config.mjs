@@ -6,7 +6,6 @@ import { remarkReadingTime } from "./remark-reading-time.mjs";
 import { remarkModifiedTime } from "./remark-modified-time.mjs";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
-
 import jopSoftwarecookieconsent from "@jop-software/astro-cookieconsent";
 
 // https://astro.build/config
@@ -21,11 +20,11 @@ export default defineConfig({
         forward: ["dataLayer.push"],
       },
     }),
-    ,
     jopSoftwarecookieconsent({
       categories: {
         necessary: {
-          enabled: true, // this category is enabled by default
+          enabled: true,
+          // this category is enabled by default
           readOnly: true, // this category cannot be disabled
         },
         analytics: {},
@@ -52,7 +51,6 @@ export default defineConfig({
               title: "J'utilise quelques cookies",
               description:
                 "Je vous rassure, pas grand chose... mais je vais vous le dire.",
-
               acceptAllBtn: "Tout accepter",
               acceptNecessaryBtn: "Tout refuser",
               showPreferencesBtn: "Gérer les préférences individuelles",
@@ -73,7 +71,6 @@ export default defineConfig({
               ],
             },
           },
-
           en: {
             consentModal: {
               title: "I use some cookies",

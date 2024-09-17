@@ -1,15 +1,15 @@
 ---
 title: Supercharge your git Experience - Part 1
-pubDate: "May 14 2023"
-description: "How to configure tooling around Git to make it easier !"
+pubDate: May 14 2023
+description: How to configure tooling around Git to make it easier !
 tags:
+  - Azure Devops
   - Git
   - Github
-  - Azure DevOps
   - Husky
 slug: 2023/05/14/supercharge-your-git-experience-part1
 img: /assets/stock-1.jpg
-img_alt: "nice abstract image"
+img_alt: nice abstract image
 ---
 
 ## Global Azure Bootcamp - AzugFR

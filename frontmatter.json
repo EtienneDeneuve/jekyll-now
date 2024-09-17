@@ -1,63 +1,94 @@
 {
   "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.framework.id": "astro",
+  "frontMatter.preview.host": "http://localhost:4321",
+  "frontMatter.content.publicFolder": "public",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "blog",
+      "path": "[[workspace]]/src/content/blog",
+      "contentTypes": ["blog"]
+    }
+  ],
+  "frontMatter.custom.scripts": [
+    {
+      "id": "generate",
+      "title": "Generate social image",
+      "script": "./scripts/social-img.mjs",
+      "contentTypes": ["blog"],
+      "bulk": true,
+      "output": "notification",
+      "nodeBin": "/Users/etienne/.nvm/versions/node/v20.17.0/bin/node"
+    },
+    {
+      "id": "test",
+      "title": "Test",
+      "script": "./scripts/test.mjs",
+      "command": "/Users/etienne/.nvm/versions/node/v20.17.0/bin/node"
+    }
+  ],
   "frontMatter.taxonomy.contentTypes": [
     {
-      "name": "default",
+      "name": "blog",
+      "previewPath": "'blog'",
       "pageBundle": false,
-      "previewPath": null,
+      "clearEmpty": false,
       "fields": [
         {
-          "title": "Title",
           "name": "title",
-          "type": "string"
+          "type": "string",
+          "single": true,
+          "required": true
         },
         {
-          "title": "Description",
           "name": "description",
-          "type": "string"
+          "type": "string",
+          "single": true,
+          "required": true
         },
         {
-          "title": "Publishing date",
           "name": "pubDate",
           "type": "datetime",
           "default": "{{now}}",
-          "isPublishDate": true
+          "isPublishDate": true,
+          "required": true
         },
         {
-          "title": "Is in draft",
-          "name": "draft",
-          "type": "draft"
+          "name": "lastModified",
+          "type": "datetime",
+          "default": "{{now}}"
         },
         {
-          "title": "Tags",
+          "name": "minutesRead",
+          "type": "string",
+          "single": true
+        },
+        {
           "name": "tags",
           "type": "tags"
         },
         {
-          "title": "Categories",
-          "name": "categories",
-          "type": "categories"
-        },
-        {
-          "title": "Image",
           "name": "img",
-          "type": "string"
+          "type": "string",
+          "single": true
         },
         {
-          "title": "Image Alt",
           "name": "img_alt",
-          "type": "string"
+          "type": "string",
+          "single": true
+        },
+        {
+          "title": "updateDate",
+          "name": "updateDate",
+          "type": "datetime"
+        },
+        {
+          "title": "preview",
+          "name": "preview",
+          "type": "string",
+          "isPreviewImage": true
         }
       ]
     }
-  ],
-  "frontMatter.content.pageFolders": [
-    {
-      "title": "blog_etienne",
-      "path": "[[workspace]]/etiennedeneuve/src/content/blog"
-    }
-  ],
-  "frontMatter.content.publicFolder": "public",
-  "frontMatter.framework.id": "astro",
-  "frontMatter.preview.host": "http://localhost:3000"
+  ]
 }

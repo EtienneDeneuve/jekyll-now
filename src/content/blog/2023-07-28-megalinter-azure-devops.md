@@ -1,13 +1,13 @@
 ---
 title: Azure Devops & MegaLinter Auto PR
-pubDate: "Jul 28 2023"
-description: "Autofix your code using Azure DevOps & MegaLinter !"
+pubDate: Jul 28 2023
+description: Autofix your code using Azure DevOps & MegaLinter !
 tags:
+  - Azure Devops
   - Git
-  - Azure DevOps
 slug: 2023/07/28/autofix-megalinter-azure-devops
 img: /assets/stock-1.jpg
-img_alt: "nice abstract image"
+img_alt: nice abstract image
 ---
 
 ## Mega Linter
