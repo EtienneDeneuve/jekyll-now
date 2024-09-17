@@ -7,6 +7,7 @@ import { remarkModifiedTime } from "./remark-modified-time.mjs";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import jopSoftwarecookieconsent from "@jop-software/astro-cookieconsent";
+import remarkMermaid from "remark-mermaidjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -112,7 +113,12 @@ export default defineConfig({
       wrap: true,
     },
     // Example: Switch to use prism for syntax highlighting in Markdown
-    remarkPlugins: [remarkToc, remarkReadingTime, remarkModifiedTime],
+    remarkPlugins: [
+      remarkToc,
+      remarkReadingTime,
+      remarkModifiedTime,
+      remarkMermaid,
+    ],
     rehypePlugins: [
       rehypeSlug,
       [

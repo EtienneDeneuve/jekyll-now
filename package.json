@@ -12,6 +12,7 @@
   "dependencies": {
     "@jop-software/astro-cookieconsent": "^3.0.0",
     "astro": "^4.15.6",
+    "remark-mermaidjs": "^6.0.0",
     "vanilla-cookieconsent": "^3.0.1"
   },
   "devDependencies": {
