@@ -1,11 +1,16 @@
 ---
-title: "Utiliser Ansible et Azure, oui c'est possible !"
-description: "Intégrez Ansible, l'outil d'orchestration de Red Hat, avec Azure pour le déploiement et la gestion de vos infrastructures cloud. Découvrez comment dans notre guide détaillé."
-tags: ["Ansible", "Azure", "Orchestration", "Déploiement"]
+title: Utiliser Ansible et Azure, oui c'est possible !
+description: Intégrez Ansible, l'outil d'orchestration de Red Hat, avec Azure pour le déploiement et la gestion de vos infrastructures cloud.
+tags:
+  - Ansible
+  - Azure
+  - Orchestration
+  - Déploiement
 slug: 2017/01/26/utiliser-ansible-et-azure-oui-cest-possible
 pubDate: 2017-01-26 18:54:27
-img: /assets/stock-2.jpg
-img_alt: "nice abstract image"
+updateDate: 2024-02-12 11:16:00
+img: /assets/social/c70206f0-87da-4782-85d0-e071c1d9269a.png
+img_alt: nice abstract image
 ---
 
 ## Avant-Propos

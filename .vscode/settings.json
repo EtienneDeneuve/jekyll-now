@@ -1,0 +1,8 @@
+{
+  "frontMatter.custom.scripts": [
+    {
+      "title": "Generate social image",
+      "script": "./scripts/social-img.mjs"
+    }
+  ]
+}
