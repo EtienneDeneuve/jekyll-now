@@ -10,6 +10,8 @@ const {
   title = "Etienne Deneuve: Personal Site",
   description = "The personal site of Etienne Deneuve",
 } = Astro.props;
+
+const { url, site } = Astro;
 ---
 
 <meta charset="UTF-8" />
@@ -22,11 +24,13 @@ const {
 <script
   type="text/partytown"
   async="async"
+  is:inline
   crossorigin="anonymous"
   data-cookiecategory="analytics"
   data-service="Google Analytics"
   src="https://www.googletagmanager.com/gtag/js?id=UA-71551100-1"></script>
 <script
+  is:inline
   type="text/partytown"
   data-cookiecategory="analytics"
   data-service="Google Analytics"
@@ -61,7 +65,7 @@ const {
   // document.documentElement.classList[isDark ? "add" : "remove"]("");
   document.documentElement.classList[isDark ? "add" : "remove"](
     "theme-dark",
-    "cc--darkmode"
+    "cc--darkmode",
   );
 
   if (typeof localStorage !== "undefined") {

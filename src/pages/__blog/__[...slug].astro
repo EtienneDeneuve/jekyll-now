@@ -1,22 +1,22 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-import ContactCTA from '../../components/ContactCTA.astro';
-import Hero from '../../components/Hero.astro';
-import Icon from '../../components/Icon.astro';
-import Pill from '../../components/Pill.astro';
+import ContactCTA from "../../components/ContactCTA.astro";
+import Hero from "../../components/Hero.astro";
+import Icon from "../../components/Icon.astro";
+import Pill from "../../components/Pill.astro";
 
 interface Props {
-	entry: CollectionEntry<'blog'>;
+	entry: CollectionEntry<"blog">;
 }
 
 // This is a dynamic route that generates a page for every Markdown file in src/content/
 // Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
 // https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
 export async function getStaticPaths() {
-	const blog = await getCollection('blog');
+	const blog = await getCollection("blog");
 	return blog.map((entry) => ({
 		params: { slug: entry.slug },
 		props: { entry },
@@ -32,20 +32,33 @@ const { Content } = await entry.render();
 		<div class="stack gap-15">
 			<header>
 				<div class="wrapper stack gap-2">
-					<a class="back-link" href="/blog/"><Icon icon="arrow-left" /> Blog</a>
+					<a class="back-link" href="/blog/"
+						><Icon icon="arrow-left" />Blog</a
+					>
 					<Hero title={entry.data.title} align="start">
 						<div class="details">
 							<div class="tags">
-								{entry.data.tags.map((t) => <Pill>{t}</Pill>)}
+								{entry.data?.tags?.map((t) => <Pill>{t}</Pill>)}
 							</div>
-							<p class="description">{entry.data.description}</p>
+							<div>
+								<p class="description">
+									{entry.data.description}
+								</p>
+							</div>
 						</div>
 					</Hero>
 				</div>
 			</header>
 			<main class="wrapper">
 				<div class="stack gap-10 content">
-					{entry.data.img && <img src={entry.data.img} alt={entry.data.img_alt || ''} />}
+					{
+						entry.data.img && (
+							<img
+								src={entry.data.img}
+								alt={entry.data.img_alt || ""}
+							/>
+						)
+					}
 					<div class="content">
 						<Content />
 					</div>
@@ -68,10 +81,10 @@ const { Content } = await entry.render();
 
 	.details {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
+		flex-wrap: wrap;
 		padding: 0.5rem;
 		gap: 1.5rem;
-		justify-content: space-between;
 		align-items: center;
 	}
 
@@ -89,6 +102,7 @@ const { Content } = await entry.render();
 		/* max-width: 65ch; */
 		max-width: 100%;
 		margin-inline: auto;
+		margin-bottom: 1%;
 	}
 
 	.content > :global(* + *) {

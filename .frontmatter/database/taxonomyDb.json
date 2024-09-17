@@ -1,1 +1,43 @@
-{}
+{
+  "taxonomy": {
+    "tags": [
+      "API",
+      "Ansible",
+      "Automatisation",
+      "Automatisation des tâches",
+      "Azure",
+      "Azure Devops",
+      "Azure NetApp Files",
+      "Bind9",
+      "Cloud",
+      "Cloud Init",
+      "Dns",
+      "Déploiement",
+      "Déploiement d'applications",
+      "Développement",
+      "Développement logiciel",
+      "Gare",
+      "Git",
+      "Github",
+      "HP",
+      "Husky",
+      "Imprimante",
+      "Niveau d'encre",
+      "Orchestration",
+      "PowerShell",
+      "Powershell",
+      "Programmation",
+      "SCCM",
+      "SNCF",
+      "Scripts",
+      "Sideloading",
+      "Terraform",
+      "Tests",
+      "Trains",
+      "Transport",
+      "Windows",
+      "test"
+    ],
+    "categories": []
+  }
+}
