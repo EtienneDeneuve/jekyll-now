@@ -4,5 +4,6 @@
       "title": "Generate social image",
       "script": "./scripts/social-img.mjs"
     }
-  ]
+  ],
+  "cSpell.language": "en,fr"
 }

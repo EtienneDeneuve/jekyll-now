@@ -1,15 +1,17 @@
 ---
 title: Les Identités Managées
-pubDate: "Sep 16 2024"
-description: "Tout comprendre des identités managées"
+pubDate: 2024-09-17T13:26:14.713Z
+description: Tout comprendre des identités managées
 tags:
   - Azure
   - Identity
   - IAM
   - Zero Trust
-slug: 2024/09/16/autofix-megalinter-azure-devops
-img: /assets/stock-1.jpg
-img_alt: "nice abstract image"
+slug: 2024/09/17/les-identites-managees-azure
+img: /assets/stock-2.jpg
+img_alt: nice abstract image
+lastModified: 2024-09-17T13:26:16.465Z
+updateDate: 2024-09-17T13:26:25.751Z
 ---
 
 ## Récapitulatif des posts Linkedin
@@ -107,11 +109,11 @@ sequenceDiagram
     Note over VM: Début du processus d'authentification
     VM->>+IDMS: 🔄 **GET** `https://169.254.169.254/metadata/identity/oauth2/token?resource=https://management.azure.com&api-version=2018-02-01`
     Note right of IDMS: Headers: <br> `Metadata: true`
-    
+
     IDMS->>+EntraID: 🔄 **POST** `https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token`
     Note right of EntraID: <u>Headers:</u> <br> `Content-Type: application/x-www-form-urlencoded`
     Note right of EntraID: <u>Body:</u> <br>`client_id=<MSI Client ID>`<br>`resource=https://management.azure.com`<br>`grant_type=client_credentials`
-    
+
     EntraID-->>-IDMS: ✅ **200 OK**<br>`{ "access_token": "<Token>", "expires_in": "3599" }`
     IDMS-->>-VM: ✅ **200 OK**<br>`{ "access_token": "<Token>", "expires_in": "3599" }`
 
@@ -134,11 +136,11 @@ sequenceDiagram
     Note over PaaS: Début du processus d'authentification
     PaaS->>+IDMS: 🔄 **GET** `http://127.0.0.1:15002/MSI/token?resource=https://management.azure.com&api-version=2018-02-01`
     Note right of IDMS: Headers: <br> `Metadata: true`
-    
+
     IDMS->>+EntraID: 🔄 **POST** `https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token`
     Note right of EntraID: <u>Headers:</u> <br>`Content-Type: application/x-www-form-urlencoded`
     Note right of EntraID: <u>Body:</u> <br>`client_id=<MSI Client ID>`<br>`resource=https://management.azure.com`<br>`grant_type=client_credentials`
-    
+
     EntraID-->>-IDMS: ✅ **200 OK**<br>`{ "access_token": "<Token>", "expires_in": "3599" }`
     IDMS-->>-PaaS: ✅ **200 OK**<br>`{ "access_token": "<Token>", "expires_in": "3599" }`
 
@@ -171,11 +173,11 @@ sequenceDiagram
     Note over Pod: Début du processus d'authentification
     Pod->>+IDMS: 🔄 **GET** `http://169.254.169.254/metadata/identity/oauth2/token?resource=https://management.azure.com&api-version=2018-02-01`
     Note right of IDMS: Headers: <br> `Metadata: true`
-    
+
     IDMS->>+EntraID: 🔄 **POST** `https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token`
     Note right of EntraID: <u>Headers:</u> <br>`Content-Type: application/x-www-form-urlencoded`
     Note right of EntraID: <u>Body:</u> <br>`client_id=<MSI Client ID>`<br>`resource=https://management.azure.com`<br>`grant_type=client_credentials`
-    
+
     EntraID-->>-IDMS: ✅ **200 OK**<br>`{ "access_token": "<Token>", "expires_in": "3599" }`
     IDMS-->>-Pod: ✅ **200 OK**<br>`{ "access_token": "<Token>", "expires_in": "3599" }`
 
@@ -198,6 +200,8 @@ Alors que les identités managées "System-Assigned” sont liées directement �
 
 ### Comment créer et gérer des Identités Managées
 
+#### Creation d'une identité et assignation sur une resource
+
 ```bash
 # create environment variables for later usage
 export AZURE_RG_NAME="MyResourceGroup"
@@ -214,10 +218,300 @@ az identity create \
 
 # Assign the identity to a VM
 az vm identity assign \
-    -g "#{AZURE_RG_NAME}" \
+    -g "${AZURE_RG_NAME}" \
     -n "${AZURE_VM_NAME}" \
     --identities "${AZURE_IDENTITY_NAME}"
+```
 
+#### Assignation de privilèges
 
+```bash
+# create environment variables for later usage
+export AZURE_RG_NAME="MyResourceGroup"
+export AZURE_IDENTITY_NAME="MyIdentity"
+export AZURE_VM_NAME="MyVm"
+# login to Azure if needed ;)
+az login
+# get the Subscription ID
+AZURE_SUB_ID=$(az account show --query 'id' -o tsv)
+# Affect a role to a managed identity
+az role assignment create \
+    --assignee "{assignee}" \
+    --role "Reader" \
+    --scope "/subscriptions/${AZURE_SUB_ID}/resourceGroups/${AZURE_RG_NAME}"
+```
 
+#### Utilisation d'une identité managée sur une vm
+
+```bash
+# You will need to get the value of either client id or object id or the resource id
+# so from your machine :
+# To get the resource id:
+az identity show --resource-group "${AZURE_RG_NAME}" \
+    --name "${AZURE_IDENTITY_NAME}"\
+    --query id -o tsv
+# Or to get the client id
+az identity show --resource-group "${AZURE_RG_NAME}" \
+    --name "#{AZURE_IDENTITY_NAME}" \
+    --query clientId -o tsv
+# Or to get the object id
+az identity show --resource-group "${AZURE_RG_NAME}" \
+    --name "${AZURE_IDENTITY_NAME}" \
+    --query principalId -o tsv
+# connect to your VM
+# Linux is assumed, start a shell
+# Windows is working too with Azure CLI
+az login --identity --username ‹one of the 3 options>
+```
+
+## Comment un dev se sert des Managed Identity?
+
+Pour les développeurs, les identités managées simplifient l'authentification et l'autorisation des applications avec d'autres services Azure.
+
+Nous savons tous que les développeurs n'aiment pas gérer des secrets.
+
+Ci-dessous, vous trouverez des exemples de code avec le SDK Azure Identity qui permet de s'en passer !
+
+Vous verrez que la fonction ou méthode est quasiment identique partout.
+
+Il faut tout de même préciser un point **important**, le SDK Azure Identity permets également de récupéré des tokens
+valide avec d'autre sources, dans cette ordre :
+
+- Environment
+- Workload Identity
+- Managed Identity
+- Visual Studio
+- Visual Studio Code
+- Azure CLI
+- Azure PowerShell
+- Azure Developer CLI
+- Interactive browser
+
+Pour plus de détails, la documentation Microsoft est plutôt complète => [](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/identity-readme?view=azure-dotnet#defaultazurecredential)
+
+### C#
+
+```csharp
+using System;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string keyVaultUrl = "https://<your-key-vault-name>.vault.azure.net/";
+
+        // Create a client using DefaultAzureCredential, which supports Managed Identity
+        var client = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential());
+
+        // Retrieve a secret from Key Vault
+        var secret = client.GetSecret("<your-secret-name>");
+
+        Console.WriteLine($"Secret Value: {secret.Value.Value}");
+    }
+}
+```
+
+### Go
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+	"github.com/Azure/azure-sdk-for-go/sdk/keyvault/azsecrets"
+)
+
+func main() {
+	// Define the Key Vault URL
+	keyVaultUrl := "https://<your-key-vault-name>.vault.azure.net/"
+
+	// Create a new DefaultAzureCredential for Managed Identity authentication
+	cred, err := azidentity.NewDefaultAzureCredential(nil)
+	if err != nil {
+		fmt.Printf("failed to obtain credential: %v\n", err)
+		return
+	}
+
+	// Create a new client for accessing secrets
+	client, err := azsecrets.NewClient(keyVaultUrl, cred, nil)
+	if err != nil {
+		fmt.Printf("failed to create client: %v\n", err)
+		return
+	}
+
+	// Retrieve a secret from Key Vault
+	secretResp, err := client.GetSecret(context.Background(), "<your-secret-name>", nil)
+	if err != nil {
+		fmt.Printf("failed to get secret: %v\n", err)
+		return
+	}
+
+	fmt.Printf("Secret Value: %s\n", *secretResp.Value)
+}
+```
+
+### NodeJs
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { SecretClient } from "@azure/keyvault-secrets";
+
+async function main() {
+  const keyVaultUrl = "https://<your-key-vault-name>.vault.azure.net/";
+
+  // Create a client using DefaultAzureCredential, which supports Managed Identity
+  const credential = new DefaultAzureCredential();
+  const client = new SecretClient(keyVaultUrl, credential);
+
+  // Retrieve a secret from Key Vault
+  const secret = await client.getSecret("<your-secret-name>");
+  console.log(`Secret Value: ${secret.value}`);
+}
+
+main().catch((err) => console.error("Error:", err));
+```
+
+### Java
+
+```java
+import com.azure.identity.DefaultAzureCredential;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.security.keyvault.secrets.SecretClient;
+import com.azure.security.keyvault.secrets.SecretClientBuilder;
+import com.azure.security.keyvault.secrets.models.KeyVaultSecret;
+
+public class Main {
+    public static void main(String[] args) {
+        // Replace with your Key Vault URL
+        String keyVaultUrl = "https://<your-key-vault-name>.vault.azure.net/";
+
+        // Create a DefaultAzureCredential instance, which supports Managed Identity
+        DefaultAzureCredential defaultCredential = new DefaultAzureCredentialBuilder().build();
+
+        // Create a SecretClient using the DefaultAzureCredential
+        SecretClient secretClient = new SecretClientBuilder()
+            .vaultUrl(keyVaultUrl)
+            .credential(defaultCredential)
+            .buildClient();
+
+        // Retrieve a secret from Key Vault
+        KeyVaultSecret secret = secretClient.getSecret("<your-secret-name>");
+
+        // Print the secret value
+        System.out.println("Secret Value: " + secret.getValue());
+    }
+}
+```
+
+## Comment se servir des Managed Identity avec Kubernetes?
+
+### Pré-Requis
+
+Pour utiliser les Identités Managées sur un cluster AKS vous devez activer l'`oidc-issuer` et `workload-identity` :
+
+```bash
+export RESOURCE_GROUP= "MyRg"
+export CLUSTER_NAME= "myAks"
+# update the cluster
+az aks update \
+    --resource-group "${ RESOURCE_GROUP}"
+    --name "${CLUSTER_NAME}" \
+    --enable-oidc-issuer \
+    --enable-workload-identity
+```
+
+La procédure dure quelques minutes, soyez patient ;)
+
+```bash
+# get the oidc issuer
+export AKS_OIDC_ISSUER="$(az aks show --name "${CLUSTER_NAME}" \
+    --resource-group "${RESOURCE_GROUP}" \
+    --query "oidcIssuerProfile. issuerUrl" \
+    --output tsv)"
+```
+
+### Création de l'Identité Managée
+
+```bash
+export RESOURCE_GROUP="MyRg"
+export CLUSTER_NAME="myAks"
+export SUBSCRIPTION="$(az account show --query id --output tsv)"
+export LOCATION="westeurope"
+export USER_ASSIGNED_IDENTITY_NAME="myAksIdentity"
+# create the managed identity
+az identity create \
+    --name "${USER_ASSIGNED_IDENTITY_NAME}" \
+    -- resource-group "${RESOURCE_GROUP}" \
+    --location "${LOCATION}" \
+    --subscription "${SUBSCRIPTION}"
+# Store it in a variable
+export USER_ASSIGNED_CLIENT_ID="$(az identity show \
+    --resource-group "${RESOURCE_GROUP}" \
+    --name "${USER_ASSIGNED_IDENTITY_NAME}" \
+    --query 'clientId' \
+    --output tsv)"
+```
+
+### Création du Service Account dans le cluster
+
+```bash
+export RESOURCE_GROUP="MyRg"
+export CLUSTER_NAME="myAks"
+export SUBSCRIPTION="$(az account show --query id --output tsv)"
+export LOCATION="westeurope"
+export USER_ASSIGNED_IDENTITY_NAME="myAksIdentity"
+export SERVICE_ACCOUNT_NAME= 'myService'
+export SERVICE_ACCOUNT_NAMESPACE='default'
+# connect to the aks cluster
+az aks get-credentials --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GROUP}"
+# create the service account in the cluster :
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    azure.workload. identity/client-id: "${USER_ASSIGNED_CLIENT_ID}"
+  name: "${SERVICE_ACCOUNT_NAME}"
+  namespace: "${SERVICE_ACCOUNT_NAMESPACE}"
+EOF
+```
+
+### Création de la fédération
+
+```bash
+export RESOURCE_GROUP="MyRg"
+export CLUSTER_NAME="myAks"
+export SUBSCRIPTION="$(az account show --query id --output tsv)"
+export LOCATION="westeurope"
+export USER_ASSIGNED_IDENTITY_NAME="myAksIdentity"
+export FEDERATED_ IDENTITY _CREDENTIAL_NAME="myFedAksIdentity"
+export SERVICE_ACCOUNT_NAME= 'myService'
+export SERVICE_ACCOUNT_NAMESPACE= 'default'
+
+# connect to the aks cluster
+az identity federated-credential create \
+    --name "${FEDERATED_IDENTITY_CREDENTIAL_NAME}" \
+    --identity-name "${USER_ASSIGNED_IDENTITY_NAME}" \
+    --resource-group "${RESOURCE_GROUP}" \
+    --issuer "${AKS_OIDC_ISSUER}" \
+    --subject system:serviceaccount:"${SERVICE_ACCOUNT_NAMESPACE}":"${SERVICE_ACCOUNT_NAME}" \
+    --audience api://AzureADTokenExchange
+```
+
+### Utilisation sur un pod
+
+```bash
+# In the Deployment or in you pod now you can use this id
+# You need to add a new label
+kubectl patch pod <podname> \
+    -n ${SERVICE_ACCOUNT_NAMESPACE} \
+    -p '{"labels" :{"azure.workload.identity/use":"true"}}'
+# and you need to update the spec.serviceAccountName
+kubectl edit pods <podname> \
+    -n ${SERVICE_ACCOUNT_NAMESPACE}
+# change the service account name by the new one !
 ```
