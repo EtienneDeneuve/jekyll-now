@@ -38,10 +38,11 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8.4.0
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: lts/*
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
