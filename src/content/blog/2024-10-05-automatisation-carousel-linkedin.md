@@ -27,7 +27,7 @@ Voici mon nouveau process pour générer des jolis carousels sur Linkedin, sans 
 
 ## Pré-requis
 
-Il faut avoir : 
+Il faut avoir :
 
 - un container Engine (Docker, ou autres)
 - une belle photo de vous au format carré (650x650 par exemple)
@@ -35,38 +35,76 @@ Il faut avoir :
 
 ## Création du setup
 
-### TL&DR
+### TL&DR (easy)
 
 ```bash
 git clone https://github.com/EtienneDeneuve/linkedin-carousel-generator.git
+cd linkedin-carousel-generator
+docker build -t pandoc-custom-ubuntu -f ./Dockerfile . --progress=plain
+docker run --rm -it \
+    -v "$(pwd):/data" \
+    pandoc-custom-ubuntu \
+    "files/prez.md" -o "output/prez-ubu.pdf" \
+    --pdf-engine=xelatex \
+    --pdf-engine-opt=-shell-escape \
+    --pdf-engine-opt=-interaction=nonstopmode \
+    --template="templates/v2.tex"
+# open the output/prez-ubu.pdf
 ```
 
-### Creer les dossier pour la structure
+### Je veux le faire moi-même
+
+#### Créer les dossiers pour la structure
 
 ```bash
 mkdir -p linkedin-generator/{data/fonts,files,output,templates}
 ```
 
-Ajouter votre photos dans data :
+Ajouter votre photos dans `data` :
 
 - me.png (une photo de vous)
 - logo-with-decors.png (votre joli logo)
 
-Ajouter vos fonts personalisées si besoin dans `data/fonts`
+Ajouter vos fonts personnalisées si besoin dans `data/fonts`.
 
-### Image Docker
+#### Image Docker
 
 Il faut customiser l'image pandoc `ubuntu` pour ajouter des modules LaTeX complémentaire :
 
 ```dockerfile
 FROM pandoc/latex:latest-ubuntu
-# Installer les packages LaTeX manquants
-RUN tlmgr update --self && \
-    tlmgr install titlesec enumitem fancyhdr xcolor geometry fontspec wrapfig ragged2e pgf hyperref
-# Installer des polices si nécessaires
+
+# Installer les packages
 RUN apt-get update && \
-    apt-get install -y fonts-freefont-ttf && \
+    apt-get install -y \
+        python3-pygments \
+        texlive-latex-recommended \
+        texlive-latex-extra \
+        texlive-fonts-recommended \
+        texlive-fonts-extra \
+        texlive-science \
+        fonts-freefont-ttf && \
     rm -rf /var/lib/apt/lists/*
+
+# Générer les formats nécessaires pour les moteurs TeX installés
+RUN fmtutil-sys --byfmt pdflatex
+RUN fmtutil-sys --byfmt xelatex
+
+# Mettre à jour tlmgr sans exécuter les actions associées
+RUN tlmgr update --self --all --no-execute-actions
+
+# Installer les dépendances pour que le template puisse fonctionner
+RUN tlmgr install \
+        adjustbox \
+        enumitem \
+        fvextra \
+        lineno \
+        mdframed \
+        minted \
+        ragged2e \
+        titlesec \
+        wrapfig \
+        fvextra
 
 # Copier les polices personnalisées (optionnel)
 # Si vous avez des polices spécifiques, vous pouvez les copier dans l'image
@@ -80,12 +118,18 @@ Builder cette image, `docker build -t pandoc-custom .`
 
 ### Preparer le template LaTeX
 
-Bon, on va pas se mentir, on est entre nous, le LaTeX c'est pas hyper sexy, par contre c'est super puissant.
+Bon, on va pas se mentir, on est entre nous, le LaTeX ce n'est pas hyper sexy, par contre c'est (vraiement) super puissant.
 
-Je vous donne mon template, libre à vous de le customiser ;) 
+Je vous donne mon template, libre à vous de le customiser ;)
 
 ```latex
 \documentclass{article}
+
+% ici, on active la partie "syntax" highlight
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
 
 % Encodage et polices
 \usepackage[utf8]{inputenc}
@@ -101,13 +145,18 @@ Je vous donne mon template, libre à vous de le customiser ;)
 \usepackage{tikz}
 \usetikzlibrary{calc, backgrounds, shapes.arrows, shadows}
 \usepackage{wrapfig}
-\usepackage{ragged2e} % Pour aligner le texte à droite
+\usepackage{ragged2e} % Pour l'alignement du texte
+\usepackage{fvextra}
+\usepackage{adjustbox} % Pour ajuster les images dans TikZ
+\usepackage[cache=true]{minted}
+\usepackage[unicode]{hyperref} % Charger hyperref ici
+
 
 % Configuration de la géométrie de la page
 \geometry{
     paperwidth=210mm,
     paperheight=210mm,
-    margin=20mm, 
+    margin=20mm,
     tmargin=1mm
 }
 
@@ -216,3 +265,60 @@ Sauvegarder le dans le dossier `templates`, avec un nom comme par exemple `carou
 
 ### Ecrire un markdown
 
+````markdown
+---
+<!-- cette partie permets d'injecter des variables dans le template LaTeX -->
+author: Etienne Deneuve
+company: www.simplified.fr
+---
+
+# J'aime pas Canvas
+
+Oui, c'est un chouette outil, mais, moi je n'aime pas...
+
+<!-- ce tag permet de passer à la page suivante -->
+
+\newpage
+
+# Comment faire sans ?
+
+- Ecrire un markdown
+- Lancer un script
+- Publier le PDF
+
+\newpage
+
+# Docker, Pandoc, LaTex
+
+<!-- Attention, le plugin ne sait pas casser les lignes nativement -->
+<!-- Je n'ai pas encore trouver une façon de le gérer, mais j'y reviendrais -->
+
+```bash
+docker run --rm -it \
+  -v "$(pwd):/data" \
+  pandoc-custom \
+  "files/prez.md" -o "output/prez.pdf" \
+  --pdf-engine=xelatex \
+  --pdf-engine-opt=-interaction=nonstopmode \
+  --template="templates/v2.tex"
+```
+````
+
+Sauvegarder le dans `files/prez.md` par exemple.
+
+#### Lancer la conversion
+
+Vérifier vos noms de fichiers ;)
+
+```bash
+export sourceMd="files/prez.md"
+export destinationPdf="output/prez.pdf"
+export templateTex="templates/v2.tex"
+docker run --rm -it \
+  -v "$(pwd):/data" \
+  pandoc-custom \
+  "${sourceMd}" -o "${destinationPdf}" \
+  --pdf-engine=xelatex \
+  --pdf-engine-opt=-interaction=nonstopmode \
+  --template="${templateTex}"
+```
