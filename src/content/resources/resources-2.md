@@ -1,0 +1,25 @@
+---
+title: "PodCast - Techspresso"
+description: "Des sites sur les pratiques DevSecOps."
+category: "Podcast"
+url: "https://www.youtube.com/@TechSpresso-ug5hl/?utm_source=etienne_deneuve&utm_medium=links&utm_campaign=etienne_deneuve"
+tags: ["Podcast"]
+pubDate: 2024-01-15
+---
+
+🚀🎧 Bienvenue dans "Techspresso", le rendez-vous matinal où Alex et ses potes (et moi) boostent votre journée avec le meilleur de la tech ! 🎤
+
+🌅 Chaque épisode, c'est un plongeon dans l'univers tech avec notre café bien chaud. ☕ On explore les sujets brûlants, les innovations et on partage nos découvertes et opinions, le tout dans une ambiance décontractée.
+
+👥 Geek confirmé, amateur éclairé ou juste curieux de tech, "Techspresso" est votre dose quotidienne de savoir et de fun. Discussions animées, gadgets du moment, projets persos – on aborde tout sans filtre.
+
+📢 Vous avez un projet tech passionnant ou une idée à partager ? Alex et ses potes vous invitent à rejoindre la conversation ! Contactez-nous à t3chspress0@gmail.com pour participer ou présenter votre projet. C'est l'occasion idéale de faire connaître vos idées et innovations.
+
+🔊 Alors, préparez votre café, installez-vous confortablement et embarquez avec nous. On vous attend pour des échanges tech hauts en couleur et pleins d'énergie. Rejoignez la communauté "Techspresso" dès maintenant ! 🌍
+
+#Techspresso #TechFun #CaféTech
+
+URLs :
+
+- [Youtube](https://www.youtube.com/@TechSpresso-ug5hl/?utm_source=etienne_deneuve&utm_medium=links&utm_campaign=etienne_deneuve)
+- [Apple Podcast](https://podcasts.apple.com/fr/podcast/techspresso/id1729008749?utm_source=etienne_deneuve&utm_medium=links&utm_campaign=etienne_deneuve)
