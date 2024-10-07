@@ -1,0 +1,139 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    resource: CollectionEntry<"resources">;
+}
+
+const { resource } = Astro.props;
+
+// Déterminer les métadonnées communes
+const pubDate = resource.data.pubDate
+    ? new Date(resource.data.pubDate).toLocaleDateString("fr-FR", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+      })
+    : null;
+---
+
+<a
+    class="card"
+    href={resource.data.url}
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    <span class="title">{resource.data.title}</span>
+
+    <div class="details">
+        <div class="flex-left">
+            <table>
+                {
+                    pubDate && (
+                        <tr>
+                            <td>Publié le: </td>
+                            <td>{pubDate}</td>
+                        </tr>
+                    )
+                }
+                <tr>
+                    <td>Catégorie: </td>
+                    <td>{resource.data.category}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="flex-right">
+            {
+                resource.data.tags && resource.data.tags.length > 0 && (
+                    <div class="tags">
+                        {resource.data.tags.map((tag) => (
+                            <span class="tag">{tag}</span>
+                        ))}
+                    </div>
+                )
+            }
+        </div>
+    </div>
+
+    <style>
+        .card {
+            display: grid;
+            grid-template: auto 1fr / auto 1fr;
+            height: 11rem;
+            background: var(--gradient-subtle);
+            border: 1px solid var(--gray-800);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            text-decoration: none;
+            font-family: var(--font-brand);
+            font-size: var(--text-lg);
+            font-weight: 500;
+            transition: box-shadow var(--theme-transition);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .title {
+            grid-area: 1 / 1 / 2 / 2;
+            z-index: 1;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--gray-999);
+            color: var(--gray-200);
+            border-radius: 0.375rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .details {
+            grid-area: 4 / 1 / 4 / 4;
+            font-size: small;
+            display: flex;
+            flex-flow: row wrap;
+            z-index: 1;
+            padding: 0.5rem 1rem;
+            background: var(--gray-999);
+            color: var(--gray-200);
+            border-radius: 0.375rem;
+            justify-content: space-between;
+        }
+
+        .flex-right {
+            text-align: left;
+            align-self: flex-start;
+        }
+
+        .flex-left {
+            align-self: flex-end;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        .tag {
+            background: var(--gray-800);
+            color: var(--gray-200);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: var(--text-sm);
+        }
+
+        @media (min-width: 50em) {
+            .card {
+                height: 22rem;
+                border-radius: 1.5rem;
+            }
+
+            .title {
+                border-radius: 0.9375rem;
+            }
+        }
+    </style>
+</a>

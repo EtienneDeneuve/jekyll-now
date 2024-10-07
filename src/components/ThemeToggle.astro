@@ -29,7 +29,7 @@ import Icon from "./Icon.astro";
     width: 2rem;
     height: 2rem;
     font-size: 1rem;
-    color: var(--accent-overlay);
+    color: var(--accent-dark);
   }
 
   .icon.light::before {
@@ -78,7 +78,7 @@ import Icon from "./Icon.astro";
       const setTheme = (dark: boolean) => {
         document.documentElement.classList[dark ? "add" : "remove"](
           "theme-dark",
-          "cc--darkmode"
+          "cc--darkmode",
         );
         button.setAttribute("aria-pressed", String(dark));
       };

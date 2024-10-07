@@ -13,6 +13,9 @@ import remarkMermaid from "remark-mermaidjs";
 export default defineConfig({
   site: "https://etienne.deneuve.xyz",
   base: "",
+  redirects: {
+    "/blog": "/blog/page/1",
+  },
   integrations: [
     sitemap(),
     partytown({
