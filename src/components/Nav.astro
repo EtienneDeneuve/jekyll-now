@@ -1,5 +1,5 @@
 ---
-import { fade } from "astro:transitions";
+import { fade, slide } from "astro:transitions";
 import Icon from "./Icon.astro";
 import type { Props as IconProps } from "./Icon.astro";
 import ThemeToggle from "./ThemeToggle.astro";
@@ -36,7 +36,7 @@ const iconLinks: { label: string; href: string; icon: IconProps["icon"] }[] = [
 ---
 
 <nav>
-  <div class="menu-header">
+  <div class="menu-header" transition:animate={slide({ duration: "2s" })}>
     <a href="/" class="site-title">
       <Icon
         icon="terminal-window"
@@ -55,7 +55,7 @@ const iconLinks: { label: string; href: string; icon: IconProps["icon"] }[] = [
       </template>
     </menu-button>
   </div>
-  <div id="menu-content" transition:animate={fade({ duration: "2s" })}>
+  <div id="menu-content" transition:animate={slide({ duration: "2s" })}>
     <ul class="nav-items">
       {
         textLinks.map(({ label, href }) => (
@@ -84,9 +84,7 @@ const iconLinks: { label: string; href: string; icon: IconProps["icon"] }[] = [
           iconLinks.map(({ href, icon, label }) => (
             <a href={href} class="social">
               <span class="sr-only">{label}</span>
-              <span class="icon light">
-                <Icon icon={icon} color="black" />
-              </span>
+              <Icon icon={icon} />
             </a>
           ))
         }
@@ -253,7 +251,7 @@ const iconLinks: { label: string; href: string; icon: IconProps["icon"] }[] = [
     display: flex;
     padding: var(--icon-padding);
     text-decoration: none;
-    color: var(--accent-dark);
+    color: var(--icon-color);
     transition: color var(--theme-transition);
   }
 

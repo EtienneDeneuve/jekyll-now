@@ -25,8 +25,8 @@ const gradientId =
 	height="40"
 	viewBox="0 0 256 256"
 	aria-hidden="true"
-	stroke={gradient ? `url(#${gradientId})` : color}
-	fill={gradient ? `url(#${gradientId})` : color}
+	stroke={gradient ? `url(#${gradientId})` : "currentColor"}
+	fill={gradient ? `url(#${gradientId})` : "currentColor"}
 	{...attrs}
 >
 	<g set:html={iconPath} />
@@ -53,5 +53,21 @@ const gradientId =
 		vertical-align: middle;
 		width: var(--size, 1em);
 		height: var(--size, 1em);
+		fill: var(
+			--icon-color,
+			currentColor
+		); /* Utilisation d'une variable CSS pour la couleur */
+		stroke: var(--icon-color, currentColor);
+	}
+
+	/* Styles pour le thème sombre */
+	.theme-dark svg {
+		--icon-color: white; /* Blanc pour le thème sombre */
+	}
+
+	/* Styles pour le thème clair */
+	a .social {
+		color: black !important;
+		--icon-color: black !important; /* Noir pour le thème clair */
 	}
 </style>
