@@ -5,11 +5,13 @@ import "../styles/global.css";
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
+  og?: string | undefined;
 }
 
 const {
   title = "Etienne Deneuve: Personal Site",
   description = "The personal site of Etienne Deneuve",
+  og = "null",
 } = Astro.props;
 
 const { url, site } = Astro;
@@ -17,6 +19,7 @@ const { url, site } = Astro;
 
 <meta charset="UTF-8" />
 <meta name="description" property="og:description" content={description} />
+<meta name="description" property="og:image" content={og} />
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
 <title>{title}</title>

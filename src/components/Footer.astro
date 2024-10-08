@@ -1,46 +1,40 @@
 ---
+import CallToAction from "./CallToAction.astro";
 import Icon from "./Icon.astro";
 const currentYear = new Date().getFullYear();
 ---
 
-<footer>
-  <div class="group">
-    <p>
-      <Icon icon="rocket-launch" size="1.2em" />
-    </p>
-    <p>&copy; {currentYear} Etienne Deneuve</p>
+<footer class="wrapper">
+  <div class="cta">
+    <h2>Vous voulez travailler avec Simplifi'ed ?</h2>
+    <CallToAction
+      href="https://outlook.office365.com/owa/calendar/SimplifiED1@simplified.fr/bookings/"
+    >
+      Prenez un rendez-vous avec moi !
+      <Icon icon="paper-plane-tilt" size="1.2em" />
+    </CallToAction>
   </div>
-  <p class="socials">
-    <a href="https://twitter.com/EtienneDinfo"> Twitter</a>
-    <a href="https://github.com/EtienneDeneuve"> GitHub</a>
-    <a href="https://linkedin.com/in/EtienneDeneuve"> Linkedin</a>
-  </p>
-  <!-- <script
-    src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
-    data-cfasync="false"></script>
-  <script>
-    window.cookieconsent.initialise({
-      palette: {
-        popup: {
-          background: "#3937a3",
-        },
-        button: {
-          background: "transparent",
-          text: "#e62576",
-          border: "#e62576",
-        },
-      },
-      position: "bottom-right",
-      content: {
-        href: "/privacy/",
-      },
-    }); -->
+  <div class="wrapper">
+    <div class="group col">
+      <p>
+        <Icon icon="rocket-launch" size="1.2em" />
+      </p>
+      <p>&copy; {currentYear} Etienne Deneuve</p>
+    </div>
+    <p class="socials col">
+      <a href="https://twitter.com/EtienneDinfo"> Twitter</a>
+      <a href="https://github.com/EtienneDeneuve"> GitHub</a>
+      <a href="https://linkedin.com/in/EtienneDeneuve"> Linkedin</a>
+    </p>
+  </div>
 </footer>
 
 <style>
-  footer {
+  .wrapper {
     display: flex;
     flex-direction: column;
+  }
+  footer {
     gap: 3rem;
     margin-top: auto;
     padding: 3rem 2rem 3rem;
@@ -61,7 +55,19 @@ const currentYear = new Date().getFullYear();
     text-decoration-color: currentColor;
   }
 
+  .cta {
+    &
+  }
+
+  .wrapper {
+    display: flex;
+  }
+  .col {
+    flex: 1;
+    justify-content: space-between;
+  }
   .group {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -69,6 +75,7 @@ const currentYear = new Date().getFullYear();
 
   .socials {
     display: flex;
+    flex: 1;
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;

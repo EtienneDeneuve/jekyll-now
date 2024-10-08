@@ -6,6 +6,7 @@ const resourcesCollection = defineCollection({
     description: z.string(),
     category: z.string(),
     url: z.string().url(),
+    img: z.string().url().optional(),
     tags: z.array(z.string()).optional(),
     pubDate: z.date().optional(), // Optionnel si vous voulez garder une date
   }),

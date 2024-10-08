@@ -9,6 +9,8 @@ import sitemap from "@astrojs/sitemap";
 import jopSoftwarecookieconsent from "@jop-software/astro-cookieconsent";
 import remarkMermaid from "remark-mermaidjs";
 
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://etienne.deneuve.xyz",
@@ -16,93 +18,89 @@ export default defineConfig({
   redirects: {
     "/blog": "/blog/page/1",
   },
-  integrations: [
-    sitemap(),
-    partytown({
-      // Adds dataLayer.push as a forwarding-event.
-      config: {
-        forward: ["dataLayer.push"],
+  integrations: [sitemap(), partytown({
+    // Adds dataLayer.push as a forwarding-event.
+    config: {
+      forward: ["dataLayer.push"],
+    },
+  }), jopSoftwarecookieconsent({
+    categories: {
+      necessary: {
+        enabled: true,
+        // this category is enabled by default
+        readOnly: true, // this category cannot be disabled
       },
-    }),
-    jopSoftwarecookieconsent({
-      categories: {
-        necessary: {
-          enabled: true,
-          // this category is enabled by default
-          readOnly: true, // this category cannot be disabled
-        },
-        analytics: {},
+      analytics: {},
+    },
+    guiOptions: {
+      consentModal: {
+        layout: "bar inline",
+        position: "bottom",
+        flipButtons: true,
+        equalWeightButtons: true,
       },
-      guiOptions: {
-        consentModal: {
-          layout: "bar inline",
-          position: "bottom",
-          flipButtons: true,
-          equalWeightButtons: true,
-        },
-        preferencesModal: {
-          layout: "box",
-          // position: 'left right',
-          flipButtons: false,
-          equalWeightButtons: true,
-        },
+      preferencesModal: {
+        layout: "box",
+        // position: 'left right',
+        flipButtons: false,
+        equalWeightButtons: true,
       },
-      language: {
-        default: "fr",
-        translations: {
-          fr: {
-            consentModal: {
-              title: "J'utilise quelques cookies",
-              description:
-                "Je vous rassure, pas grand chose... mais je vais vous le dire.",
-              acceptAllBtn: "Tout accepter",
-              acceptNecessaryBtn: "Tout refuser",
-              showPreferencesBtn: "Gérer les préférences individuelles",
-            },
-            preferencesModal: {
-              title: "Gérer les préférences des cookies",
-              acceptAllBtn: "Tout accepter",
-              acceptNecessaryBtn: "Tout refuser",
-              savePreferencesBtn: "Accepter la sélection actuelle",
-              closeIconLabel: "Fermer la fenêtre modale",
-              sections: [
-                {
-                  title: "Performance et analyse",
-                  description:
-                    "Ces cookies collectent des informations sur votre utilisation de ce site web. Toutes les données sont anonymisées et ne peuvent pas être utilisées pour vous identifier.",
-                  linkedCategory: "analytics",
-                },
-              ],
-            },
+    },
+    language: {
+      default: "fr",
+      translations: {
+        fr: {
+          consentModal: {
+            title: "J'utilise quelques cookies",
+            description:
+              "Je vous rassure, pas grand chose... mais je vais vous le dire.",
+            acceptAllBtn: "Tout accepter",
+            acceptNecessaryBtn: "Tout refuser",
+            showPreferencesBtn: "Gérer les préférences individuelles",
           },
-          en: {
-            consentModal: {
-              title: "I use some cookies",
-              description: "But, I'll tell you about it...",
-              acceptAllBtn: "Accept all",
-              acceptNecessaryBtn: "Reject all",
-              showPreferencesBtn: "Manage Individual preferences",
-            },
-            preferencesModal: {
-              title: "Manage cookie preferences",
-              acceptAllBtn: "Accept all",
-              acceptNecessaryBtn: "Reject all",
-              savePreferencesBtn: "Accept current selection",
-              closeIconLabel: "Close modal",
-              sections: [
-                {
-                  title: "Performance and Analytics",
-                  description:
-                    "These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.",
-                  linkedCategory: "analytics",
-                },
-              ],
-            },
+          preferencesModal: {
+            title: "Gérer les préférences des cookies",
+            acceptAllBtn: "Tout accepter",
+            acceptNecessaryBtn: "Tout refuser",
+            savePreferencesBtn: "Accepter la sélection actuelle",
+            closeIconLabel: "Fermer la fenêtre modale",
+            sections: [
+              {
+                title: "Performance et analyse",
+                description:
+                  "Ces cookies collectent des informations sur votre utilisation de ce site web. Toutes les données sont anonymisées et ne peuvent pas être utilisées pour vous identifier.",
+                linkedCategory: "analytics",
+              },
+            ],
+          },
+        },
+        en: {
+          consentModal: {
+            title: "I use some cookies",
+            description: "But, I'll tell you about it...",
+            acceptAllBtn: "Accept all",
+            acceptNecessaryBtn: "Reject all",
+            showPreferencesBtn: "Manage Individual preferences",
+          },
+          preferencesModal: {
+            title: "Manage cookie preferences",
+            acceptAllBtn: "Accept all",
+            acceptNecessaryBtn: "Reject all",
+            savePreferencesBtn: "Accept current selection",
+            closeIconLabel: "Close modal",
+            sections: [
+              {
+                title: "Performance and Analytics",
+                description:
+                  "These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.",
+                linkedCategory: "analytics",
+              },
+            ],
           },
         },
       },
-    }),
-  ],
+    },
+  }), react()],
   markdown: {
     shikiConfig: {
       // Choose from Shiki's built-in themes (or add your own)

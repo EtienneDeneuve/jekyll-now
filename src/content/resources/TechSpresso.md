@@ -1,8 +1,9 @@
 ---
 title: "PodCast - Techspresso"
-description: "Des sites sur les pratiques DevSecOps."
+description: "Un podcast sur la Tech ;)"
 category: "Podcast"
 url: "https://www.youtube.com/@TechSpresso-ug5hl/?utm_source=etienne_deneuve&utm_medium=links&utm_campaign=etienne_deneuve"
+img: https://i.ytimg.com/vi/kEx4dXOPtMc/maxresdefault.jpg?sqp=-oaymwEjCPYBEIoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAFAXo_5rjCGVbgnq-xjZOUjpxbLw
 tags: ["Podcast"]
 pubDate: 2024-01-15
 ---

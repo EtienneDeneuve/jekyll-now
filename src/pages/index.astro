@@ -54,7 +54,12 @@ const projects = (await getCollection("blog"))
       <Skills />
     </div>
 
-    <main class="wrapper stack gap-20 lg:gap-48">
+    <main
+      class="wrapper stack gap-20 lg:gap-48"
+      data-aos="fade-left"
+      data-aos-delay="300"
+      client:is-visible
+    >
       <section class="section with-background with-cta">
         <header class="section-header stack gap-2 lg:gap-4">
           <h3>Articles récents</h3>

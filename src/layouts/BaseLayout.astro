@@ -1,4 +1,6 @@
 ---
+import { fade } from "astro:transitions";
+
 // Learn about using Astro layouts:
 // https://docs.astro.build/en/core-concepts/layouts/
 
@@ -6,29 +8,36 @@
 import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import ContactCTA from "../components/ContactCTA.astro";
 import CustomStyles from "../components/CustomStyles.astro";
 import CustomScripts from "../components/CustomScripts.astro";
+import "aos/dist/aos.css";
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
+  og?: string | undefined;
 }
 
-const { title, description } = Astro.props;
+const { title, description, og } = Astro.props;
 ---
 
 <html lang="fr" transition:animate="none">
   <head>
-    <MainHead title={title} description={description} />
+    <MainHead title={title} description={description} og={og} />
   </head>
   <body>
     <div class="stack backgrounds">
       <Nav />
-      <slot transition:animate="slide" />
-      <ContactCTA />
+      <slot />
+      <!-- <ContactCTA /> -->
       <Footer />
     </div>
     <CustomScripts />
     <CustomStyles />
+    <script>
+      import AOS from "aos";
+      AOS.init({
+        anchorPlacement: "top-top",
+      });
+    </script>
   </body>
 </html>
