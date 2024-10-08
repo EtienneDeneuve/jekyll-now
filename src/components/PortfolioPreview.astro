@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-
+import { Image } from "astro:assets";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import "dayjs/locale/fr";
@@ -10,7 +10,6 @@ dayjs.extend(utc);
 interface Props {
   project: CollectionEntry<"blog">;
 }
-
 const { project } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await project.render();
 
@@ -22,9 +21,11 @@ const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
 
 <a class="card" href={`/${project.slug}`}>
   <span class="title">{project.data.title}</span>
-  <img
-    src={project.data.img}
+  <Image
+    src={`https://etienne.deneuve.xyz/${project.data.img}` ||
+      "https://etienne.deneuve.xyz/assets/portrait.jpg"}
     alt={project.data.img_alt || ""}
+    inferSize={true}
     loading="lazy"
     decoding="async"
   />

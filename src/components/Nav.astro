@@ -84,7 +84,9 @@ const iconLinks: { label: string; href: string; icon: IconProps["icon"] }[] = [
           iconLinks.map(({ href, icon, label }) => (
             <a href={href} class="social">
               <span class="sr-only">{label}</span>
-              <Icon icon={icon} />
+              <span class="icon light">
+                <Icon icon={icon} color="black" />
+              </span>
             </a>
           ))
         }
@@ -155,6 +157,16 @@ const iconLinks: { label: string; href: string; icon: IconProps["icon"] }[] = [
     line-height: 1.1;
     color: var(--gray-0);
     text-decoration: none;
+  }
+
+  .icon {
+    z-index: 1;
+    color: var(--accent-dark);
+  }
+
+  .icon.light::before {
+    color: var(--accent-regular);
+    background-color: var(--accent-regular);
   }
 
   .menu-button {

@@ -10,7 +10,7 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import CustomStyles from "../components/CustomStyles.astro";
 import CustomScripts from "../components/CustomScripts.astro";
-import "aos/dist/aos.css";
+
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
@@ -20,9 +20,13 @@ interface Props {
 const { title, description, og } = Astro.props;
 ---
 
-<html lang="fr" transition:animate="none">
+<html lang="fr" transition:animate={fade({ duration: '0.4s' })}>
   <head>
-    <MainHead title={title} description={description} og={og} />
+    <MainHead
+      title={title}
+      description={description}
+      og={og ? og : "/public/assets/portrait.jpg"}
+    />
   </head>
   <body>
     <div class="stack backgrounds">
@@ -33,11 +37,5 @@ const { title, description, og } = Astro.props;
     </div>
     <CustomScripts />
     <CustomStyles />
-    <script>
-      import AOS from "aos";
-      AOS.init({
-        anchorPlacement: "top-top",
-      });
-    </script>
   </body>
 </html>
