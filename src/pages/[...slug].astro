@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
-const og = `/open-graph/${entry.slug}.png`;
+const og = `https://etienne.deneuve.xyz/open-graph/${entry.slug}.png`;
 ---
 
 <BaseLayout
