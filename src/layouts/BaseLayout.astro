@@ -1,5 +1,5 @@
 ---
-import { fade } from "astro:transitions";
+import { slide } from "astro:transitions";
 
 // Learn about using Astro layouts:
 // https://docs.astro.build/en/core-concepts/layouts/
@@ -20,7 +20,7 @@ interface Props {
 const { title, description, og } = Astro.props;
 ---
 
-<html lang="fr" transition:animate={fade({ duration: '0.4s' })}>
+<html lang="fr" transition:animate={slide({ duration: "0.4s" })}>
   <head>
     <MainHead
       title={title}
