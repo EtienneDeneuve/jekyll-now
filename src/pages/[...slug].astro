@@ -24,9 +24,15 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+const og = `/open-graph/${entry.slug}.png`;
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description}>
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  og={og}
+>
   <div class="stack gap-20">
     <div class="stack gap-15">
       <header>

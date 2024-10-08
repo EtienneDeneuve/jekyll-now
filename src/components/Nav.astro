@@ -1,4 +1,5 @@
 ---
+import { fade } from "astro:transitions";
 import Icon from "./Icon.astro";
 import type { Props as IconProps } from "./Icon.astro";
 import ThemeToggle from "./ThemeToggle.astro";
@@ -54,7 +55,7 @@ const iconLinks: { label: string; href: string; icon: IconProps["icon"] }[] = [
       </template>
     </menu-button>
   </div>
-  <div id="menu-content">
+  <div id="menu-content" transition:animate={fade({ duration: "2s" })}>
     <ul class="nav-items">
       {
         textLinks.map(({ label, href }) => (
