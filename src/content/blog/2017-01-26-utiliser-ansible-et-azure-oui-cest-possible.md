@@ -9,7 +9,7 @@ tags:
 slug: 2017/01/26/utiliser-ansible-et-azure-oui-cest-possible
 pubDate: 2017-01-26 18:54:27
 updateDate: 2024-02-12 11:16:00
-img: /assets/social/c70206f0-87da-4782-85d0-e071c1d9269a.png
+img: /assets/stock-2.jpg
 img_alt: nice abstract image
 ---
 
